@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="btns">
+    <div>
+      <img src="camera.jpg">
+      <button>Upload Image</button>
+    </div>
+
+    <div>
+
+      <button>Retrieve Image</button>
+      <img src="clock.png">
+    </div>
+
+    <div>
+      <img src="camera.jpg">
+      <a routerLink="/consultation">
+        <button>Consult a Specialist</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+    <div class="upload-content">
+      <div class="upload-icon">☁️</div>
+      <p>click to Upload your image here</p>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+  </div>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+
+  <img src="home.png">
+
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <input type="text" placeholder="Full Name" required formControlName="name">
+    <input type="text" placeholder="Email" required formControlName="email">
+    <input type="password" placeholder="Password" required formControlName="password">
+    <input type="Password" placeholder="Confirm Password" required formControlName="confirmPassword">
+
+    <button>Register</button>
+    <p>_Or continue with_</p>
+    <div class="log">
+      <div>
+        <img src="search 1.png">
+        <p>Sign up with Google</p>
+      </div>
+      <div>
+        <img src="facebook 1@2x.png">
+        <p>Sign up with Facebook</p>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+
+
+<!--      <app-input-->
+<!--        placeholder="Username"-->
+<!--        type="text"-->
+<!--        formControlName="username"-->
+<!--        (valueChange)="form.get('username')?.setValue($event)"-->
+<!--      ></app-input>-->
+<!--      <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched">-->
+<!--        <small *ngIf="form.get('username')?.errors?.['required']">Username is required.</small>-->
+<!--        <small *ngIf="form.get('username')?.errors?.['minlength']">Username must be at least 3 characters.</small>-->
+<!--      </div>-->
+
+<!--      <app-button>Register</app-button>-->

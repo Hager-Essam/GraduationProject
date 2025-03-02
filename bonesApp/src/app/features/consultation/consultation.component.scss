@@ -1,0 +1,49 @@
+.container {
+  background-color: rgb(237, 244, 249);
+  height: calc(100vh - 112px);
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding-right: 100px;
+}
+main{
+  display: flex;
+  background-color: rgb(237, 244, 249);
+}
+main .back{
+  opacity: .5;
+
+}
+input {
+  padding: 20px 10px;
+  border: none;
+  text-align: start;
+  width: 700px;
+}
+
+.user {
+  background-color: rgb(217, 217, 217);
+  display: flex;
+  width: 700px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  line-height: .1;
+}
+
+.user .about {
+  display: flex;
+}
+
+.user img {
+  width: 60px;
+  height: 50px;
+  align-self: center;
+  margin-right: 40px;
+}
+
+.user .info {
+
+}

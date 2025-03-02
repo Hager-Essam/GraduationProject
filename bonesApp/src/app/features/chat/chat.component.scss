@@ -1,0 +1,25 @@
+.container {
+  background-color: rgb(237, 244, 249);
+  height: calc(100vh - 112px);
+}
+
+input {
+  width: 90%;
+  border: none;
+  padding: 20px;
+  margin-left: 20px;
+  margin-top: 30%;
+}
+
+.upload-box {
+  width: 80%;
+  height: 500px;
+  background: #DCF0FE;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 16px rgba(0.9, 0.9, 0, 0.2);
+  cursor: pointer;
+  margin: auto;
+}
