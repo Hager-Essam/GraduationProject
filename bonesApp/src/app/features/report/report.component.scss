@@ -1,8 +1,8 @@
 .container {
   display: flex;
   justify-content: space-around;
-  background-color: #EDF4F9;
-  height: calc(100vh - 140px);
+  background-color: var(--backgroundColor);
+  height: calc(100vh - 110px);
 }
 .btn div{
   display: flex;
@@ -23,7 +23,7 @@ button {
   border: none;
   border-radius: 50px;
   outline: none;
-  background-color: #80C0EF;
+  background-color: var(--buttonColor);
   width: 350px;
   margin: 10px;
   padding: 20px;
@@ -31,13 +31,13 @@ button {
   cursor: pointer;
 }
 button:hover{
-  background-color:#5DA9E9 ;
+  background-color:var(--buttonHoverColor);
 }
 
 .upload-box {
   width: 700px;
   height: 500px;
-  background: #DCF0FE;
+  background: var(--containerColor);
   border-radius: 20px;
   display: flex;
   justify-content: center;

@@ -1,8 +1,22 @@
-body {
-  color: #2D2E2C;
-  font-family:'Ruluko',sans-serif;
+
+:root {
+  --fontColor: #000000;
+  --backgroundColor: #EDF4F9;
+  --buttonHoverColor: #5DA9E9;
+  --buttonColor: #80C0EF;
+  --inputColor: #CCE9FD;
+  --iconColor: #cce9fd;
+  --containerColor: rgb(220, 240, 254);
 }
 
-a{
-  text-decoration: none;
+.darkMode {
+  --fontColor: #7bc3f8;
+  --backgroundColor: #131313;
+  --buttonHoverColor: #3e85c0;
+  --buttonColor: #3d6f94;
+  --inputColor: rgba(204, 233, 253, 0.82);
+  --containerColor:rgba(204, 233, 253, 0.82);
+  --iconColor: rgba(128, 128, 128, 0.2);
 }
+
+

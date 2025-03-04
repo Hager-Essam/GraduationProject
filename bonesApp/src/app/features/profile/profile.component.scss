@@ -1,0 +1,72 @@
+.container {
+  background-color: var(--backgroundColor);
+  color: var(--fontColor);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 50px;
+  height: calc(100vh - 110px);
+
+}
+
+.img {
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  width: 200px;
+  text-align: center;
+}
+
+.ProfileImg {
+  margin-bottom: 20px;
+}
+
+img {
+  width: 100px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input {
+  padding: 5px;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.aboutPatient {
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  align-self: start;
+}
+
+button.mode-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+
+}
+
+button.mode-toggle svg {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease;
+}
+
+button.mode-toggle:hover svg {
+  transform: scale(1.2);
+}
+
+

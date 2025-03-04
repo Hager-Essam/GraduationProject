@@ -1,5 +1,5 @@
 .container {
-  background-color: rgb(237, 244, 249);
+  background-color: var(--backgroundColor);
   height: calc(100vh - 112px);
 }
 
@@ -14,7 +14,7 @@ input {
 .upload-box {
   width: 80%;
   height: 500px;
-  background: #DCF0FE;
+  background: var(--containerColor);
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -23,3 +23,5 @@ input {
   cursor: pointer;
   margin: auto;
 }
+
+

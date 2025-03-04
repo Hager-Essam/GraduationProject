@@ -3,9 +3,10 @@ ul {
 }
 
 .container {
-  background-color: #EDF4F9;
+  background-color: var(--backgroundColor);
   margin: 0;
   padding: 10px 30px;
+  color:var(--fontColor);
 }
 
 
@@ -23,6 +24,7 @@ ul {
   display: flex;
   align-self: center;
   padding-right: 20px;
+  color:var(--fontColor);
 }
 
 ul li {
@@ -30,12 +32,13 @@ ul li {
 }
 
 a {
+  color:var(--fontColor);
   text-decoration: none;
 }
 
 .login .last {
   color: floralwhite;
-  background-color: #80C0EF;
+  background-color: var(--buttonColor);
   padding: 10px;
   border-radius: 10px;
 }
@@ -43,46 +46,64 @@ a {
 .selected {
   color: #007bff;
   font-weight: bold;
-  //border-bottom: 1px solid #007bff;
 }
 
 @media (max-width: 1024px) {
   header {
-    padding: 20px 30px; /* Adjust padding for medium screens */
+    padding: 20px 30px;
   }
 
   header img {
-    width: 120px; /* Slightly smaller logo */
+    width: 120px;
   }
 
   header ul {
-    gap: 20px; /* Reduce gap for better fit */
+    gap: 20px;
   }
 
   header ul a {
-    font-size: 16px; /* Smaller text for medium screens */
+    font-size: 16px;
   }
 }
 
 @media (max-width: 768px) {
   header {
-    flex-direction: column; /* Stack items vertically */
-    padding: 20px; /* Compact padding */
-    align-items: flex-start; /* Align to the left */
+    flex-direction: column;
+    padding: 20px;
+    align-items: flex-start;
   }
 
   header img {
-    width: 100px; /* Smaller logo for small screens */
-    margin-bottom: 10px; /* Space below logo */
+    width: 100px;
+    margin-bottom: 10px;
   }
 
   header ul {
-    flex-direction: column; /* Stack links vertically */
-    gap: 15px; /* Reduce gap */
-    width: 100%; /* Full width */
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
   }
 
   .login {
-    margin-left: 0; /* Reset margin for alignment */
+    margin-left: 0;
   }
+}
+.theme-switch {
+  border: none;
+  border-radius: 50%;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+}
+.theme-switch img:last-child{
+  display: none;
+}
+.darkMode .theme-switch img:first-child {
+  display: none;
+}
+.darkMode .theme-switch img:last-child {
+  display: block;
 }

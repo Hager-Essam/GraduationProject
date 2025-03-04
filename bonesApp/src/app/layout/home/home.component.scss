@@ -1,9 +1,10 @@
 main {
   display: flex;
-  background-color: #EDF4F9;
+  background-color: var(--backgroundColor);
   margin: 0;
   padding: 10px 50px;
   height: calc(100vh - 140px);
+  color:var(--fontColor);
 }
 
 main img {
@@ -18,7 +19,7 @@ main p {
 }
 
 button:hover {
-  background-color: #5DA9E9;
+  background-color: var(--buttonHoverColor);
 }
 
 span {
@@ -30,7 +31,7 @@ button {
   border: none;
   border-radius: 10px;
   outline: none;
-  background-color: #80C0EF;
+  background-color:var(--buttonColor);
   margin-top: 50px;
   padding: 15px;
   width: 130px;
