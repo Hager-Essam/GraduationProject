@@ -1,0 +1,18 @@
+{
+  "routes": [
+    "/",
+    "/chat",
+    "/consultation",
+    "/forget-password",
+    "/home",
+    "/patient",
+    "/patientLogin",
+    "/PatientPage",
+    "/profile",
+    "/register",
+    "/registerAsSpecialist",
+    "/report",
+    "/specialist",
+    "/specialistLogin"
+  ]
+}
