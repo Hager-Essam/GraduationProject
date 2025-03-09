@@ -3,17 +3,19 @@ import {InputComponent} from "../../../shared/components/input/input.component";
 import {ButtonComponent} from '../../../shared/components/button/button.component';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-PatientRegister',
   standalone: true,
   imports: [
     InputComponent,
     ButtonComponent,
     FormsModule,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',

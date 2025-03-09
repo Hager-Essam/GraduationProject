@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
+import {Router} from 'express';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,5 +13,6 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
+
 
 }

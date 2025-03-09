@@ -9,8 +9,13 @@
     <input type="text" placeholder="Email" required formControlName="email">
     <input type="password" placeholder="Password" required formControlName="password">
     <input type="Password" placeholder="Confirm Password" required formControlName="confirmPassword">
+    <input type="text" placeholder="Your City" required>
+    <input type="text" placeholder="Phone Number like  01012345678" required>
 
-    <button>Register</button>
+    <a routerLink="/PatientPage">
+      <button>Register</button>
+    </a>
+
     <p>_Or continue with_</p>
     <div class="log">
       <div>
@@ -26,8 +31,6 @@
   </form>
 
 </div>
-
-
 <!--      <app-input-->
 <!--        placeholder="Username"-->
 <!--        type="text"-->
@@ -38,5 +41,9 @@
 <!--        <small *ngIf="form.get('username')?.errors?.['required']">Username is required.</small>-->
 <!--        <small *ngIf="form.get('username')?.errors?.['minlength']">Username must be at least 3 characters.</small>-->
 <!--      </div>-->
-
 <!--      <app-button>Register</app-button>-->
+
+
+
+
+

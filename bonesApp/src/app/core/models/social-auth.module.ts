@@ -7,7 +7,7 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: true, // Set true to auto-login
+        autoLogin: true, // Set true to auto-Login
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,

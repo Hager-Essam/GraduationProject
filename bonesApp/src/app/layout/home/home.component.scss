@@ -1,47 +1,135 @@
-main {
+
+.skeleton-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  overflow: hidden;
+  position: relative;
   background-color: var(--backgroundColor);
-  margin: 0;
-  padding: 10px 50px;
-  height: calc(100vh - 140px);
-  color:var(--fontColor);
 }
 
-main img {
-  width: 50%;
-  opacity: 0.5;
+.content {
+  margin-bottom: 20%;
+  max-width: 60%;
+  //z-index: 2;
 }
 
-main p {
-  font-size: 30px;
-  line-height: 1.6;
-  margin-bottom: 20px;
+h1 {
+  font-size: 2rem;
+  color: #333;
 }
 
-button:hover {
-  background-color: var(--buttonHoverColor);
+p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
 }
 
-span {
-  color: #80C0EF;
-  font-weight: bold;
+.btns {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
 }
 
-button {
+.btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
   border: none;
-  border-radius: 10px;
-  outline: none;
-  background-color:var(--buttonColor);
-  margin-top: 50px;
-  padding: 15px;
-  width: 130px;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: bold;
-  color: #f3eeee;
-  font-size: 16px;
+  transition: background 0.3s ease;
 }
 
-a:nth-child(2) {
-  margin-left: 20px;
+.patient-btn {
+  background:var(--buttonColor) ;
+  color: white;
 }
 
+.specialist-btn {
+  background: var(--buttonColor);
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+
+.skeleton-part {
+  position: absolute;
+  max-width: 300px;
+  opacity: 0;
+}
+
+
+.head {
+  top: 0;
+  left: 60%;
+  transform: translateX(-50%);
+}
+
+.torso {
+  top: 0;
+  left: 60%;
+  transform: translateX(-50%);
+}
+
+.left-arm {
+  top: 0;
+  left: 60%;
+  transform: translateX(-50%);
+}
+
+.right-arm {
+  top: 0;
+  left: 60%;
+  transform: translateX(50%);
+}
+
+.left-leg {
+  top: 0;
+  left: 60%;
+  transform: translateX(-50%);
+}
+
+.right-leg {
+  top: 0;
+  left: 60%;
+  transform: translateX(50%);
+}
+
+@media (max-width: 1024px) {
+  .skeleton-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .skeleton-part {
+    max-width: 80px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+  }
+}

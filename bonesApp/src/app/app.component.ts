@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {NavBarComponent} from './layout/nav-bar/nav-bar.component';
-import {LoginComponent} from './features/auth/login/login.component';
-import {RegisterComponent} from './features/auth/register/register.component';
+import {LoginComponent} from './features/auth/Login/login.component';
+import {RegisterComponent} from './features/auth/PatientRegister/register.component';
 import {ForgetPasswordComponent} from './features/auth/forget-password/forget-password.component';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatButton} from '@angular/material/button';
