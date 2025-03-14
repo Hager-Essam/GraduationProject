@@ -1,1 +1,37 @@
-<p>patient-register works!</p>
+<p>specialist-register works!</p>
+<div class="container">
+  <form>
+
+    <div class="input-group">
+      <label for="email">Name or Email</label>
+      <input type="email" id="email" class="form-control" placeholder="example@gmail.com" required>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" class="form-control" placeholder="********" required>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Confirm Password</label>
+      <input type="password"  class="form-control" placeholder="********" required>
+    </div>
+
+    <div class="input-group">
+      <label>Phone Number</label>
+      <input type="text"  class="form-control" placeholder="01012345678" required>
+    </div>
+
+    <a routerLink="/forget-password"><span>Forget Password!</span></a>
+    <button type="submit" class="btn-submit">Register</button>
+
+    <p> Have an account?<a routerLink="/specialistLogin">Login now!</a></p>
+    <p class="or">Or continue with</p>
+
+
+    <div class="logos">
+      <img src="facebook 1@2x.png">
+      <img src="search 1.png">
+    </div>
+  </form>
+</div>

@@ -17,7 +17,7 @@ export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'forget-password', component: ForgetPasswordComponent},
   {path: 'patientLogin', component:PatientLoginComponent},
-  {path: 'specialist', component: SpecialistLoginComponent},
+  {path: 'specialistLogin', component: SpecialistLoginComponent},
   {path: 'consultation', component: ConsultationComponent},
   {path: 'report', component: ReportComponent},
   {path: 'profile', component: ProfileComponent},
@@ -25,6 +25,6 @@ export const routes: Routes = [
   {path:'register' ,component:PatientRegisterComponent},
   {path:'registerAsSpecialist',component:SpecialistRegisterComponent},
   {path:'patient',component:PatientComponent},
-  {path:'specialistLogin',component:SpecialistComponent},
+  {path:'specialist',component:SpecialistComponent},
   {path:'PatientPage',component:PatientComponent}
 ];
