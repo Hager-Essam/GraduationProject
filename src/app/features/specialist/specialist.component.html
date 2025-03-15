@@ -1,1 +1,28 @@
-<p>specialist works!</p>
+<div class="container-fluid">
+
+  <!-- Dynamic Buttons -->
+  <div class="btns">
+    <div>
+      <img src="camera.png" alt="Upload Image">
+      <button type="submit" class="btn-submit">Upload Image</button>
+    </div>
+    <div>
+      <button type="submit" class="btn-submit">Retrieve Image</button>
+      <img src="backup.png" alt="Retrieve Image">
+    </div>
+    <div>
+      <img src="baseline.png" alt="Consult a specialist">
+      <button type="submit" class="btn-submit">Give FeedBack</button>
+    </div>
+  </div>
+
+  <!-- Upload Box -->
+  <label for="fileInput" class="upload-box">
+    <div class="upload-content">
+      <div class="upload-icon">☁️</div>
+      <p>Click to upload your image here</p>
+    </div>
+  </label>
+  <input type="file" id="fileInput" accept=".jpg,.png" hidden>
+
+</div>

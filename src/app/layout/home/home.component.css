@@ -1,0 +1,136 @@
+.page-container {
+  display: flex;
+  height: 100vh;
+  margin-top: -50px;
+  padding: 20px;
+}
+
+.skeleton-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.skeleton-part {
+  position: absolute;
+  opacity: 0;
+  animation: assemble 1s forwards;
+}
+
+.head {
+  animation-delay: 0.2s;
+  top: 0;
+  animation-name: from-top;
+}
+
+.torso {
+  animation-delay: 0.4s;
+  top: 1%;
+  animation-name: from-top;
+}
+
+.left-arm {
+  animation-delay: 0.6s;
+  top: 1%;
+  left: 22%;
+  animation-name: from-left;
+}
+
+.right-arm {
+  animation-delay: 0.8s;
+  top: 1%;
+  right: 22%;
+  animation-name: from-right;
+}
+
+.left-leg {
+  animation-delay: 1s;
+  top: 3%;
+  left: 22%;
+  animation-name: from-left;
+}
+
+.right-leg {
+  animation-delay: 1.2s;
+  top: 3%;
+  right: 22%;
+  animation-name: from-right;
+}
+
+@keyframes from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes from-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes from-top {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.btns-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.info-text {
+  max-width: 500px;
+  font-size: 16px;
+  line-height: 2;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-right: 20px;
+}
+
+.btns {
+  display: flex;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  color: var(--font-color);
+  font-weight: 500;
+}
+
+p {
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  color: var(--font-color);
+}
+
+/*# sourceMappingURL=home.component.css.map */
