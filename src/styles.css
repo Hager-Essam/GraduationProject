@@ -1,11 +1,14 @@
-:root{
+:root {
   --primary-color:white;
   --buttons-color:#6bb9f0;
   --input-color:#f2f1f4;
   --font-color:black;
   --forms-color:#f8f9fa;
 }
-a{
+
+a {
   list-style: none;
   text-decoration-line: none;
 }
+
+/*# sourceMappingURL=styles.css.map */

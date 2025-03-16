@@ -11,6 +11,8 @@ import {ProfileComponent} from './features/profile/profile.component';
 import {PatientRegisterComponent} from './features/auth/patient-register/patient-register.component';
 import {ChatComponent} from './features/chat/chat.component';
 import {PatientComponent} from './features/patient/patient.component';
+import {CodePageComponent} from './features/auth/code-page/code-page.component';
+import {ResetPageComponent} from './features/auth/reset-page/reset-page.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,5 +28,7 @@ export const routes: Routes = [
   {path:'registerAsSpecialist',component:SpecialistRegisterComponent},
   {path:'patient',component:PatientComponent},
   {path:'specialist',component:SpecialistComponent},
-  {path:'PatientPage',component:PatientComponent}
+  {path:'PatientPage',component:PatientComponent},
+  {path:'sendACode',component:CodePageComponent},
+  {path:'reset',component:ResetPageComponent},
 ];
