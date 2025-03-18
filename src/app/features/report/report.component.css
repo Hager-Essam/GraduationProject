@@ -40,7 +40,6 @@
   background-color: #0056b3;
 }
 
-
 @media (max-width: 768px) {
   .container-fluid {
     display: flex;
@@ -51,8 +50,6 @@
     margin-top: 10px;
   }
 }
-
-
 @media screen and (max-width: 600px) {
   .container-fluid {
     display: flex;
@@ -63,7 +60,6 @@
     margin-top: var(--box-margin-top);
   }
 }
-
 @media screen and (max-width: 412px) {
   .container-fluid {
     display: flex;
@@ -75,4 +71,4 @@
   }
 }
 
-
+/*# sourceMappingURL=report.component.css.map */
