@@ -65,7 +65,27 @@ img {
     flex-direction: column;
   }
   .upload-box {
-    width: 350px;
+    width: 300px;
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container-fluid {
+    display: flex;
+    flex-direction: column;
+  }
+  .upload-box {
+    width: 300px;
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 412px) {
+  .container-fluid {
+    display: flex;
+    flex-direction: column;
+  }
+  .upload-box {
+    width: 300px;
     margin-top: 10px;
   }
 }
