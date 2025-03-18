@@ -77,8 +77,8 @@ img {
     flex-direction: column;
   }
   .upload-box {
-    width: 300px;
-    margin-top: 10px;
+    width: var(--upload-box-width);
+    margin-top: var(--box-margin-top);
   }
 }
 
@@ -88,8 +88,8 @@ img {
     flex-direction: column;
   }
   .upload-box {
-    width: 300px;
-    margin-top: 10px;
+    width: var(--upload-box-width);
+    margin-top: var(--box-margin-top);
   }
 }
 
