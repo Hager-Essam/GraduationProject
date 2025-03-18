@@ -59,4 +59,15 @@ img {
   height: 30px;
 }
 
+@media (max-width: 768px) {
+  .container-fluid {
+    display: flex;
+    flex-direction: column;
+  }
+  .upload-box {
+    width: 350px;
+    margin-top: 10px;
+  }
+}
+
 /*# sourceMappingURL=patient.component.css.map */
