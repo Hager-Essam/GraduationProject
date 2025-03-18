@@ -103,9 +103,11 @@
 }
 
 .info-text {
+  position: relative;
   max-width: 500px;
   font-size: 16px;
   line-height: 2;
+  z-index: 10;
 }
 
 .btn-container {
@@ -136,6 +138,7 @@ p {
   font-weight: 500;
   color: var(--font-color);
 }
+
 @media (max-width: 768px) {
   .skeleton-container {
     display: none;
@@ -147,15 +150,18 @@ p {
     gap: 30px;
     margin-right: 20px;
   }
-  .page-container{
+  .page-container {
     display: flex;
     flex-direction: column;
   }
-  .btns{
+  .btns {
     display: flex;
     flex-direction: column;
   }
-  .info-text{
+  .info-text {
     font-size: 20px;
+    position: relative;
+    z-index: 10;
+    margin-top: 20px;
   }
 }

@@ -100,9 +100,11 @@
 }
 
 .info-text {
+  position: relative;
   max-width: 500px;
   font-size: 16px;
   line-height: 2;
+  z-index: 10;
 }
 
 .btn-container {
@@ -154,6 +156,9 @@ p {
   }
   .info-text {
     font-size: 20px;
+    position: relative;
+    z-index: 10;
+    margin-top: 20px;
   }
 }
 
