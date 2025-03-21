@@ -60,5 +60,13 @@ p {
 }
 
 .logos img {
-  margin-right: 25px ;
+  margin-right: 25px;
+}
+
+@media (max-width: 768px) {
+  .logos img{
+    width: 30px;
+  }
+
+
 }

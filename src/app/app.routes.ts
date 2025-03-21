@@ -1,9 +1,8 @@
 import { Routes } from '@angular/router';
 import {HomeComponent} from './layout/home/home.component';
 import {ForgetPasswordComponent} from './features/auth/forget-password/forget-password.component';
-import {SpecialistLoginComponent} from './features/auth/specialist-login/specialist-login.component';
+import {LoginComponent} from './features/auth/Login/Login-component';
 import {ConsultationComponent} from './features/consultation/consultation.component';
-import {PatientLoginComponent} from './features/auth/patient-login/patient-login.component';
 import {ReportComponent} from './features/report/report.component';
 import {SpecialistRegisterComponent} from './features/auth/specialist-register/specialist-register.component';
 import {SpecialistComponent} from './features/specialist/specialist.component';
@@ -13,22 +12,23 @@ import {ChatComponent} from './features/chat/chat.component';
 import {PatientComponent} from './features/patient/patient.component';
 import {CodePageComponent} from './features/auth/code-page/code-page.component';
 import {ResetPageComponent} from './features/auth/reset-page/reset-page.component';
+import {DashboardComponent} from './features/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'forget-password', component: ForgetPasswordComponent},
-  {path: 'patientLogin', component:PatientLoginComponent},
-  {path: 'specialistLogin', component: SpecialistLoginComponent},
   {path: 'consultation', component: ConsultationComponent},
   {path: 'report', component: ReportComponent},
   {path: 'profile', component: ProfileComponent},
   {path:'chat' ,component:ChatComponent},
-  {path:'register' ,component:PatientRegisterComponent},
-  {path:'registerAsSpecialist',component:SpecialistRegisterComponent},
   {path:'patient',component:PatientComponent},
   {path:'specialist',component:SpecialistComponent},
-  {path:'PatientPage',component:PatientComponent},
-  {path:'sendACode',component:CodePageComponent},
-  {path:'reset',component:ResetPageComponent},
+  {path:'patient',component:PatientComponent},
+  {path:'dashboard',component:DashboardComponent},
+  {path:'login/:role',component:LoginComponent},
+  { path: 'register-patient', component: PatientRegisterComponent },
+  { path: 'register-specialist', component: SpecialistRegisterComponent },
+  { path: 'forgot-password/:role', component: ForgetPasswordComponent },
+  {path: 'reset-page/:role', component: ResetPageComponent },
+  {path:'code-page/:role', component: CodePageComponent},
 ];

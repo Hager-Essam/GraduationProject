@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {NgIf} from '@angular/common';
 
 @Component({
@@ -13,5 +13,17 @@ import {NgIf} from '@angular/common';
   styleUrl: './specialist-register.component.scss'
 })
 export class SpecialistRegisterComponent {
+  role: string = '';
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
+  ngOnInit() {
+    this.role = this.route.snapshot.paramMap.get('role') || 'patient';
+  }
+
+  register() {
+    console.log(`Registering as ${this.role}`);
+  }
+
 
 }

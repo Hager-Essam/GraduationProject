@@ -24,4 +24,10 @@
   margin-top: 20px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    margin-top: -50%;
+  }
+}
+
 /*# sourceMappingURL=code-page.component.css.map */

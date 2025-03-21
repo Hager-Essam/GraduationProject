@@ -63,4 +63,10 @@ p {
   margin-right: 25px;
 }
 
+@media (max-width: 768px) {
+  .logos img {
+    width: 30px;
+  }
+}
+
 /*# sourceMappingURL=specialist-register.component.css.map */

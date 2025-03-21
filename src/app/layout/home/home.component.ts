@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,5 +12,12 @@ import {RouterLink} from '@angular/router';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+
+  constructor(private router: Router) {
+  }
+
+  navigateToLogin(role: string) {
+    this.router.navigate(['/login', role]);
+  }
 
 }

@@ -21,16 +21,14 @@
     <div class="btns">
       <div class="btn-container">
         <img src="Hospital1.png" alt="Patient"/>
-        <a routerLink="/patientLogin">
-          <button type="button" class="btn" style="background-color: var(--buttons-color)">Patient</button>
-        </a>
+<!--        <a routerLink="/patientLogin">-->
+          <button type="button" class="btn"  (click)="navigateToLogin('patient')" style="background-color: var(--buttons-color)">Patient</button>
+<!--        </a>-->
       </div>
 
       <div class="btn-container">
         <img src="Hospital2.png" alt="Specialist"/>
-        <a routerLink="/specialistLogin">
-          <button type="button" class="btn" style="background-color: var(--buttons-color)">Specialist</button>
-        </a>
+          <button type="button" (click)="navigateToLogin('specialist')" class="btn" style="background-color: var(--buttons-color)">Specialist</button>
       </div>
     </div>
   </div>
