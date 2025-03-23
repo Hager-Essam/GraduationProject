@@ -14,6 +14,7 @@ import {NgForOf, NgIf} from '@angular/common';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
+
   isEditing = false;
   patient = {
     name: 'Hager Essam',
