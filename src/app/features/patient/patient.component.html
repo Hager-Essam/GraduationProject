@@ -1,14 +1,13 @@
 <div class="container-fluid">
 
-  <!-- Dynamic Buttons -->
   <div class="btns">
     <div>
       <img src="camera.png" alt="Upload Image">
-      <button type="submit" class="btn-submit" routerLink="/report">Upload Image</button>
+      <button type="button" class="btn-submit" (click)="fileInput.click()">Upload Image</button>
     </div>
     <div>
-      <button type="submit" class="btn-submit" routerLink="/profile">Retrieve Image</button>
       <img src="backup.png" alt="Retrieve Image">
+      <button type="submit" class="btn-submit" routerLink="/profile">Retrieve Image</button>
     </div>
     <div>
       <img src="baseline.png" alt="Consult a specialist">
@@ -16,13 +15,18 @@
     </div>
   </div>
 
-  <!-- Upload Box -->
-  <label for="fileInput" class="upload-box">
-    <div class="upload-content">
-      <div class="upload-icon">☁️</div>
-      <p>Click to upload your image here</p>
-    </div>
-  </label>
-  <input type="file" id="fileInput" accept=".jpg,.png" hidden>
 
+  <div>
+    <label for="fileInput" class="upload-box">
+      <div class="upload-content" (click)="fileInput.click()">
+        <div class="upload-icon" *ngIf="!imageUrl">☁️</div>
+        <p *ngIf="!imageUrl">Click to upload your image here</p>
+        <img [src]="imageUrl" *ngIf="imageUrl" alt="Uploaded Image">
+      </div>
+    </label>
+      <div>
+        <button type="submit" class="btn-submit" id = "repo" routerLink="/report">Show report</button>
+      </div>
+  </div>
+  <input type="file" id="fileInput" accept=".jpg,.png" (change)="onFileSelected($event)" #fileInput hidden>
 </div>

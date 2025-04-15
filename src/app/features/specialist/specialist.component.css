@@ -89,5 +89,8 @@ img {
     margin-top: var(--box-margin-top);
   }
 }
+#repo {
+  margin-top: 2rem;
+}
 
 /*# sourceMappingURL=specialist.component.css.map */

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {TitleCasePipe} from '@angular/common';
 import {FormsModule} from '@angular/forms';
@@ -14,7 +14,7 @@ import {FormsModule} from '@angular/forms';
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss'
 })
-export class ForgetPasswordComponent {
+export class ForgetPasswordComponent implements OnInit{
   email: string = '';
   role: string = '';
 
