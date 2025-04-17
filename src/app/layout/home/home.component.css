@@ -166,7 +166,7 @@ p {
     margin-top: 20px;
   }
 }
-@media (max-width: 1920px) {
+@media (min-width: 1920px) {
   .head {
     animation-delay: 0.2s;
     top: 0;
