@@ -35,28 +35,28 @@
 .left-arm {
   animation-delay: 0.6s;
   top: 1%;
-  left: 22%;
+  left: 10vw;
   animation-name: from-left;
 }
 
 .right-arm {
   animation-delay: 0.8s;
   top: 1%;
-  right: 22%;
+  right: 10vw;
   animation-name: from-right;
 }
 
 .left-leg {
   animation-delay: 1s;
   top: 3%;
-  left: 22%;
+  left: 10vw;
   animation-name: from-left;
 }
 
 .right-leg {
   animation-delay: 1.2s;
   top: 3%;
-  right: 22%;
+  right: 10vw;
   animation-name: from-right;
 }
 
@@ -171,89 +171,24 @@ p {
   }
 }
 
-
-@media (min-width:1920px) {
-  .head {
-    animation-delay: 0.2s;
-    top: 0;
-    animation-name: from-top;
-  }
-
-  .torso {
-    animation-delay: 0.4s;
-    top: 1%;
-    animation-name: from-top;
-  }
-
+@media (max-width: 1920px) and (min-width: 1400px) {
   .left-arm {
-    animation-delay: 0.6s;
     top: 1%;
-    left: 26%;
-    animation-name: from-left;
+    left: 12vw;
   }
 
   .right-arm {
-    animation-delay: 0.8s;
     top: 1%;
-    right: 25%;
-    animation-name: from-right;
+    right: 12vw;
   }
 
   .left-leg {
-    animation-delay: 1s;
-    top: 2%;
-    left: 25%;
-    animation-name: from-left;
+    top: 3%;
+    left: 12vw;
   }
 
   .right-leg {
-    animation-delay: 1.2s;
-    top: 2%;
-    right: 25%;
-    animation-name: from-right;
+    top: 3%;
+    right: 12vw;
   }
 }
-
-@media (min-width:1360px) {
-  .head {
-    animation-delay: 0.2s;
-    top: 0;
-    animation-name: from-top;
-  }
-
-  .torso {
-    animation-delay: 0.4s;
-    top: 1%;
-    animation-name: from-top;
-  }
-
-  .left-arm {
-    animation-delay: 0.6s;
-    top: 1%;
-    left: 26%;
-    animation-name: from-left;
-  }
-
-  .right-arm {
-    animation-delay: 0.8s;
-    top: 1%;
-    right: 25%;
-    animation-name: from-right;
-  }
-
-  .left-leg {
-    animation-delay: 1s;
-    top: 2%;
-    left: 25%;
-    animation-name: from-left;
-  }
-
-  .right-leg {
-    animation-delay: 1.2s;
-    top: 2%;
-    right: 25%;
-    animation-name: from-right;
-  }
-}
-
-
