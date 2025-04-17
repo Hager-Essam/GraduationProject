@@ -25,7 +25,7 @@
       </div>
     </label>
     <div>
-      <button type="submit" class="btn-submit" id = "repo" routerLink="/report">Show report</button>
+      <button type="submit" class="btn-submit" id = "repo" routerLink="/report" [disabled]="!isImageUploaded" >Show report</button>
     </div>
   </div>
   <input type="file" id="fileInput" accept=".jpg,.png" (change)="onFileSelected($event)" #fileInput hidden>

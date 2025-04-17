@@ -13,6 +13,7 @@ import {PatientComponent} from './features/patient/patient.component';
 import {CodePageComponent} from './features/auth/code-page/code-page.component';
 import {ResetPageComponent} from './features/auth/reset-page/reset-page.component';
 import {DashboardComponent} from './features/dashboard/dashboard.component';
+import {LearnComponent} from './features/learn/learn.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -31,4 +32,5 @@ export const routes: Routes = [
   { path: 'forgot-password/:role', component: ForgetPasswordComponent },
   {path: 'reset-page/:role', component: ResetPageComponent },
   {path:'code-page/:role', component: CodePageComponent},
+  {path:'learn', component: LearnComponent},
 ];
