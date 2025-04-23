@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>{{ role | titlecase }} Login</h3>
+  <h3>{{ Role | titlecase }} Login</h3>
 
   <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
 
@@ -43,7 +43,7 @@
 
     <p>
       Don't have an account?
-      <a (click)="navigateToRegister()" class="text-primary" style="cursor:pointer;">Register as a {{ role }}</a>
+      <a (click)="navigateToRegister()" class="text-primary" style="cursor:pointer;">Register as a {{ Role }}</a>
     </p>
 
   </form>
