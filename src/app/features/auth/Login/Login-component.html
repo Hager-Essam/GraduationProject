@@ -1,22 +1,45 @@
 <div class="container">
   <h3>{{ role | titlecase }} Login</h3>
 
-  <form>
+  <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
     <div class="input-group">
       <label for="email">Name or Email</label>
-      <input type="text" id="email" class="form-control" placeholder="example@gmail.com">
+      <input type="text" id="email" class="form-control" formControlName="Email" placeholder="example@gmail.com"
+             required>
+      <div *ngIf="formLogin.get('Email')?.touched && formLogin.get('Email')?.invalid" class="error-message">
+        <div *ngIf="formLogin.get('Email')?.errors?.['required']">
+          Email is required.
+        </div>
+        <div *ngIf="formLogin.get('Email')?.errors?.['email']">
+          Please enter a valid email address.
+        </div>
+      </div>
     </div>
 
     <div class="input-group">
       <label for="password">Password</label>
-      <input type="password" id="password" class="form-control" placeholder="********">
+      <input type="password" id="password" class="form-control" formControlName="Password" placeholder="********"
+             required>
+      <div *ngIf="formLogin.get('Password')?.touched && formLogin.get('Password')?.invalid" class="error-message">
+        <div *ngIf="formLogin.get('Password')?.errors?.['required']">
+          Password Required
+        </div>
+        <div *ngIf="formLogin.get('Password')?.errors?.['email']" style="color: red">
+          Please enter a valid email address.
+        </div>
+      </div>
     </div>
 
     <p class="mt-3">
       <a (click)="navigateToForgotPassword()" class="text-primary" style="cursor:pointer;">Forgot Password?</a>
     </p>
 
-    <button (click)="navigateToUserPage()" type="submit" class="btn-submit" >Login</button>
+    <button type="submit" class="btn-submit">Login</button>
 
     <p>
       Don't have an account?

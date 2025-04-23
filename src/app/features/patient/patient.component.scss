@@ -97,3 +97,10 @@ img {
   margin-top: 2rem;
 }
 
+.upload-content img {
+  min-width: 250px;
+  min-height: 250px;
+  max-width: 300px;
+  max-height: 250px;
+  object-fit: contain;
+}

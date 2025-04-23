@@ -21,10 +21,15 @@ label {
 
 .form-control {
   padding: 10px;
-  border: 1px solid #ccc;
+  //border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   width: 100%;
+  box-shadow: 4px 5px 3px #ccc;
+}
+
+.error-message {
+  color: red;
 }
 
 .btn-submit {
@@ -64,9 +69,19 @@ p {
 }
 
 @media (max-width: 768px) {
-  .logos img{
+  .logos img {
     width: 30px;
   }
 
+}
+.log{
+  color: rgba(0, 0, 255, 0.62);
+}
 
+.log:hover{
+  cursor: pointer;
+}
+
+.error-message{
+  color: red;
 }

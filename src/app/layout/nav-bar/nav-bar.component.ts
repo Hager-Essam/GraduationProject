@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
+import {LogOutComponent} from '../../features/auth/log-out/log-out.component';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
   imports: [
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    LogOutComponent
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {TitleCasePipe} from '@angular/common';
-import {ApiServiceService} from '../../../core/services/api-service.service';
-import {FormsModule} from '@angular/forms';
+import {NgIf, TitleCasePipe} from '@angular/common';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {AuthService} from '../../../core/services/Auth/auth.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-Login',
@@ -10,49 +11,90 @@ import {FormsModule} from '@angular/forms';
   imports: [
     RouterLink,
     TitleCasePipe,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgIf
   ],
   templateUrl: './Login-component.html',
   styleUrl: './Login-component.scss'
 })
 export class LoginComponent implements OnInit {
-  role: string = '';
-  email: string = '';
-  password: string = '';
+  Role: string = '';
+  formLogin!: FormGroup
+  errorMessage: string | null = null;
 
-  constructor(private route: ActivatedRoute, private router: Router, private apiService: ApiServiceService) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private AuthService: AuthService,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.role = this.route.snapshot.paramMap.get('role') || 'patient';
+    this.Role = this.route.snapshot.paramMap.get('Role') || 'patient';
+
+    console.log(this.Role);
+
+    this.formLogin = this.fb.group({
+      Email: ['', [Validators.required, Validators.email]],
+      Password: ['', Validators.required],
+      Role:[this.Role]
+    });
+    console.log('Form initialized:', this.formLogin);
   }
 
-  // onSubmit() {
-  //   this.apiService.login('email', 'password').subscribe(
-  //     response => {
-  //       console.log(response);
-  //       this.navigateToUserPage();
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   )
-  // }
+  onSubmit(): void {
+    console.log('Form submitted:', this.formLogin.value);
+    if (this.formLogin.invalid) {
+      console.log("Form invalid!");
+      this.formLogin.markAllAsTouched();
+      return;
+    }
+
+    console.log("Form is valid, proceeding with login...");
+
+    const loginData = {
+      Email: this.formLogin.value.Email,
+      Password: this.formLogin.value.Password,
+      Role: this.Role
+    };
+
+    console.log('Login Data:', loginData);
+
+    this.AuthService.loginUser(loginData).subscribe({
+      next: res => {
+        console.log('Login successful:', res);
+
+        if (this.Role === 'Patient') {
+          this.router.navigate(['/patient']);
+        } else {
+          this.router.navigate(['/specialist']);
+        }
+      },
+      error: err => {
+        console.error('Login Failed', err);
+        if (err.error) {
+          console.error('Error details:', err.error);
+          this.errorMessage = 'Invalid email or password. Please try again.';
+        }
+      }
+    });
+  }
+
 
   navigateToForgotPassword() {
-    this.router.navigate(['/forgot-password', this.role]);
+    this.router.navigate(['/forgot-password', this.Role]);
   }
 
   navigateToRegister() {
-    if (this.role === 'patient') {
+    if (this.Role === 'patient') {
       this.router.navigate(['/register-patient']);
-    } else if (this.role === 'specialist') {
+    } else if (this.Role === 'specialist') {
       this.router.navigate(['/register-specialist']);
     }
   }
 
   navigateToUserPage() {
-    if (this.role === 'patient') {
+    if (this.Role === 'patient') {
       this.router.navigate(['/patient']);
     } else {
       this.router.navigate(['/specialist']);

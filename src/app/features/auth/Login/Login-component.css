@@ -26,10 +26,10 @@ label {
 
 .form-control {
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   width: 100%;
+  box-shadow: 4px 5px 3px #ccc;
 }
 
 .btn-submit {
@@ -66,6 +66,10 @@ p {
 
 .logos img {
   margin-right: 25px;
+}
+
+.error-message {
+  color: red;
 }
 
 /*# sourceMappingURL=Login-component.css.map */
