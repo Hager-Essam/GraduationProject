@@ -43,6 +43,7 @@ export class PatientRegisterComponent implements OnInit{
       Role: ['patient']
     });
   }
+
   onSubmit(): void {
     if (this.form.invalid) {
       console.log("Form invalid!");
@@ -64,7 +65,7 @@ export class PatientRegisterComponent implements OnInit{
     formData.append('Password', values.Password);
     formData.append('ConfirmPassword', values.ConfirmPassword);
     formData.append('PhoneNumber', values.PhoneNumber);
-    formData.append('Role', this.Role);
+    formData.append('Role', 'patient');
 
     // console.log('Form Data:', formData);
 

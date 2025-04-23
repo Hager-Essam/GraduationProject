@@ -30,9 +30,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.Role = this.route.snapshot.paramMap.get('Role') || 'patient';
+    this.Role = this.route.snapshot.paramMap.get('role') || 'specialist';
 
-    console.log(this.Role);
+  this.route.queryParams.subscribe(params => {
+      if (params['Role']) {
+        this.Role = params['Role'];
+      }
+    });
+
+    console.log(`Your Role is : ${this.Role}`);
 
     this.formLogin = this.fb.group({
       Email: ['', [Validators.required, Validators.email]],

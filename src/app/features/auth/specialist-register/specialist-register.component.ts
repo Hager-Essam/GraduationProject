@@ -16,7 +16,7 @@ import {NgIf} from '@angular/common';
 })
 export class SpecialistRegisterComponent implements OnInit {
   form!: FormGroup;
-  Role: string = 'specialist';
+  Role: string = '';
   selectedFile: File | null = null;
 
   constructor(private fb: FormBuilder,
@@ -30,7 +30,7 @@ export class SpecialistRegisterComponent implements OnInit {
         this.Role = params['role'];
       }
     });
-
+console.log(this.Role);
     this.form = this.fb.group({
       FullName: ['', Validators.required],
       Email: ['', [Validators.required, Validators.email]],
