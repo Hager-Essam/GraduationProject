@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+
   private baseUrl = 'http://bones.runasp.net/account/register';
 
   constructor(private http: HttpClient,private router:Router) {}
@@ -21,8 +22,9 @@ export class AuthService {
 
   loginUser(loginData: { Email: string; Password: string }): Observable<any> {
     return this.http.post('http://bones.runasp.net/account/login', loginData, {
-      headers: { 'Content-Type': 'application/json' } // Set content type to JSON
+      headers: { 'Content-Type': 'application/json' }
     });
   }
+
 
 }

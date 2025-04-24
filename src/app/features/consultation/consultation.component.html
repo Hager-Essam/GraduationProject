@@ -1,1 +1,32 @@
-<p>consultation works!</p>
+<div class="container">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search for a consultant ... " aria-label="Search">
+
+  </form>
+
+
+<!--  <div class="doctor-card" *ngFor="let doctor of doctors">-->
+<!--    <img [src]="doctor.image" width="80" />-->
+<!--    <div>-->
+<!--      <div>{{ doctor.name }}</div>-->
+<!--      <div>{{ doctor.email }}</div>-->
+<!--    </div>-->
+<!--    <button >Message</button>-->
+<!--  </div>-->
+
+
+  <div class="info-container"  *ngFor="let doctor of doctors">
+
+    <div class="info">
+      <img [src]="doctor.image" alt="Image">
+
+     <div >
+        <div>{{ doctor.name }}</div>
+        <div>{{ doctor.email }}</div>
+      </div>
+
+    </div>
+    <button type="submit" class="btn-submit" (click)= openChat(doctor)>Message</button>
+  </div>
+
+</div>

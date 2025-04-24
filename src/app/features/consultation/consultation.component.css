@@ -2,14 +2,13 @@
   display: flex;
   gap: 1rem;
   flex-direction: column;
-
 }
 
 .container {
   display: flex;
   flex-direction: column;
   max-width: 30rem;
-  box-shadow: 10px 10px 10px 10px rgba(.5, .5, .3, 0.2);
+  box-shadow: 10px 10px 10px 10px rgba(0.5, 0.5, 0.3, 0.2);
   border-radius: 5px;
 }
 
@@ -17,12 +16,13 @@
   display: flex;
   gap: 2rem;
 }
-.info div:first-child{
+
+.info div:first-child {
   margin-top: 1rem;
 }
 
-.info div:last-child{
-  margin-top: .5rem;
+.info div:last-child {
+  margin-top: 0.5rem;
 }
 
 .form-control {
@@ -46,3 +46,4 @@
   background-color: #0056b3;
 }
 
+/*# sourceMappingURL=consultation.component.css.map */

@@ -1,1 +1,20 @@
-<p>chat works!</p>
+
+
+<h4> {{doctor.name}}</h4>
+<div class="chat-container">
+  <div *ngFor="let message of messages" [ngClass]="{'user': message.from === 'user', 'doctor': message.from === 'doctor'}" class="chat-message">
+    <div class="message-text">{{ message.text }}</div>
+    <div class="message-time">{{ message.time }}</div>
+  </div>
+</div>
+
+<div class="chat-input-container">
+  <input
+    type="text"
+    [(ngModel)]="newMessage"
+    (keyup.enter)="sendMessage()"
+    placeholder="Type your message..."
+    class="chat-input"
+  />
+  <button (click)="sendMessage()" class="send-btn">Send</button>
+</div>

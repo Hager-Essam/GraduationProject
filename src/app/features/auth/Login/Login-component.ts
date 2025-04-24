@@ -3,7 +3,6 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {NgIf, TitleCasePipe} from '@angular/common';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/Auth/auth.service';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-Login',
@@ -69,8 +68,8 @@ export class LoginComponent implements OnInit {
     this.AuthService.loginUser(loginData).subscribe({
       next: res => {
         console.log('Login successful:', res);
-
-        if (this.Role === 'Patient') {
+        // this.AuthService.setUser(loginData);
+        if (this.Role == 'patient') {
           this.router.navigate(['/patient']);
         } else {
           this.router.navigate(['/specialist']);

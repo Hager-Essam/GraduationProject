@@ -3,6 +3,7 @@ import {RouterLink,Router,ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {AuthService} from '../../../core/services/Auth/auth.service';
+import {UserDataService} from '../../../core/services/Auth/userData.service';
 
 
 @Component({
@@ -22,13 +23,14 @@ export class PatientRegisterComponent implements OnInit{
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router:Router,
-              private route :ActivatedRoute
+              private route :ActivatedRoute,
+              private  userService: UserDataService,
   ){}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       if (params['role']) {
-        this.Role = params['Role'];
+        this.Role = params['role'];
       }
     });
 
@@ -72,6 +74,13 @@ export class PatientRegisterComponent implements OnInit{
     this.authService.registerUser(formData).subscribe({
       next: res => {
         console.log('Patient registered:', res);
+        const user = {
+          fullName: values.FullName,
+          email: values.Email,
+          phoneNumber: values.PhoneNumber,
+          role: 'patient'
+        };
+
         this.router.navigate(['/patient']);
       },
       error: err => {

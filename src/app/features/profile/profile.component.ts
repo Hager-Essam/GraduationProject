@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormsModule} from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
+import {AuthService} from '../../core/services/Auth/auth.service';
+import {UserDataService} from '../../core/services/Auth/userData.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,43 +15,35 @@ import {NgForOf, NgIf} from '@angular/common';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+  user: any;
+
+  constructor(private userData:UserDataService) {
+  }
+
+  ngOnInit() {
+    this.user = this.userData.getUser();
+    console.log(this.user);
+  }
 
   isEditing = false;
-  patient = {
-    name: 'Hager Essam',
-    phone: '123-456-789',
-    email: 'hager.essam@example.com'
-  };
-
-  xrayHistory = [
-    {imageUrl: 'left-arm.png', report: 'Fracture detected in left arm.'},
-    {imageUrl: 'head.png', report: 'No Fractures found.'},
-    {imageUrl: 'chest.png', report: 'Fractured'}, {imageUrl: 'left-arm.png', report: 'Fracture detected in left arm.'},
-    {imageUrl: 'head.png', report: 'No Fractures found.'},
-    {imageUrl: 'chest.png', report: 'Fractured'}, {imageUrl: 'left-arm.png', report: 'Fracture detected in left arm.'},
-    {imageUrl: 'head.png', report: 'No Fractures found.'},
-    {imageUrl: 'chest.png', report: 'Fractured'}, {imageUrl: 'left-arm.png', report: 'Fracture detected in left arm.'},
-    {imageUrl: 'head.png', report: 'No Fractures found.'},
-    {imageUrl: 'chest.png', report: 'Fractured'},
-  ];
-
-  selectedImage: any = null;
-
-  toggleEdit() {
-    this.isEditing = !this.isEditing;
-  }
-
-  saveChanges() {
-    this.isEditing = false;
-    console.log('Updated Patient Data:', this.patient);
-  }
-
-  openImage(xray: any) {
-    this.selectedImage = xray;
-  }
-
-  closeImage() {
-    this.selectedImage = null;
-  }
+  //
+  // selectedImage: any = null;
+  //
+  // toggleEdit() {
+  //   this.isEditing = !this.isEditing;
+  // }
+  //
+  // saveChanges() {
+  //   this.isEditing = false;
+  //   console.log('Updated Patient Data:', this.user);
+  // }
+  //
+  // openImage(xray: any) {
+  //   this.selectedImage = xray;
+  // }
+  //
+  // closeImage() {
+  //   this.selectedImage = null;
+  // }
 }
