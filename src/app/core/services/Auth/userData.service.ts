@@ -11,18 +11,18 @@ export class UserDataService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getUser() {
-    if (!this.user) {
-      const userStr = localStorage.getItem('user');
-      if (userStr) {
-        this.user = JSON.parse(userStr);
-      }
-    }
-    return this.user;
-  }
-
-  logout() {
-    this.user = null;
-    localStorage.removeItem('user');
-  }
+  // getUser() {
+  //   if (!this.user) {
+  //     const userStr = localStorage.getItem('user');
+  //     if (userStr) {
+  //       this.user = JSON.parse(userStr);
+  //     }
+  //   }
+  //   return this.user;
+  // }
+  //
+  // logout() {
+  //   this.user = null;
+  //   localStorage.removeItem('user');
+  // }
 }

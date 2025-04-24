@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.userData.getUser();
+    // this.user = this.userData.getUser();
     console.log(this.user);
   }
 

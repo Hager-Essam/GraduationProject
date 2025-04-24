@@ -24,12 +24,14 @@
   animation-delay: 0.2s;
   top: 0;
   animation-name: from-top;
+  //box-shadow: 10px 10px 20px rgb(123, 195, 248);
 }
 
 .torso {
   animation-delay: 0.4s;
   top: 1%;
   animation-name: from-top;
+
 }
 
 .left-arm {
@@ -130,7 +132,9 @@
   border: none;
   border-radius: 8px;
   color: var(--font-color);
+  transition: background-color 0.3s ease, transform 0.2s ease;
   font-weight: 500;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
 p {
@@ -150,7 +154,7 @@ p {
     gap: 30px;
     margin-right: 20px;
   }
-  .btn-container{
+  .btn-container {
     margin-bottom: 10px;
   }
   .page-container {
@@ -191,4 +195,15 @@ p {
     top: 3%;
     right: 12vw;
   }
+}
+
+.btn:hover {
+  //transform: scale(1.1);
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn:active {
+  transform: scale(0.95);
+  background-color: #004085;
 }

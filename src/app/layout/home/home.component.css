@@ -126,7 +126,9 @@
   border: none;
   border-radius: 8px;
   color: var(--font-color);
+  transition: background-color 0.3s ease, transform 0.2s ease;
   font-weight: 500;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
 p {
@@ -183,6 +185,15 @@ p {
     top: 3%;
     right: 12vw;
   }
+}
+.btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn:active {
+  transform: scale(0.95);
+  background-color: #004085;
 }
 
 /*# sourceMappingURL=home.component.css.map */
