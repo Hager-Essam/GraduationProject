@@ -147,21 +147,15 @@ p {
   }
 }
 @media (max-width: 1920px) and (min-width: 1400px) {
-  .left-arm {
-    top: 1%;
-    left: 12vw;
+  .head {
+    animation-delay: 0.2s;
+    top: -6.9%;
+    animation-name: from-top;
   }
-  .right-arm {
-    top: 1%;
-    right: 12vw;
-  }
-  .left-leg {
-    top: 3%;
-    left: 12vw;
-  }
-  .right-leg {
-    top: 3%;
-    right: 12vw;
+  .legs {
+    animation-delay: 0.2s;
+    top: 52%;
+    animation-name: from-top;
   }
 }
 .btn:hover {
