@@ -53,7 +53,6 @@ console.log(this.Role);
       console.log('No file selected');
     }
   }
-
   onSubmit(): void {
     if (this.form.invalid || !this.selectedFile) {
       console.log("Form invalid or file not selected!");
@@ -74,7 +73,7 @@ console.log(this.Role);
     formData.append('Password', values.Password);
     formData.append('ConfirmPassword', values.ConfirmPassword);
     formData.append('PhoneNumber', values.PhoneNumber);
-    formData.append('Role', this.Role);
+    formData.append('Role', 'specialist');
     formData.append('CertificateFile', this.selectedFile);
 
     this.authService.registerUser(formData).subscribe({

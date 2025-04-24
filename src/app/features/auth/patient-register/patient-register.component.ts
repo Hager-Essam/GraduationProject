@@ -24,7 +24,6 @@ export class PatientRegisterComponent implements OnInit{
               private authService: AuthService,
               private router:Router,
               private route :ActivatedRoute,
-              private  userService: UserDataService,
   ){}
 
   ngOnInit(): void {
