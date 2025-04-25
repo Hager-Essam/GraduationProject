@@ -16,7 +16,7 @@ import {NgIf} from '@angular/common';
 })
 export class SpecialistRegisterComponent implements OnInit {
   form!: FormGroup;
-  Role: string = '';
+  Role: string = 'Specialist';
   selectedFile: File | null = null;
 
   constructor(private fb: FormBuilder,
@@ -38,7 +38,7 @@ console.log(this.Role);
       ConfirmPassword: ['', Validators.required],
       CertificateFile: [null, Validators.required],
       PhoneNumber: ['', [Validators.required, Validators.pattern('^0[0-9]{10}$')]],
-      Role: ['specialist']
+      Role: ['Specialist']
     });
   }
 
@@ -68,12 +68,19 @@ console.log(this.Role);
     const formData = new FormData();
     const values = this.form.value;
 
+
+
+    if (values.Password !== values.ConfirmPassword) {
+      console.error("Passwords do not match.");
+      return;
+    }
+
     formData.append('FullName', values.FullName);
     formData.append('Email', values.Email);
     formData.append('Password', values.Password);
     formData.append('ConfirmPassword', values.ConfirmPassword);
     formData.append('PhoneNumber', values.PhoneNumber);
-    formData.append('Role', 'specialist');
+    formData.append('Role', 'Specialist');
     formData.append('CertificateFile', this.selectedFile);
 
     this.authService.registerUser(formData).subscribe({
