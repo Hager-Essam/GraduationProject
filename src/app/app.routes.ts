@@ -14,14 +14,15 @@ import {CodePageComponent} from './features/auth/code-page/code-page.component';
 import {ResetPageComponent} from './features/auth/reset-page/reset-page.component';
 import {DashboardComponent} from './features/dashboard/dashboard.component';
 import {LearnComponent} from './features/learn/learn.component';
+import {animation} from '@angular/animations';
 
 export const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'consultation', component: ConsultationComponent},
-  {path: 'report', component: ReportComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path:'chat' ,component:ChatComponent},
+  {path: '', component: HomeComponent ,data:{animation:'home'}},
+  {path: 'home', component: HomeComponent,data:{animation:'home'}},
+  {path: 'consultation', component: ConsultationComponent,data:{animation:'consultation'}},
+  {path: 'report', component: ReportComponent,data:{animation:'report'}},
+  {path: 'profile', component: ProfileComponent,data:{animation:'profile'}},
+  {path:'chat' ,component:ChatComponent,data:{animation:'chat'}},
   {path:'patient',component:PatientComponent},
   {path:'specialist',component:SpecialistComponent},
   {path:'patient',component:PatientComponent},

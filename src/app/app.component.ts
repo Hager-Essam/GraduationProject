@@ -11,4 +11,5 @@ import {NavBarComponent} from './layout/nav-bar/nav-bar.component';
 })
 export class AppComponent {
   title = 'GraduationProject';
+
 }

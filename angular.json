@@ -75,6 +75,8 @@
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "outputHashing": "all",
               "buildTarget": "GraduationProject:build:production"
             },
             "development": {

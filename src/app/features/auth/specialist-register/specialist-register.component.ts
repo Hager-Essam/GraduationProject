@@ -30,7 +30,9 @@ export class SpecialistRegisterComponent implements OnInit {
         this.Role = params['role'];
       }
     });
+
 console.log(this.Role);
+
     this.form = this.fb.group({
       FullName: ['', Validators.required],
       Email: ['', [Validators.required, Validators.email]],
@@ -67,8 +69,6 @@ console.log(this.Role);
 
     const formData = new FormData();
     const values = this.form.value;
-
-
 
     if (values.Password !== values.ConfirmPassword) {
       console.error("Passwords do not match.");

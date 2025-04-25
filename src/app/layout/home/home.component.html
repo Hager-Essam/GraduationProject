@@ -1,39 +1,37 @@
 <div class="page-container">
 
-  <!-- Left Section: Skeleton Animation -->
+
   <div class="skeleton-container">
-
-
-    <img src="head.png" alt="head" class="skeleton-part head">
-    <img src="torso.png" alt="head" class="skeleton-part torso">
-    <img src="legs.png" alt="head" class="skeleton-part legs">
-<!--    <img src="head.png" alt="Head" class="skeleton-part head"/>-->
-<!--    <img src="chest.png" alt="Chest" class="skeleton-part torso"/>-->
-<!--    <img src="left-arm.png" alt="Left Arm" class="skeleton-part left-arm"/>-->
-<!--    <img src="right-arm.png" alt="Right Arm" class="skeleton-part right-arm"/>-->
-<!--    <img src="left-leg.png" alt="Left Leg" class="skeleton-part left-leg"/>-->
-<!--    <img src="right-leg.png" alt="Right Leg" class="skeleton-part right-leg"/>-->
+<!--    <img class="ske" src="skeleton.png">-->
+    <!-- 1. IMAGE VERSION (PNG / JPG) -->
+    <div class="skeleton-wrapper skeleton-fade">
+      <img src="skeleton.png"
+           alt="Skeleton"
+           class="skeleton-img skeleton-float skeleton-glow skeleton-scan">
+    </div>
   </div>
 
   <div class="btns-section">
 
-    <p class="info-text">
-      Take the next step toward better bone health.
-      Upload your X-ray for analysis explore your reports or
-      connect with a specialist for personalized care.
+    <p class="animated-text-wave">
+  <span *ngFor="let letter of lettersArray; let i = index" [style.animationDelay]="(i * 0.03)+'s'">
+    {{ letter === ' ' ? '\u00A0' : letter }}
+  </span>
     </p>
 
     <div class="btns">
       <div class="btn-container">
-        <img src="Hospital1.png" alt="Patient"/>
-<!--        <a routerLink="/patientLogin">-->
-          <button type="button" class="btn"  (click)="navigateToLogin('patient')" style="background-color: var(--buttons-color)">Patient</button>
-<!--        </a>-->
+        <img class="img1" src="Hospital1.png" alt="Patient"/>
+        <button type="button" class="btn" (click)="navigateToLogin('patient')"
+                style="background-color: var(--buttons-color)">Patient
+        </button>
       </div>
 
       <div class="btn-container">
-        <img src="Hospital2.png" alt="Specialist"/>
-          <button type="button" (click)="navigateToLogin('specialist')" class="btn" style="background-color: var(--buttons-color)">Specialist</button>
+        <img class="img2" src="Hospital2.png" alt="Specialist"/>
+        <button type="button" (click)="navigateToLogin('specialist')" class="btn"
+                style="background-color: var(--buttons-color)">Specialist
+        </button>
       </div>
     </div>
   </div>
