@@ -9,7 +9,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({eventCoalescing: true}),
-    provideRouter(routes), provideClientHydration()
+    provideRouter(routes),
+    provideClientHydration()
     , provideHttpClient(withFetch()),
     ReactiveFormsModule],
 

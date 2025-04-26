@@ -55,4 +55,9 @@
   background-color: #004085;
 }
 
+svg {
+  width: 20px;
+  margin-right: 1rem;
+}
+
 /*# sourceMappingURL=consultation.component.css.map */

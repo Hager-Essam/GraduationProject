@@ -1,1 +1,140 @@
-<p>dashboard works!</p>
+<div class="container con1">
+
+  <div class="title">
+    <h1>
+      <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span>
+      <span>&nbsp;</span>
+      <span>I</span><span>n</span>
+      <span>&nbsp;</span>
+      <span>B</span><span>o</span><span>n</span><span>e</span><span>s</span>
+      <span>&nbsp;</span>
+      <span>A</span><span>p</span><span>p</span>
+
+    </h1>
+    <div class="card" style="width: 20rem">
+      <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 10C14.2091 10 16 8.20914 16 6 16 3.79086 14.2091 2 12 2 9.79086 2 8 3.79086 8 6 8 8.20914 9.79086 10 12 10ZM5.5 13C6.88071 13 8 11.8807 8 10.5 8 9.11929 6.88071 8 5.5 8 4.11929 8 3 9.11929 3 10.5 3 11.8807 4.11929 13 5.5 13ZM21 10.5C21 11.8807 19.8807 13 18.5 13 17.1193 13 16 11.8807 16 10.5 16 9.11929 17.1193 8 18.5 8 19.8807 8 21 9.11929 21 10.5ZM12 11C14.7614 11 17 13.2386 17 16V22H7V16C7 13.2386 9.23858 11 12 11ZM5 15.9999C5 15.307 5.10067 14.6376 5.28818 14.0056L5.11864 14.0204C3.36503 14.2104 2 15.6958 2 17.4999V21.9999H5V15.9999ZM22 21.9999V17.4999C22 15.6378 20.5459 14.1153 18.7118 14.0056 18.8993 14.6376 19 15.307 19 15.9999V21.9999H22Z"></path>
+        </svg>
+        All Users: {{ totalUsers }}
+      </h3>
+    </div>
+  </div>
+
+  <div class="cards-container">
+
+    <div class="card one" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-text">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12H15C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12H7Z"></path>
+          </svg>
+          Specialists
+        </h5>
+      </div>
+      <div class="container con2">
+        <h3> {{ specialistsCount }}</h3>
+        <h3>{{ specialistsPercentage|number:'1.0-0' }}%</h3>
+      </div>
+
+      <div style="width: 100%; background: #eee; border-radius: 4px; height: .5rem; overflow: hidden;">
+        <div
+          [ngStyle]="{
+      'width.%': specialistsPercentage,
+      'background': '#4285f4',
+      'height': '100%',
+      'transition': 'width 0.4s ease'
+    }">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card two" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-text">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2C17.5228 2 22 6.47715 22 12C22 13.6169 21.6162 15.1442 20.9348 16.4958C20.8633 16.2175 20.7307 15.9523 20.5374 15.7206L20.4142 15.5858L19 14.1716L17.5858 15.5858L17.469 15.713C16.8069 16.4988 16.8458 17.6743 17.5858 18.4142C18.014 18.8424 18.588 19.0358 19.148 18.9946C17.3323 20.8487 14.8006 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 15C10.6199 15 9.37036 15.5592 8.46564 16.4633L8.30009 16.6368L9.24506 17.4961C10.035 17.1825 10.982 17 12 17C12.9049 17 13.7537 17.1442 14.4859 17.3965L14.7549 17.4961L15.6999 16.6368C14.7853 15.6312 13.4664 15 12 15ZM8.5 10C7.67157 10 7 10.6716 7 11.5C7 12.3284 7.67157 13 8.5 13C9.32843 13 10 12.3284 10 11.5C10 10.6716 9.32843 10 8.5 10ZM15.5 10C14.6716 10 14 10.6716 14 11.5C14 12.3284 14.6716 13 15.5 13C16.3284 13 17 12.3284 17 11.5C17 10.6716 16.3284 10 15.5 10Z"></path>
+          </svg>
+          Patients
+        </h5>
+      </div>
+      <div class="container con2">
+        <h3> {{ patientsCount }}</h3>
+        <h3>{{ patientsPercentage|number:'1.0-0' }}%</h3>
+      </div>
+      <div style="width: 100%; background: #eee; border-radius: 4px; height: .5rem; overflow: hidden;">
+        <div
+          [ngStyle]="{
+      'width.%': patientsPercentage,
+      'background': '#02a89a',
+      'height': '100%',
+      'transition': 'width 0.4s ease'
+    }">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card three" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-text">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM13.4142 11L15.8891 8.52513L14.4749 7.11091L12 9.58579L9.52513 7.11091L8.11091 8.52513L10.5858 11L8.11091 13.4749L9.52513 14.8891L12 12.4142L14.4749 14.8891L15.8891 13.4749L13.4142 11Z"></path>
+          </svg>
+          DeletedSpecialists
+        </h5>
+      </div>
+      <div class="container con2">
+        <h3> {{ deletedSpecialistsCount }}</h3>
+        <h3>{{ deletedSpecPercentage|number:'1.0-0' }}%</h3>
+
+      </div>
+
+      <div style="width: 100%; background: #eee; border-radius: 4px; height:.5rem; overflow: hidden;">
+        <div
+          [ngStyle]="{
+      'width.%': deletedSpecPercentage,
+      'background': 'red',
+      'height': '100%',
+      'transition': 'width 0.4s ease'
+    }">
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="card four" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-text">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM13.4142 11L15.8891 8.52513L14.4749 7.11091L12 9.58579L9.52513 7.11091L8.11091 8.52513L10.5858 11L8.11091 13.4749L9.52513 14.8891L12 12.4142L14.4749 14.8891L15.8891 13.4749L13.4142 11Z"></path>
+          </svg>
+          DeletedPatients
+        </h5>
+      </div>
+      <div class="container con2">
+        <h3> {{ deletedPatientsCount }}</h3>
+        <h3>{{ deletedPatPercentage|number:'1.0-0' }}%</h3>
+      </div>
+      <div style="width: 100%; background: #eee; border-radius: 4px; height: .5rem; overflow: hidden;">
+        <div
+          [ngStyle]="{
+      'width.%': deletedPatPercentage,
+      'background': 'red',
+      'height': '100%',
+      'transition': 'width 0.4s ease'
+    }">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

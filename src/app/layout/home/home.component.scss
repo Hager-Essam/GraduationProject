@@ -34,30 +34,6 @@
   }
 }
 
-.skeleton-part {
-  position: absolute;
-  opacity: 0;
-  animation: assemble 2.5s forwards;
-}
-
-.head {
-  animation-delay: 0.2s;
-  top: -9.3%;
-  animation-name: from-top;
-}
-
-.torso {
-  animation-delay: 0.4s;
-  top: 11%;
-  animation-name: from-left;
-}
-
-.legs {
-  animation-delay: 0.4s;
-  top: 58%;
-  animation-name: from-right;
-}
-
 @keyframes from-left {
   from {
     opacity: 0;
@@ -100,14 +76,6 @@
   gap: 40px;
 }
 
-.info-text {
-  position: relative;
-  max-width: 500px;
-  font-size: 1.2rem;
-  line-height: 2;
-  z-index: 10;
-  text-shadow: 4px 4px 4px #15476c;
-}
 
 .btn-container {
   display: flex;
@@ -119,7 +87,6 @@
 
 .btns {
   display: flex;
-  //margin-top: 200px;
 }
 
 .btn {
@@ -245,17 +212,21 @@ p {
   0%, 100% {
     transform: translateY(0);
   }
+
+  25% {
+    transform: translateY(-20px);
+  }
   50% {
-    transform: translateY(-15px);
+    transform: translateY(-30px);
   }
 }
 
 @keyframes glowPulse {
   0%, 100% {
-    filter: drop-shadow(0 0 0px #00e1ff);
+    filter: drop-shadow(0 0 10px #00e1ff);
   }
   50% {
-    filter: drop-shadow(0 0 18px #00e1ff);
+    filter: drop-shadow(0 0 20px #00e1ff);
   }
 }
 
@@ -282,7 +253,7 @@ p {
 
 
 .skeleton-glow {
-  animation: glowPulse 2.2s ease-in-out infinite;
+  animation: glowPulse 2.5s ease-in-out infinite;
 }
 
 .skeleton-scan {
@@ -308,11 +279,9 @@ p {
   animation: scan 3.8s linear infinite;
 }
 
-
 .skeleton-wrapper {
   display: inline-block;
 }
-
 
 .skeleton-img {
   width: 300px;
