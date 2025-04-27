@@ -66,9 +66,11 @@
   gap: 15px;
 }
 
-img {
-  width: 30px;
+svg {
+  width: 40px;
   height: 30px;
+  color:var(--buttons-color, #007bff);
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {

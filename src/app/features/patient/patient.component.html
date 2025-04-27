@@ -2,16 +2,15 @@
 
   <div class="btns">
     <div>
-      <img src="camera.png" alt="Upload Image">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11.1005L7 9.1005L12.5 14.6005L16 11.1005L19 14.1005V5H5V11.1005ZM5 13.9289V19H8.1005L11.0858 16.0147L7 11.9289L5 13.9289ZM10.9289 19H19V16.9289L16 13.9289L10.9289 19ZM4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM15.5 10C14.6716 10 14 9.32843 14 8.5C14 7.67157 14.6716 7 15.5 7C16.3284 7 17 7.67157 17 8.5C17 9.32843 16.3284 10 15.5 10Z"></path></svg>
       <button type="button" class="btn-submit" (click)="fileInput.click()">Upload Image</button>
     </div>
     <div>
-      <img src="backup.png" alt="Retrieve Image">
+      <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z"/></svg>
       <button type="submit" class="btn-submit" routerLink="/profile">Retrieve Image</button>
     </div>
     <div>
-      <img src="baseline.png" alt="Consult a specialist">
-      <button type="submit" class="btn-submit" routerLink="/consultation">Consult a specialist</button>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14.9571 15.564C17.6154 16.6219 19.5726 19.0639 19.9387 22H4.0625C4.42862 19.0639 6.38587 16.6219 9.04417 15.564L12.0006 20L14.9571 15.564ZM18.0006 2V8C18.0006 11.3137 15.3143 14 12.0006 14C8.6869 14 6.00061 11.3137 6.00061 8V2H18.0006ZM16.0006 8H8.00061C8.00061 10.2091 9.79147 12 12.0006 12C14.2098 12 16.0006 10.2091 16.0006 8Z"></path></svg>      <button type="submit" class="btn-submit" routerLink="/consultation">Consult a specialist</button>
     </div>
   </div>
 
@@ -25,7 +24,8 @@
       </div>
     </label>
       <div>
-        <button type="submit" class="btn-submit" id = "repo" routerLink="/report" [disabled]="!isImageUploaded" >Show report</button>
+        <button type="button" class="btn-submit" id="repo" [disabled]="!isImageUploaded" (click)="onShowReport()">Show report</button>
+<!--        <button type="submit" class="btn-submit" id = "repo" routerLink="/report" [disabled]="!isImageUploaded" >Show report</button>-->
       </div>
   </div>
   <input type="file" id="fileInput" accept=".jpg,.png" (change)="onFileSelected($event)" #fileInput hidden>

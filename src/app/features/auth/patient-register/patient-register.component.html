@@ -44,6 +44,9 @@
     </div>
 
     <div class="input-group">
+      <div *ngIf="apiError" class="alert alert-danger">
+        {{ apiError }}
+      </div>
       <label for="password">Confirm Password</label>
       <input type="password"  formControlName="ConfirmPassword" class="form-control" placeholder="********" required>
     </div>

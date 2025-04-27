@@ -1,10 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink,Router,ActivatedRoute} from "@angular/router";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {RouterLink, Router, ActivatedRoute} from "@angular/router";
+import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {AuthService} from '../../../core/services/Auth/auth.service';
-import {UserDataService} from '../../../core/services/Auth/userData.service';
 
+
+export function passwordMatchValidator(): ValidatorFn {
+  return (group: AbstractControl): { [key: string]: any } | null => {
+    const password = group.get('Password')?.value;
+    const confirmPassword = group.get('ConfirmPassword')?.value;
+    return password === confirmPassword ? null : {passwordMismatch: true};
+  };
+}
 
 @Component({
   selector: 'app-patient-register',
@@ -17,14 +24,18 @@ import {UserDataService} from '../../../core/services/Auth/userData.service';
   templateUrl: './patient-register.component.html',
   styleUrl: './patient-register.component.scss'
 })
-export class PatientRegisterComponent implements OnInit{
+export class PatientRegisterComponent implements OnInit {
   form!: FormGroup;
   Role: string = 'Patient';
+  apiError: string | null = null;
+
+
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private router:Router,
-              private route :ActivatedRoute,
-  ){}
+              private router: Router,
+              private route: ActivatedRoute,
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -42,11 +53,13 @@ export class PatientRegisterComponent implements OnInit{
       ConfirmPassword: ['', Validators.required],
       PhoneNumber: ['', [Validators.required, Validators.pattern('^0[0-9]{10}$')]],
       Role: ['patient']
-    });
+    }, {Validators: passwordMatchValidator()});
   }
 
   onSubmit(): void {
+
     if (this.form.invalid) {
+      this.apiError = null;
       console.log("Form invalid!");
       Object.keys(this.form.controls).forEach(key => {
         const control = this.form.get(key);
@@ -85,13 +98,23 @@ export class PatientRegisterComponent implements OnInit{
       error: err => {
         console.error('Registration Failed', err);
         if (err.error) {
-          console.error('Error details:', err.error);
+          if (err.error.errors && err.error.errors.ConfirmPassword) {
+            this.apiError = "Password and Confirm Password are not match";
+          } else if (typeof err.error === 'string') {
+            this.apiError = "Password and Confirm Password are not match";
+          } else if (err.error.errors?.Email) {
+            this.apiError = err.error.errors.Email[0];
+          }
+          else {
+            this.apiError = 'Registration failed. Please try again.';
+          }
         }
       }
     });
   }
+
   navigateToLogin(role: string) {
-    this.router.navigate(['/login',role]);
+    this.router.navigate(['/login', role]);
     return role;
   }
 
