@@ -89,7 +89,9 @@ p {
   cursor: pointer;
 }
 
-.error-message {
+.error {
+  text-align: center;
+  font-weight: bold;
   color: red;
 }
 

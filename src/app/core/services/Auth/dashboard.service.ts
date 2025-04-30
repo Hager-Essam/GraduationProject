@@ -13,8 +13,8 @@ export class DashboardService {
 
   private SpecialistsUrl = 'https://bones.runasp.net/api/Specialist/GetAll';
   private PatientsUrl = 'https://bones.runasp.net/api/Patient/GetAll';
-  private DeletedSpecialistsUrl = 'http://bones.runasp.net/api/Admin/GetAllDeletedSpecialists';
-  private DeletedPatientsUrl = 'http://bones.runasp.net/api/Admin/GetAllDeletedPatients';
+  private DeletedSpecialistsUrl = 'https://bones.runasp.net/api/Admin/GetAllDeletedSpecialists';
+  private DeletedPatientsUrl = 'https://bones.runasp.net/api/Admin/GetAllDeletedPatients';
 
   getAllSpecialists(): Observable<Specialist[]> {
     return this.http.get<Specialist[]>(this.SpecialistsUrl);

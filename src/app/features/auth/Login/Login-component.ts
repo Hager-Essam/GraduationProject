@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.Role = this.route.snapshot.paramMap.get('role') || 'specialist';
 
-  this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       if (params['Role']) {
         this.Role = params['Role'];
       }
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.formLogin = this.fb.group({
       Email: ['', [Validators.required, Validators.email]],
       Password: ['', Validators.required],
-      Role:[this.Role]
+      Role: [this.Role]
     });
     console.log('Form initialized:', this.formLogin);
   }
@@ -69,11 +69,12 @@ export class LoginComponent implements OnInit {
       next: res => {
         console.log('Login successful:', res);
         // this.AuthService.setUser(loginData);
-        if (this.Role == 'patient') {
+        if (this.Role.toLowerCase() == 'patient') {
           this.router.navigate(['/patient']);
-        } else {
+        } else if (this.Role.toLowerCase() == 'specialist') {
           this.router.navigate(['/specialist']);
-        }
+        } else if (this.Role.toLowerCase() == 'admin')
+          this.router.navigate(['/dashboard']);
       },
       error: err => {
         console.error('Login Failed', err);

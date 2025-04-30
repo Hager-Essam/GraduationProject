@@ -28,7 +28,7 @@ export class PatientRegisterComponent implements OnInit {
   form!: FormGroup;
   Role: string = 'Patient';
   apiError: string | null = null;
-
+   errorMessage: string | null = null;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -57,7 +57,6 @@ export class PatientRegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-
     if (this.form.invalid) {
       this.apiError = null;
       console.log("Form invalid!");
@@ -85,6 +84,7 @@ export class PatientRegisterComponent implements OnInit {
 
     this.authService.registerUser(formData).subscribe({
       next: res => {
+        this.errorMessage = null;
         console.log('Patient registered:', res);
         const user = {
           fullName: values.FullName,
@@ -92,23 +92,12 @@ export class PatientRegisterComponent implements OnInit {
           phoneNumber: values.PhoneNumber,
           role: 'patient'
         };
-
         this.router.navigate(['/patient']);
       },
       error: err => {
         console.error('Registration Failed', err);
-        if (err.error) {
-          if (err.error.errors && err.error.errors.ConfirmPassword) {
-            this.apiError = "Password and Confirm Password are not match";
-          } else if (typeof err.error === 'string') {
-            this.apiError = "Password and Confirm Password are not match";
-          } else if (err.error.errors?.Email) {
-            this.apiError = err.error.errors.Email[0];
-          }
-          else {
-            this.apiError = 'Registration failed. Please try again.';
-          }
-        }
+        this.errorMessage = err;
+
       }
     });
   }

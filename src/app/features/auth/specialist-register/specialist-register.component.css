@@ -68,5 +68,14 @@ p {
     width: 30px;
   }
 }
+.error {
+  text-align: center;
+  font-weight: bold;
+  color: red;
+}
+
+.error-message {
+  color: red;
+}
 
 /*# sourceMappingURL=specialist-register.component.css.map */

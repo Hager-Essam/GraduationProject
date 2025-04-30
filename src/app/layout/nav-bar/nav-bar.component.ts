@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive} from '@angular/router';
+import {Component} from '@angular/core';
+import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {LogOutComponent} from '../../features/auth/log-out/log-out.component';
 
 @Component({
@@ -14,5 +14,11 @@ import {LogOutComponent} from '../../features/auth/log-out/log-out.component';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
+  constructor(private router: Router) {
+  }
 
+  navigateToLogin(role: string) {
+    this.router.navigate(['/login', role]);
+    return role;
+  }
 }

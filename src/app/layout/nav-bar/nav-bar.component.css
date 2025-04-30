@@ -22,4 +22,8 @@ ul li a {
   background-color: #0056b3;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=nav-bar.component.css.map */

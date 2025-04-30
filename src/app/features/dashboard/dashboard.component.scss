@@ -1,11 +1,10 @@
 .con1:first-child {
   display: flex;
-  flex-direction: column;
 }
 
 .title {
   display: inline-block;
-  margin-bottom: 1rem;
+  margin: 1rem auto;
   text-align: center;
 }
 
@@ -187,4 +186,25 @@ h1 span:nth-child(21) {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.my-sidebar {
+  background: #f3eeee;
+}
+
+.nav-title {
+  color: black;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.cards-container{
+  max-width: 100%;
+  flex-wrap: wrap;
 }

@@ -1,5 +1,9 @@
 
 <div class="container">
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
   <form [formGroup]="form" (ngSubmit)="onSubmit()" >
     <div class="input-group">
       <label for="email">Full Name</label>

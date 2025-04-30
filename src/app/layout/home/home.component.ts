@@ -16,8 +16,7 @@ import {NgForOf} from '@angular/common';
 })
 export class HomeComponent {
 
-  constructor(private router: Router,private AuthService:AuthService) {
-  }
+  constructor(private router: Router,private AuthService:AuthService) {}
 
   navigateToLogin(role: string) {
     this.router.navigate(['/login',role]);
