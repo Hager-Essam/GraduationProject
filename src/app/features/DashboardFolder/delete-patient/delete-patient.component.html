@@ -1,0 +1,29 @@
+<div class="container me-4">
+  <h2>Delete A User</h2>
+
+  <div class="user">
+    <h4>Delete a Patient</h4>
+    <div class="info">
+      <input type="number" [(ngModel)]="patientId" placeholder="Enter Patient ID"/>
+      <button (click)="onDeletePatient()">Delete Patient</button>
+    </div>
+    <div *ngIf="responseMessage">
+      <p>{{ responseMessage }}</p>
+    </div>
+  </div>
+
+  <div class="user">
+    <h4>Delete a Specialist</h4>
+    <div class="info">
+      <input type="number" [(ngModel)]="specialisttId" placeholder="Enter Specialist ID"/>
+      <button (click)="onDeleteSpecialist()">Delete Specialist</button>
+    </div>
+    <div *ngIf="responseMessage">
+      <p>{{ responseMessage }}</p>
+    </div>
+  </div>
+
+
+
+
+</div>

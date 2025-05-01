@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DashboardService} from '../../core/services/Auth/dashboard.service';
+import {DashboardService} from '../../../core/services/Auth/dashboard.service';
 import {DecimalPipe, NgForOf, NgIf, NgStyle} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,8 @@ import {HttpClient} from '@angular/common/http';
     NgIf,
     NgForOf,
     DecimalPipe,
-    NgStyle
+    NgStyle,
+    RouterLink
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'

@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {HomeComponent} from './layout/home/home.component';
 import {ForgetPasswordComponent} from './features/auth/forget-password/forget-password.component';
 import {LoginComponent} from './features/auth/Login/Login-component';
@@ -12,26 +12,31 @@ import {ChatComponent} from './features/chat/chat.component';
 import {PatientComponent} from './features/patient/patient.component';
 import {CodePageComponent} from './features/auth/code-page/code-page.component';
 import {ResetPageComponent} from './features/auth/reset-page/reset-page.component';
-import {DashboardComponent} from './features/dashboard/dashboard.component';
+import {DashboardComponent} from './features/DashboardFolder/dashboard/dashboard.component';
 import {LearnComponent} from './features/learn/learn.component';
-import {animation} from '@angular/animations';
+import {DeletePatientComponent} from './features/DashboardFolder/delete-patient/delete-patient.component';
+import {RestoreSpecialistComponent} from './features/DashboardFolder/restore-specialist/restore-specialist.component';
 
 export const routes: Routes = [
-  {path: '', component: HomeComponent ,data:{animation:'home'}},
-  {path: 'home', component: HomeComponent,data:{animation:'home'}},
-  {path: 'consultation', component: ConsultationComponent,data:{animation:'consultation'}},
-  {path: 'report', component: ReportComponent,data:{animation:'report'}},
-  {path: 'profile', component: ProfileComponent,data:{animation:'profile'}},
-  {path:'chat' ,component:ChatComponent,data:{animation:'chat'}},
-  {path:'patient',component:PatientComponent},
-  {path:'specialist',component:SpecialistComponent},
-  {path:'patient',component:PatientComponent},
-  {path:'dashboard',component:DashboardComponent},
-  {path:'login/:role',component:LoginComponent},
-  { path: 'register-patient', component: PatientRegisterComponent },
-  { path: 'register-specialist', component: SpecialistRegisterComponent },
-  { path: 'forgot-password/:role', component: ForgetPasswordComponent },
-  {path: 'reset-page/:role', component: ResetPageComponent },
-  {path:'code-page/:role', component: CodePageComponent},
-  {path:'learn', component: LearnComponent},
+  {path: '', component: HomeComponent, data: {animation: 'home'}},
+  {path: 'home', component: HomeComponent, data: {animation: 'home'}},
+  {path: 'consultation', component: ConsultationComponent, data: {animation: 'consultation'}},
+  {path: 'report', component: ReportComponent, data: {animation: 'report'}},
+  {path: 'profile', component: ProfileComponent, data: {animation: 'profile'}},
+  {path: 'chat', component: ChatComponent, data: {animation: 'chat'}},
+  {path: 'patient', component: PatientComponent},
+  {path: 'specialist', component: SpecialistComponent},
+  {path: 'patient', component: PatientComponent},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'login/:role', component: LoginComponent},
+  {path: 'register-patient', component: PatientRegisterComponent},
+  {path: 'register-specialist', component: SpecialistRegisterComponent},
+  {path: 'forgot-password/:role', component: ForgetPasswordComponent},
+  {path: 'reset-page/:role', component: ResetPageComponent},
+  {path: 'code-page/:role', component: CodePageComponent},
+  {path: 'learn', component: LearnComponent},
+  {path: 'deletePatient', component: DeletePatientComponent},
+  {path: 'deleteSpecialist', component: DeletePatientComponent},
+  {path: 'restorePatient', component: RestoreSpecialistComponent},
+  {path: 'restoreSpecialist', component: RestoreSpecialistComponent},
 ];

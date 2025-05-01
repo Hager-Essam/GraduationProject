@@ -1,53 +1,31 @@
-<!--<div class="title">-->
-<!--  <h1>-->
-<!--    <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span>-->
-<!--    <span>&nbsp;</span>-->
-<!--    <span>I</span><span>n</span>-->
-<!--    <span>&nbsp;</span>-->
-<!--    <span>B</span><span>o</span><span>n</span><span>e</span><span>s</span>-->
-<!--    <span>&nbsp;</span>-->
-<!--    <span>A</span><span>p</span><span>p</span>-->
-
-<!--  </h1>-->
-<!--  <div class="card" style="width: 20rem">-->
-<!--    <h3>-->
-<!--      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">-->
-<!--        <path-->
-<!--          d="M12 10C14.2091 10 16 8.20914 16 6 16 3.79086 14.2091 2 12 2 9.79086 2 8 3.79086 8 6 8 8.20914 9.79086 10 12 10ZM5.5 13C6.88071 13 8 11.8807 8 10.5 8 9.11929 6.88071 8 5.5 8 4.11929 8 3 9.11929 3 10.5 3 11.8807 4.11929 13 5.5 13ZM21 10.5C21 11.8807 19.8807 13 18.5 13 17.1193 13 16 11.8807 16 10.5 16 9.11929 17.1193 8 18.5 8 19.8807 8 21 9.11929 21 10.5ZM12 11C14.7614 11 17 13.2386 17 16V22H7V16C7 13.2386 9.23858 11 12 11ZM5 15.9999C5 15.307 5.10067 14.6376 5.28818 14.0056L5.11864 14.0204C3.36503 14.2104 2 15.6958 2 17.4999V21.9999H5V15.9999ZM22 21.9999V17.4999C22 15.6378 20.5459 14.1153 18.7118 14.0056 18.8993 14.6376 19 15.307 19 15.9999V21.9999H22Z"></path>-->
-<!--      </svg>-->
-<!--      All Users: {{ totalUsers }}-->
-<!--    </h3>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="container-fluid">
   <div class="row flex-nowrap">
     <div class="my-sidebar col-auto col-md-3 col-xl-2 px-sm-2 px-0 " style="'background:red;">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <a href="/GraduationProject/public" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <span class="nav-title fs-5 d-none d-sm-inline">Admin Controls</span>
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
           <li class="nav-item">
-            <a href="#" class="nav-link align-middle px-0">
+            <a  class="nav-link align-middle px-0" routerLink="/deletePatient">
               <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Delete a patient</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link align-middle px-0">
+            <a routerLink="/deleteSpecialist" class="nav-link align-middle px-0">
               <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Delete a Specialist</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link align-middle px-0">
+            <a routerLink="/restoreSpecialist" class="nav-link align-middle px-0">
               <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Restore a Specialist</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link align-middle px-0">
+            <a routerLink="/restorePatient" class="nav-link align-middle px-0">
               <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Restore a Patient</span>
             </a>
           </li>
@@ -80,11 +58,11 @@
           <div style="width: 100%; background: #eee; border-radius: 4px; height: .5rem; overflow: hidden;">
             <div
               [ngStyle]="{
-      'width.%': specialistsPercentage,
-      'background': '#4285f4',
-      'height': '100%',
-      'transition': 'width 0.4s ease'
-    }">
+                  'width.%': specialistsPercentage,
+                  'background': '#4285f4',
+                  'height': '100%',
+                  'transition': 'width 0.4s ease'
+                }">
             </div>
           </div>
 
@@ -107,11 +85,11 @@
           <div style="width: 100%; background: #eee; border-radius: 4px; height: .5rem; overflow: hidden;">
             <div
               [ngStyle]="{
-      'width.%': patientsPercentage,
-      'background': '#02a89a',
-      'height': '100%',
-      'transition': 'width 0.4s ease'
-    }">
+                'width.%': patientsPercentage,
+                'background': '#02a89a',
+                'height': '100%',
+                'transition': 'width 0.4s ease'
+              }">
             </div>
           </div>
 

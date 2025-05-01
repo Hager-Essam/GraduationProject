@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 40rem;
+  background-color: #c9a4a4;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-left: 20rem;
+}
+
+input {
+  width: 25rem;
+  border: none;
+  box-shadow: 4px 5px 3px 3px #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 0.5rem;
+}
+
+h2 {
+  text-align: center;
+  text-shadow: 1px 1px 10px #000;
+}
+
+button {
+  border: none;
+  background-color: var(--buttons-color);
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 4px 5px 3px 3px #ccc;
+}
+
+button:hover {
+  background-color: red;
+  color: white;
+}
+
+h4 {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+/*# sourceMappingURL=delete-patient.component.css.map */
