@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>All Specialists</h2>
+  <ul>
+    <li *ngFor="let specialist of specialists">
+      <span>{{ specialist.name }} - ID: {{ specialist.id }}</span>
+      <button (click)="onDeleteSpecialist(specialist.id)">Delete</button>
+    </li>
+  </ul>
+  <div *ngIf="responseMessage">
+    <p>{{ responseMessage }}</p>
+  </div>
+</div>

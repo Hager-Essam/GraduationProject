@@ -6,19 +6,29 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class AdminService {
-  private apiUrl = 'https://bones.runasp.net/api/Admin/DeletePatient';
-  private deleteSpecUrl = 'https://bones.runasp.net/api/Admin/DeleteSpecialist';
+  private apiUrl = 'https://bones.runasp.net/api';
+  // private apiUrl2 = 'https://bones.runasp.net/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
+
+  getAllPatients(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/Patient/GetAll`);
+  }
+
+  getAllSpecialists(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/Specialist/GetAll`);
+  }
 
   deletePatient(id: number): Observable<any> {
     const params = new HttpParams().set('Id', id.toString());
-    return this.http.post(this.apiUrl, {}, {params});
+    return this.http.post(`${this.apiUrl}/Admin/DeletePatient`, {}, {params});
   }
+
 
   deleteSpecialist(id: number): Observable<any> {
     const params = new HttpParams().set('Id', id.toString());
-    return this.http.post(this.deleteSpecUrl, {}, {params});
+    return this.http.post(`${this.apiUrl}/Admin/DeleteSpecialist`, {}, {params});
   }
 
 

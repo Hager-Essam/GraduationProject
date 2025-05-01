@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NgIf} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {KeyValuePipe, NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {AdminService} from '../../../core/services/admin/admin.service';
 
@@ -8,44 +8,50 @@ import {AdminService} from '../../../core/services/admin/admin.service';
   standalone: true,
   imports: [
     NgIf,
-    FormsModule
+    FormsModule,
+    NgForOf,
+    KeyValuePipe
   ],
   templateUrl: './delete-patient.component.html',
   styleUrl: './delete-patient.component.scss'
 })
-export class DeletePatientComponent {
-  patientId: number = 0;
-  specialisttId: number = 0;
+export class DeletePatientComponent implements OnInit{
+  patients: any[] = [];
   responseMessage: string = '';
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService) {}
+
+  ngOnInit(): void {
+    this.loadPatients();
   }
 
-  onDeletePatient(): void {
-    this.adminService.deletePatient(this.patientId).subscribe(
-      (response) => {
-        this.responseMessage = response.message;
-      },
-      (error) => {
-        if (error.status === 404) {
-          this.responseMessage = 'No specialist found with this ID';
+  loadPatients(): void {
+    this.adminService.getAllPatients().subscribe(
+      (response: any) => {
+        if (response && response.data) {
+          this.patients = response.data;
         } else {
-          this.responseMessage = 'An error occurred while deleting the patient';
+          console.error('Unexpected response structure:', response);
+          this.patients = [];
         }
+      },
+      error => {
+        this.responseMessage = 'Failed to load patients!';
+        console.error(error);
+        this.patients = [];
       }
     );
   }
-  onDeleteSpecialist(): void {
-    this.adminService.deleteSpecialist(this.specialisttId).subscribe(
+
+  onDeletePatient(id: number): void {
+    this.adminService.deletePatient(id).subscribe(
       (response) => {
         this.responseMessage = response.message;
+        this.loadPatients();
       },
       (error) => {
-        if (error.status === 404) {
-          this.responseMessage = 'No specialist found with this ID';
-        } else {
-          this.responseMessage = 'An error occurred while deleting the patient';
-        }
+        this.responseMessage = 'Failed to delete patient!';
+        console.error(error);
       }
     );
   }
