@@ -128,7 +128,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  calculateTotalsAndPercentages() : void {
+  calculateTotalsAndPercentages(): void {
     const totalSpecialists = this.specialistsCount + this.deletedSpecialistsCount;
 
     const totalPatients = this.patientsCount + this.deletedPatientsCount;
@@ -141,7 +141,6 @@ export class DashboardComponent implements OnInit {
     this.deletedSpecPercentage = totalSpecialists > 0 ? (this.deletedSpecialistsCount / this.totalUsers) * 100 : 0;
     this.deletedPatPercentage = totalPatients > 0 ? (this.deletedPatientsCount / this.totalUsers) * 100 : 0;
   }
-
 
 
   animateNumber(field: 'specialistsCount' | 'patientsCount' | 'deletedSpecialistsCount' | 'deletedPatientsCount', target: number, duration: number) {
@@ -165,7 +164,6 @@ export class DashboardComponent implements OnInit {
     };
     step();
   }
-
 
 
   loadTotalPayments(): void {
@@ -208,7 +206,23 @@ export class DashboardComponent implements OnInit {
 
 
   getBarStyle(percentage: number): { [key: string]: string } {
-    const baseColor = percentage > 50 ? '#4CAF50' : '#FF5722';
+    let baseColor: string;
+
+    if (percentage <= 10) {
+      baseColor = '#FF0000';
+    } else if (percentage > 10 && percentage <= 20) {
+      baseColor = '#f1ac4d';
+    } else if (percentage >20  && percentage <= 30) {
+      baseColor = '#d5a767'
+    } else if (percentage > 30  && percentage <= 40) {
+      baseColor = '#975fad'
+    } else if (percentage >40  && percentage <= 50) {
+      baseColor = '#51aeff'
+    }  else if (percentage > 50  && percentage <= 70) {
+      baseColor = '#1db198'
+    } else {
+      baseColor = '#418ccc';
+    }
     return {
       'height': `${percentage}%`,
       'background-color': baseColor
