@@ -69,12 +69,14 @@ export class LoginComponent implements OnInit {
       next: res => {
         console.log('Login successful:', res);
         // this.AuthService.setUser(loginData);
-        if (this.Role.toLowerCase() == 'patient') {
+        if (this.Role.toLowerCase() === 'patient') {
           this.router.navigate(['/patient']);
-        } else if (this.Role.toLowerCase() == 'specialist') {
+        } else if (this.Role.toLowerCase() === 'specialist') {
           this.router.navigate(['/specialist']);
-        } else if (this.Role.toLowerCase() == 'admin')
+        } else if (this.Role.toLowerCase() === 'admin') {
+          console.log(`${this.Role}`);
           this.router.navigate(['/dashboard']);
+        }
       },
       error: err => {
         console.error('Login Failed', err);
@@ -92,19 +94,19 @@ export class LoginComponent implements OnInit {
   }
 
   navigateToRegister() {
-    if (this.Role === 'patient') {
+    if (this.Role.toLowerCase() === 'patient') {
       this.router.navigate(['/register-patient']);
-    } else if (this.Role === 'specialist') {
+    } else if (this.Role.toLowerCase() === 'specialist') {
       this.router.navigate(['/register-specialist']);
     }
   }
 
-  navigateToUserPage() {
-    if (this.Role === 'patient') {
-      this.router.navigate(['/patient']);
-    } else {
-      this.router.navigate(['/specialist']);
-    }
-  }
+  // navigateToUserPage() {
+  //   if (this.Role === 'patient') {
+  //     this.router.navigate(['/patient']);
+  //   } else {
+  //     this.router.navigate(['/specialist']);
+  //   }
+  // }
 
 }

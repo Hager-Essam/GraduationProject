@@ -18,7 +18,7 @@ export class NavBarComponent {
   }
 
   navigateToLogin(role: string) {
-    this.router.navigate(['/login', role]);
+    this.router.navigate(['/login', 'admin']);
     return role;
   }
 }

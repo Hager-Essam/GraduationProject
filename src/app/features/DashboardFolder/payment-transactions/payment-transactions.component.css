@@ -1,0 +1,27 @@
+.chart {
+  display: flex;
+  width: 100%;
+}
+
+.chart-bar {
+  width: 100px; /* Width of each bar */
+  background-color: #ddd; /* Default background color */
+  transition: background-color 0.3s ease, height 0.3s ease;
+  margin: 0 10px;
+  position: relative;
+}
+
+.chart-bar span {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #333;
+}
+
+.table {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/*# sourceMappingURL=payment-transactions.component.css.map */

@@ -1,0 +1,29 @@
+<div class="chart-container">
+  <div class="chart">
+    <div class="chart-bar" [ngStyle]="getBarStyle(successPercentage)">
+      <span>Success: {{ successPercentage.toFixed(0) }}%</span>
+    </div>
+    <div class="chart-bar" [ngStyle]="getBarStyle(failurePercentage)">
+      <span>Failure: {{ failurePercentage.toFixed(0) }}%</span>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Transaction ID</th>
+    <th>Amount</th>
+    <th>Status</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let transaction of transactions">
+    <td>{{ transaction.transactionId }}</td>
+    <td>${{ transaction.amount }}</td>
+    <td>{{ transaction.paymentStatus }}</td>
+    <td>{{ transaction.transactionDate }}</td>
+  </tr>
+  </tbody>
+</table>

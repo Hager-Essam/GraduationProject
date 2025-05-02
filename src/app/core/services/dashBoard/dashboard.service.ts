@@ -11,25 +11,26 @@ export class DashboardService {
   constructor(private http: HttpClient) {
   }
 
+  private baseUrl = 'https://bones.runasp.net/api';
   private SpecialistsUrl = 'https://bones.runasp.net/api/Specialist/GetAll';
   private PatientsUrl = 'https://bones.runasp.net/api/Patient/GetAll';
   private DeletedSpecialistsUrl = 'https://bones.runasp.net/api/Admin/GetAllDeletedSpecialists';
   private DeletedPatientsUrl = 'https://bones.runasp.net/api/Admin/GetAllDeletedPatients';
 
   getAllSpecialists(): Observable<Specialist[]> {
-    return this.http.get<Specialist[]>(this.SpecialistsUrl);
+    return this.http.get<Specialist[]>(`${this.baseUrl}/Specialist/GetAll`);
   }
 
   getAllPatients(): Observable<Patient[]> {
-    return this.http.get<Patient[]>(this.PatientsUrl);
+    return this.http.get<Patient[]>(`${this.baseUrl}/Patient/GetAll`);
   }
 
   getAllDeletedSpecialists(): Observable<Specialist[]> {
-    return this.http.get<Specialist[]>(this.DeletedSpecialistsUrl);
+    return this.http.get<Specialist[]>(`${this.baseUrl}/Admin/GetAllDeletedPatients`);
   }
 
   getAllDeletedPatients(): Observable<Patient[]> {
-    return this.http.get<Patient[]>(this.DeletedPatientsUrl);
+    return this.http.get<Patient[]>(`${this.baseUrl}/Admin/GetAllDeletedSpecialists`);
   }
 
 }

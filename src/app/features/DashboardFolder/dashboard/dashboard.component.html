@@ -2,12 +2,14 @@
   <div class="row flex-nowrap">
     <div class="my-sidebar col-auto col-md-3 col-xl-2 px-sm-2 px-0 " style="'background:red;">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-        <a href="/GraduationProject/public" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <a href="/GraduationProject/public"
+           class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <span class="nav-title fs-5 d-none d-sm-inline">Admin Controls</span>
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+
           <li class="nav-item">
-            <a  class="nav-link align-middle px-0" routerLink="/deletePatient">
+            <a class="nav-link align-middle px-0" routerLink="/deletePatient">
               <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Delete a patient</span>
             </a>
           </li>
@@ -37,6 +39,12 @@
           </li>
 
           <li class="nav-item">
+            <a routerLink="/paymentTransaction" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">All Payment Transactions</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a routerLink="/emails" class="nav-link align-middle px-0">
               <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"></span>
             </a>
@@ -49,124 +57,96 @@
 
 
     <div class="col py-3">
-
-      <div class="cards-container">
-
-        <div class="card one" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-text">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12H15C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12H7Z"></path>
-              </svg>
-              Specialists
-            </h5>
-          </div>
-          <div class="container con2">
-            <h3> {{ specialistsCount }}</h3>
-            <h3>{{ specialistsPercentage|number:'1.0-0' }}%</h3>
-          </div>
-
-          <div style="width: 100%; background: #eee; border-radius: 4px; height: .5rem; overflow: hidden;">
+      <div class="row">
+        <div class="col-md-8 tab">
+          <table class="table table-striped table-hover">
+            <thead class="bg-dark text-white">
+            <tr>
+              <th>User</th>
+              <th>Number</th>
+              <th>Percentage</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Patient</td>
+              <td>{{ patientsCount }}</td>
+              <td>{{ patientsPercentage |number:'1.0-0' }}%</td>
+            </tr>
+            <tr>
+              <td>Specialist</td>
+              <td>{{ specialistsCount }}</td>
+              <td>{{ specialistsPercentage|number:'1.0-0' }}%</td>
+            </tr>
+            <tr>
+              <td>Inactive Specialist</td>
+              <td>{{ deletedSpecialistsCount }}</td>
+              <td>{{ deletedSpecPercentage|number:'1.0-0' }}%</td>
+            </tr>
+            <tr>
+              <td>Inactive Patients</td>
+              <td>{{ deletedPatientsCount }}</td>
+              <td>{{ deletedPatPercentage|number:'1.0-0' }}%</td>
+            </tr>
+            <tr>
+              <td>Total Payment</td>
+              <td>{{ totalPayments }}</td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+          <div>
             <div
+              class="pie-chart"
               [ngStyle]="{
-                  'width.%': specialistsPercentage,
-                  'background': '#4285f4',
-                  'height': '100%',
-                  'transition': 'width 0.4s ease'
-                }">
+                'background': 'conic-gradient(' +
+                  successColor + ' 0% ' + successPercentage + '%, ' +
+                  failureColor + ' ' + successPercentage + '% 100%)'
+              }"
+            >
+
+            </div>
+            <div class="legend">
+              <div><span [style.background]="successColor"></span> Success<p
+                class="perc">{{ successPercentage|number:'1.2-2' }}%</p>
+              </div>
+              <div>
+                <span [style.background]="failureColor"></span> Failure<span>{{ failurePercentage|number:'1.2-2'}}%</span>
+
+              </div>
             </div>
           </div>
-
         </div>
 
-        <div class="card two" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-text">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 2C17.5228 2 22 6.47715 22 12C22 13.6169 21.6162 15.1442 20.9348 16.4958C20.8633 16.2175 20.7307 15.9523 20.5374 15.7206L20.4142 15.5858L19 14.1716L17.5858 15.5858L17.469 15.713C16.8069 16.4988 16.8458 17.6743 17.5858 18.4142C18.014 18.8424 18.588 19.0358 19.148 18.9946C17.3323 20.8487 14.8006 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 15C10.6199 15 9.37036 15.5592 8.46564 16.4633L8.30009 16.6368L9.24506 17.4961C10.035 17.1825 10.982 17 12 17C12.9049 17 13.7537 17.1442 14.4859 17.3965L14.7549 17.4961L15.6999 16.6368C14.7853 15.6312 13.4664 15 12 15ZM8.5 10C7.67157 10 7 10.6716 7 11.5C7 12.3284 7.67157 13 8.5 13C9.32843 13 10 12.3284 10 11.5C10 10.6716 9.32843 10 8.5 10ZM15.5 10C14.6716 10 14 10.6716 14 11.5C14 12.3284 14.6716 13 15.5 13C16.3284 13 17 12.3284 17 11.5C17 10.6716 16.3284 10 15.5 10Z"></path>
-              </svg>
-              Patients
-            </h5>
-          </div>
-          <div class="container con2">
-            <h3> {{ patientsCount }}</h3>
-            <h3>{{ patientsPercentage|number:'1.0-0' }}%</h3>
-          </div>
-          <div style="width: 100%; background: #eee; border-radius: 4px; height: .5rem; overflow: hidden;">
-            <div
-              [ngStyle]="{
-                'width.%': patientsPercentage,
-                'background': '#02a89a',
-                'height': '100%',
-                'transition': 'width 0.4s ease'
-              }">
+        <div class="chart-container">
+          <div class="chart">
+            <div class="chart-bar" [ngStyle]="getBarStyle(patientsPercentage)">
+              <span>{{ patientsPercentage |number:'1.2-2' }}%</span>
             </div>
-          </div>
-
-        </div>
-
-        <div class="card three" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-text">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM13.4142 11L15.8891 8.52513L14.4749 7.11091L12 9.58579L9.52513 7.11091L8.11091 8.52513L10.5858 11L8.11091 13.4749L9.52513 14.8891L12 12.4142L14.4749 14.8891L15.8891 13.4749L13.4142 11Z"></path>
-              </svg>
-              Not Active Specialists
-            </h5>
-          </div>
-          <div class="container con2">
-            <h3> {{ deletedSpecialistsCount }}</h3>
-            <h3>{{ deletedSpecPercentage|number:'1.0-0' }}%</h3>
-
-          </div>
-
-          <div style="width: 100%; background: #eee; border-radius: 4px; height:.5rem; overflow: hidden;">
-            <div
-              [ngStyle]="{
-      'width.%': deletedSpecPercentage,
-      'background': 'red',
-      'height': '100%',
-      'transition': 'width 0.4s ease'
-    }">
+            <div class="chart-bar" [ngStyle]="getBarStyle(specialistsPercentage)">
+              <span>{{ specialistsPercentage |number:'1.2-2' }}%</span>
             </div>
-          </div>
 
-        </div>
-
-
-        <div class="card four" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-text">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM13.4142 11L15.8891 8.52513L14.4749 7.11091L12 9.58579L9.52513 7.11091L8.11091 8.52513L10.5858 11L8.11091 13.4749L9.52513 14.8891L12 12.4142L14.4749 14.8891L15.8891 13.4749L13.4142 11Z"></path>
-              </svg>
-              Not Active Patients
-            </h5>
-          </div>
-          <div class="container con2">
-            <h3> {{ deletedPatientsCount }}</h3>
-            <h3>{{ deletedPatPercentage|number:'1.0-0' }}%</h3>
-          </div>
-          <div style="width: 100%; background: #eee; border-radius: 4px; height: .5rem; overflow: hidden;">
-            <div
-              [ngStyle]="{
-      'width.%': deletedPatPercentage,
-      'background': 'red',
-      'height': '100%',
-      'transition': 'width 0.4s ease'
-    }">
+            <div class="chart-bar" [ngStyle]="getBarStyle(deletedSpecPercentage)">
+              <span>{{ deletedSpecPercentage |number:'1.2-2' }}%</span>
             </div>
-          </div>
 
+            <div class="chart-bar" [ngStyle]="getBarStyle(deletedPatPercentage)">
+              <span>{{ deletedPatPercentage|number:'1.2-2' }}%</span>
+            </div>
+
+
+          </div>
+          <div class="chart-labels">
+            <span>Patient</span>
+            <span>Specialist</span>
+            <span>Inactive Specialist</span>
+            <span>Inactive Patient</span>
+          </div>
         </div>
 
       </div>
     </div>
   </div>
 </div>
-
 

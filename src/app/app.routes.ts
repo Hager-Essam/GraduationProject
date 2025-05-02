@@ -18,6 +18,9 @@ import {DeletePatientComponent} from './features/DashboardFolder/delete-patient/
 import {RestoreSpecialistComponent} from './features/DashboardFolder/restore-specialist/restore-specialist.component';
 import {DeleteSpecialistComponent} from './features/DashboardFolder/delete-specialist/delete-specialist.component';
 import {EmailsComponent} from './features/DashboardFolder/emails/emails.component';
+import {
+  PaymentTransactionsComponent
+} from './features/DashboardFolder/payment-transactions/payment-transactions.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent, data: {animation: 'home'}},
@@ -42,4 +45,5 @@ export const routes: Routes = [
   {path: 'restorePatient', component: RestoreSpecialistComponent},
   {path: 'restoreSpecialist', component: RestoreSpecialistComponent},
   {path:'emails',component: EmailsComponent},
+  {path:'paymentTransaction',component:PaymentTransactionsComponent}
 ];

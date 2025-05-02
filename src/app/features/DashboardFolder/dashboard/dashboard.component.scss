@@ -204,7 +204,121 @@ h1 span:nth-child(21) {
   display: flex;
   flex-direction: column;
 }
-.cards-container{
+
+.cards-container {
   max-width: 100%;
   flex-wrap: wrap;
+}
+
+.table {
+  table-layout: fixed;
+  width: 60%;
+}
+
+.table th, .table td {
+  width: 25%;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 70%;
+  margin-right: 2rem;
+}
+
+.chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 250px;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.chart-bar {
+  position: relative;
+  width: 60px;
+  background-color: #ddd;
+  transition: background-color 0.3s ease, height 0.3s ease;
+}
+
+.chart-bar span {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8em;
+  color: #333;
+  white-space: nowrap;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+.pie-chart {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 12px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pie-text {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #222;
+  font-weight: bold;
+}
+
+.pie-text .label {
+  font-size: 0.7rem;
+  font-weight: normal;
+  display: block;
+  color: #666;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.legend div {
+  display: flex;
+  flex-direction: column;
+}
+
+.legend span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.tab {
+  display: flex;
+  gap: 4rem;
+}
+
+.perc {
+  margin-right: 2rem;
+  display: block;
 }

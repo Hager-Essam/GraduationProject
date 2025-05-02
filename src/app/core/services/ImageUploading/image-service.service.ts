@@ -15,7 +15,6 @@ export class ImageServiceService {
     formData.append('image', file);
     return this.http.post<any>(`${this.baseUrl}/`, formData).pipe(
       map(response => {
-        // Check if the response is successful
         if (response.is_success && response.status_code === '202') {
           // Extract and return the id and status
           const { id, status } = response.data;
