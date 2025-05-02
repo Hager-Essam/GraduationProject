@@ -1,0 +1,36 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+div h4 {
+  margin: 0;
+  color: #007BFF;
+}
+
+div p {
+  margin: 5px 0;
+}
+
+/*# sourceMappingURL=emails.component.css.map */

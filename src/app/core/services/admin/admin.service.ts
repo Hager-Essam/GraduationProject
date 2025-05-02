@@ -7,7 +7,6 @@ import {Observable} from 'rxjs';
 })
 export class AdminService {
   private apiUrl = 'https://bones.runasp.net/api';
-  // private apiUrl2 = 'https://bones.runasp.net/api';
 
   constructor(private http: HttpClient) {
   }
@@ -19,6 +18,11 @@ export class AdminService {
   getAllSpecialists(): Observable<any> {
     return this.http.get(`${this.apiUrl}/Specialist/GetAll`);
   }
+
+  getAllSpecialistsEmails(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/Email/GetAll`);
+  }
+
 
   deletePatient(id: number): Observable<any> {
     const params = new HttpParams().set('Id', id.toString());

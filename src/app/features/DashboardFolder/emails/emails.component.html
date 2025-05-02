@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>All Emails</h2>
+  <ul>
+    <li *ngFor="let email of emails">
+      <div>
+        <h4>From: {{ email.from }}</h4>
+        <p>Subject: {{ email.subject }}</p>
+        <p>{{ email.body }}</p>
+        <small>Date Sent: {{ email.dateSent }}</small>
+      </div>
+      <hr>
+    </li>
+  </ul>
+  <div *ngIf="responseMessage">
+    <p>{{ responseMessage }}</p>
+  </div>
+</div>

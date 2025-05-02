@@ -17,6 +17,7 @@ import {LearnComponent} from './features/learn/learn.component';
 import {DeletePatientComponent} from './features/DashboardFolder/delete-patient/delete-patient.component';
 import {RestoreSpecialistComponent} from './features/DashboardFolder/restore-specialist/restore-specialist.component';
 import {DeleteSpecialistComponent} from './features/DashboardFolder/delete-specialist/delete-specialist.component';
+import {EmailsComponent} from './features/DashboardFolder/emails/emails.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent, data: {animation: 'home'}},
@@ -40,4 +41,5 @@ export const routes: Routes = [
   {path: 'deleteSpecialist', component: DeleteSpecialistComponent},
   {path: 'restorePatient', component: RestoreSpecialistComponent},
   {path: 'restoreSpecialist', component: RestoreSpecialistComponent},
+  {path:'emails',component: EmailsComponent},
 ];
