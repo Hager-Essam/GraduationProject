@@ -1,9 +1,9 @@
 <div class="container">
-  <h2>All In Active Specialists</h2>
+  <h2>All In Active Patients</h2>
   <ul>
-    <li *ngFor="let patient of deletedSpecialists">
+    <li *ngFor="let patient of deletedPatients">
       <span>{{ patient.name }} - ID: {{ patient.id }}</span>
-      <button (click)="onRestoreSpecialist(patient.id)">Restore</button>
+      <button (click)="onRestorePatient(patient.id)">Restore</button>
     </li>
   </ul>
   <div *ngIf="responseMessage">

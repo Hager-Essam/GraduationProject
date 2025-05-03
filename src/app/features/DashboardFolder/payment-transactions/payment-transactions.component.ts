@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {PaymentService} from '../../../core/services/Payment/payment.service';
-import {NgForOf, NgStyle} from '@angular/common';
+import {DatePipe, NgForOf, NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-payment-transactions',
   standalone: true,
   imports: [
     NgForOf,
-    NgStyle
+    NgStyle,
+    DatePipe
   ],
   templateUrl: './payment-transactions.component.html',
   styleUrl: './payment-transactions.component.scss'
@@ -46,12 +47,5 @@ export class PaymentTransactionsComponent implements OnInit {
     this.failurePercentage = (this.failureCount / totalTransactions) * 100;
   }
 
-  getBarStyle(percentage: number): { [key: string]: string } {
-    const baseColor = percentage > 50 ? '#4CAF50' : '#FF5722';
-    return {
-      'height': `${percentage}%`,
-      'background-color': baseColor
-    };
-  }
 
 }

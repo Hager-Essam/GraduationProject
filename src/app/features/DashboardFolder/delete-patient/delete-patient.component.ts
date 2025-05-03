@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {KeyValuePipe, NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {AdminService} from '../../../core/services/admin/admin.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-delete-patient',
@@ -15,11 +16,12 @@ import {AdminService} from '../../../core/services/admin/admin.service';
   templateUrl: './delete-patient.component.html',
   styleUrl: './delete-patient.component.scss'
 })
-export class DeletePatientComponent implements OnInit{
+export class DeletePatientComponent implements OnInit {
   patients: any[] = [];
   responseMessage: string = '';
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private http: HttpClient) {
+  }
 
   ngOnInit(): void {
     this.loadPatients();
@@ -55,4 +57,9 @@ export class DeletePatientComponent implements OnInit{
       }
     );
   }
+
+  restorePatient(id: number) {
+    return this.http.post<{ message: string }>(`https://bones.runasp.net/api/Admin/RestorePatient?id=${id}`, {});
+  }
+
 }

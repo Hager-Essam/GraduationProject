@@ -21,6 +21,7 @@ import {EmailsComponent} from './features/DashboardFolder/emails/emails.componen
 import {
   PaymentTransactionsComponent
 } from './features/DashboardFolder/payment-transactions/payment-transactions.component';
+import {RestorePatientComponent} from './features/DashboardFolder/restore-patient/restore-patient.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent, data: {animation: 'home'}},
@@ -42,7 +43,7 @@ export const routes: Routes = [
   {path: 'learn', component: LearnComponent},
   {path: 'deletePatient', component: DeletePatientComponent},
   {path: 'deleteSpecialist', component: DeleteSpecialistComponent},
-  {path: 'restorePatient', component: RestoreSpecialistComponent},
+  {path: 'restorePatient', component: RestorePatientComponent},
   {path: 'restoreSpecialist', component: RestoreSpecialistComponent},
   {path:'emails',component: EmailsComponent},
   {path:'paymentTransaction',component:PaymentTransactionsComponent}
