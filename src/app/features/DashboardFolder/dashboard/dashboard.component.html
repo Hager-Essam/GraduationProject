@@ -1,6 +1,7 @@
 <div class="container-fluid">
+
   <div class="row flex-nowrap">
-    <div class="my-sidebar col-auto col-md-3 col-xl-2 px-sm-2 px-0 " style="'background:red;">
+    <div class="my-sidebar col-auto col-md-3 col-xl-2 px-sm-2 px-0 ">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
         <a href="/GraduationProject/public"
            class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -43,6 +44,11 @@
               <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">All Payment Transactions</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a routerLink="/modelsStstistics" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Models Statistics</span>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a routerLink="/emails" class="nav-link align-middle px-0">
@@ -57,95 +63,130 @@
 
 
     <div class="col py-3">
+
+<!--      <div class="cards">-->
+<!--        <div class="cardy" style="width: 10rem;">-->
+<!--          <div class="card-body">-->
+<!--            <h3 class="card-text">{{ totalUsers }}</h3>-->
+<!--            <div  class="bt">Total Users</div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="cardy" style="width: 10rem;">-->
+<!--          <div class="card-body">-->
+<!--            <h3 class="card-text">{{ totalPayments }}$</h3>-->
+<!--            <h6 href="#" class="bt"> Payments</h6>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
       <div class="row">
         <div class="col-md-8 tab">
-          <table class="table table-striped table-hover">
-            <thead class="bg-dark text-white">
-            <tr>
-              <th>User</th>
-              <th>Number</th>
-              <th>Percentage</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>Active Patient</td>
-              <td>{{ patientsCount }}</td>
-              <td>{{ patientsPercentage |number:'1.0-0' }}%</td>
-            </tr>
-            <tr>
-              <td>Active Specialist</td>
-              <td>{{ specialistsCount }}</td>
-              <td>{{ specialistsPercentage|number:'1.0-0' }}%</td>
-            </tr>
-            <tr>
-              <td>Inactive Specialist</td>
-              <td>{{ deletedSpecialistsCount }}</td>
-              <td>{{ deletedSpecPercentage|number:'1.0-0' }}%</td>
-            </tr>
-            <tr>
-              <td>Inactive Patients</td>
-              <td>{{ deletedPatientsCount }}</td>
-              <td>{{ deletedPatPercentage|number:'1.0-0' }}%</td>
-            </tr>
-            <tr>
-              <td>Total Payment</td>
-              <td>{{ totalPayments }}</td>
-              <td></td>
-            </tr>
-            </tbody>
-          </table>
-          <div>
-            <h6>Payment</h6>
-            <div
-              class="pie-chart"
-              [ngStyle]="{
+          <div class="first">
+            <div class="pie-chart-container">
+              <h6>Payment</h6>
+              <div
+                class="pie-chart"
+                [ngStyle]="{
                 'background': 'conic-gradient(' +
                   successColor + ' 0% ' + successPercentage + '%, ' +
                   failureColor + ' ' + successPercentage + '% 100%)'
-              }"
-            >
-
-            </div>
-            <div class="legend">
-              <div><span [style.background]="successColor"></span> Success<p
-                class="perc">{{ successPercentage|number:'1.2-2' }}%</p>
+              }">
               </div>
-              <div>
-                <span [style.background]="failureColor"></span> Failure<span>{{ failurePercentage|number:'1.2-2'}}%</span>
+              <div class="legend">
+                <div><span [style.background]="successColor"></span> Success<p
+                  class="perc">{{ successPercentage|number:'1.2-2' }}%</p>
+                </div>
+                <div>
+                  <span [style.background]="failureColor"></span> Failure<span>{{ failurePercentage|number:'1.2-2' }}
+                  %</span>
 
+                </div>
               </div>
             </div>
+            <div class="pie-chart-container" *ngIf="modelStats.length">
+              <h6>Models Usage Statistics</h6>
+              <div class="pie-chart" [ngStyle]="{'background': pieChartBackground}"></div>
+
+              <div class="legend">
+                <div *ngFor="let model of modelStats; let i = index">
+                  <span [style.background]="colors[i % colors.length]"></span>
+                  {{ model.model_name }}: {{ model.used_count }}
+                  ({{ ((model.used_count / totalUsedCount) * 100) | number:'1.2-2' }}%)
+                </div>
+              </div>
+            </div>
+
           </div>
+
+          <div class="second">
+            <div class="chart-container">
+              <div class="chart">
+                <div class="chart-bar" [ngStyle]="getBarStyle(patientsPercentage)">
+                  <span>{{ patientsPercentage |number:'1.2-2' }}%</span>
+                </div>
+                <div class="chart-bar" [ngStyle]="getBarStyle(specialistsPercentage)">
+                  <span>{{ specialistsPercentage |number:'1.2-2' }}%</span>
+                </div>
+
+                <div class="chart-bar" [ngStyle]="getBarStyle(deletedSpecPercentage)">
+                  <span>{{ deletedSpecPercentage |number:'1.2-2' }}%</span>
+                </div>
+
+                <div class="chart-bar" [ngStyle]="getBarStyle(deletedPatPercentage)">
+                  <span>{{ deletedPatPercentage|number:'1.2-2' }}%</span>
+                </div>
+
+
+              </div>
+              <div class="chart-labels">
+                <span>Patient</span>
+                <span>Specialist</span>
+                <span>Inactive Specialist</span>
+                <span>Inactive Patient</span>
+              </div>
+            </div>
+            <table class="table table-striped table-hover">
+              <thead class="bg-dark text-white">
+              <tr>
+                <th>User</th>
+                <th>Number</th>
+                <th>Percentage</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Active Patient</td>
+                <td>{{ patientsCount }}</td>
+                <td>{{ patientsPercentage |number:'1.0-0' }}%</td>
+              </tr>
+              <tr>
+                <td>Active Specialist</td>
+                <td>{{ specialistsCount }}</td>
+                <td>{{ specialistsPercentage|number:'1.0-0' }}%</td>
+              </tr>
+              <tr>
+                <td>Inactive Specialist</td>
+                <td>{{ deletedSpecialistsCount }}</td>
+                <td>{{ deletedSpecPercentage|number:'1.0-0' }}%</td>
+              </tr>
+              <tr>
+                <td>Inactive Patients</td>
+                <td>{{ deletedPatientsCount }}</td>
+                <td>{{ deletedPatPercentage|number:'1.0-0' }}%</td>
+              </tr>
+              <tr>
+                <td>Total Payment</td>
+                <td>{{ totalPayments }}</td>
+                <td></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
         </div>
 
-        <div class="chart-container">
-          <div class="chart">
-            <div class="chart-bar" [ngStyle]="getBarStyle(patientsPercentage)">
-              <span>{{ patientsPercentage |number:'1.2-2' }}%</span>
-            </div>
-            <div class="chart-bar" [ngStyle]="getBarStyle(specialistsPercentage)">
-              <span>{{ specialistsPercentage |number:'1.2-2' }}%</span>
-            </div>
-
-            <div class="chart-bar" [ngStyle]="getBarStyle(deletedSpecPercentage)">
-              <span>{{ deletedSpecPercentage |number:'1.2-2' }}%</span>
-            </div>
-
-            <div class="chart-bar" [ngStyle]="getBarStyle(deletedPatPercentage)">
-              <span>{{ deletedPatPercentage|number:'1.2-2' }}%</span>
-            </div>
-
-
-          </div>
-          <div class="chart-labels">
-            <span>Patient</span>
-            <span>Specialist</span>
-            <span>Inactive Specialist</span>
-            <span>Inactive Patient</span>
-          </div>
-        </div>
-
+        <!---->
       </div>
     </div>
   </div>

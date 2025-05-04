@@ -26,4 +26,12 @@ a:hover {
   cursor: pointer;
 }
 
+.dashboard-navbar {
+  background-color: red; /* Use your dashboard color */
+}
+
+.default-navbar {
+  background-color: red; /* Use your standard navbar color */
+}
+
 /*# sourceMappingURL=nav-bar.component.css.map */

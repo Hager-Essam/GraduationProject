@@ -1,0 +1,32 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+    <tr >
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Used Count</th>
+      <th scope="col">Fracture Count</th>
+      <th scope="col">Non Fracture</th>
+      <th scope="col">Mean Part Confidence</th>
+      <th scope="col">Mean Fracture Confd</th>
+      <th scope="col">Mean time</th>
+      <th scope="col">error count</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let model of models;let i=index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{ model.model_name }}</td>
+      <td>{{ model.used_count }}</td>
+      <td>{{ model.fracture_count }}</td>
+      <td>{{ model.non_fracture_count }}</td>
+      <td>{{ model.mean_part_confidence|number:'1.2-2' }}</td>
+      <td>{{ model.mean_fracture_confidence|number:'1.2-2' }}</td>
+      <td>{{ model.mean_time|number:'1.2-2' }}</td>
+      <td>{{ model.error_count }}</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>

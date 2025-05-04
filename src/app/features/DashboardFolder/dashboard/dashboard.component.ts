@@ -3,6 +3,7 @@ import {DashboardService} from '../../../core/services/dashBoard/dashboard.servi
 import {DecimalPipe, NgForOf, NgIf, NgStyle} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {PaymentService} from '../../../core/services/Payment/payment.service';
+import {ModelsStatisticsService} from '../../../core/services/ModelsStatistics/models-statistics.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,6 +40,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService,
               private paymentService: PaymentService,
+              private modelService: ModelsStatisticsService
   ) {
   }
 
@@ -50,6 +52,7 @@ export class DashboardComponent implements OnInit {
     this.loadDeletedPatientsCount();
     this.loadTotalPayments();
     this.loadTransactions();
+    this.loadModelStats();
   }
 
   loadSpecialistsCount() {
@@ -204,28 +207,62 @@ export class DashboardComponent implements OnInit {
     this.failurePercentage = (this.failureCount / totalTransactions) * 100;
   }
 
+  modelStats: any[] = [];
+  totalUsedCount = 0;
 
-  getBarStyle(percentage: number): { [key: string]: string } {
+  colors = [
+    '#4caf50', '#2196f3', '#ff9800', '#f44336', '#9c27b0', '#00bcd4',
+    '#8bc34a', '#ffc107', '#e91e63', '#3f51b5'
+  ];
+
+  pieChartBackground = '';
+
+
+  loadModelStats() {
+    this.modelService.getAllModelsStatistics().subscribe(response => {
+      if (response.is_success && Array.isArray(response.data)) {
+        this.modelStats = response.data;
+        this.totalUsedCount = this.modelStats.reduce((sum, m) => sum + m.used_count, 0);
+        this.generatePieChartBackground();
+      }
+    }, error => {
+      console.error('Error fetching model stats:', error);
+    });
+  }
+
+  generatePieChartBackground() {
+    let startPercent = 0;
+    const segments = this.modelStats.map((model, index) => {
+      const percent = (model.used_count / this.totalUsedCount) * 100;
+      const color = this.colors[index % this.colors.length];
+      const segment = `${color} ${startPercent}% ${startPercent + percent}%`;
+      startPercent += percent;
+      return segment;
+    });
+    this.pieChartBackground = `conic-gradient(${segments.join(', ')})`;
+  }
+
+  getBarStyle(percentage: number):
+    {
+      [key: string]: string
+    } {
     let baseColor: string;
 
-    if (percentage <= 10) {
-      baseColor = '#FF0000';
-    } else if (percentage > 10 && percentage <= 20) {
-      baseColor = '#f1ac4d';
-    } else if (percentage >20  && percentage <= 30) {
-      baseColor = '#d5a767'
-    } else if (percentage > 30  && percentage <= 40) {
-      baseColor = '#975fad'
-    } else if (percentage >40  && percentage <= 50) {
-      baseColor = '#51aeff'
-    }  else if (percentage > 50  && percentage <= 70) {
-      baseColor = '#1db198'
+    if (percentage >= 70) {
+      baseColor = 'linear-gradient(to top, #FF0000, #FF5722)';
+    } else if (percentage >= 50) {
+      baseColor = 'linear-gradient(to top, #FFA500, #FFD700)';
+    } else if (percentage >= 30) {
+      baseColor = 'linear-gradient(to top, #8B0000, #B22222)';
     } else {
-      baseColor = '#418ccc';
+      baseColor = '#555555';
     }
+
     return {
       'height': `${percentage}%`,
-      'background-color': baseColor
+      'background': baseColor,
+      'width': '10%',
+      'transition': 'height 0.3s ease'
     };
   }
 

@@ -1,0 +1,20 @@
+.table thead tr th {
+  background-color: #201430;
+  color: white;
+}
+
+.table-responsive {
+  border-radius: 1rem;
+  border: 1px #201430 solid;
+  max-width: 60rem;
+  margin: auto;
+  min-height: 30rem;
+  box-shadow: 10px 10px 10px 10px rgba(0.5, 0.5, 0.3, 0.2);
+}
+
+.table tbody tr td:first-child, td:nth-child(2) {
+  font-weight: bold;
+  color: #201430;
+}
+
+/*# sourceMappingURL=models-statistics.component.css.map */

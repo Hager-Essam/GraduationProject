@@ -34,17 +34,19 @@ export class RestoreSpecialistComponent implements OnInit {
         }
       },
       error => {
-        this.responseMessage = 'Failed to load patients!';
+        this.responseMessage = 'No specialist to restore now!!';
         console.error(error);
         this.deletedSpecialists = [];
       }
     );
   }
+
   onRestoreSpecialist(id: number): void {
     this.adminService.restoreSpecialist(id).subscribe(
       (response) => {
         this.responseMessage = 'Specialist restored successfully!';
         this.loadDeletedSpecialists();
+        // console.log('This is the messsage'+response.message);
       },
       (error) => {
         this.responseMessage = 'Failed to restore Specialist!';

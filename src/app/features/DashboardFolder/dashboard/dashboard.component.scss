@@ -1,3 +1,13 @@
+.container-fluid {
+
+}
+
+.main {
+  margin: 0;
+  padding: 0;
+
+}
+
 .con1:first-child {
   display: flex;
 }
@@ -203,6 +213,7 @@ h1 span:nth-child(21) {
 .col {
   display: flex;
   flex-direction: column;
+
 }
 
 .cards-container {
@@ -223,7 +234,7 @@ h1 span:nth-child(21) {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 70%;
+  width: 50%;
   margin-right: 2rem;
 }
 
@@ -234,7 +245,7 @@ h1 span:nth-child(21) {
   height: 250px;
   width: 100%;
   background-color: #f9f9f9;
-  border: 1px solid #ccc;
+  border: none;
   padding: 10px;
 }
 
@@ -264,8 +275,8 @@ h1 span:nth-child(21) {
 }
 
 .pie-chart {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   margin: 12px auto;
   display: flex;
@@ -315,10 +326,49 @@ h1 span:nth-child(21) {
 
 .tab {
   display: flex;
-  gap: 4rem;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .perc {
   margin-right: 2rem;
   display: block;
 }
+
+.first {
+  display: flex;
+  gap: 1rem;
+}
+
+.pie-chart-container {
+  width: 100%;
+  background-color: rgb(243, 238, 238);
+  padding: 2rem 2rem 0 2rem;
+}
+
+.pie-chart-container:nth-child(2) {
+  padding: 4rem 9rem 1rem 8rem;
+}
+
+.second {
+  display: flex;
+}
+
+.cards {
+  display: flex;
+  margin:1rem auto;
+  gap: 1rem;
+}
+
+.cardy {
+  height: 7rem;
+  border: 1px solid #ddd;
+}
+
+.bt {
+  background-color: rgb(255, 192, 0);
+  padding:0 1rem;
+  width: 100%;
+}
+

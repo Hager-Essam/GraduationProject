@@ -33,7 +33,6 @@ export class PatientComponent {
     const reader = new FileReader();
     reader.onload = e => {
       this.imageUrl = reader.result;
-      // reader.readAsDataURL(this.selectedFile);
       this.reportService.setImageUrl(this.imageUrl);
     };
     reader.readAsDataURL(this.selectedFile);

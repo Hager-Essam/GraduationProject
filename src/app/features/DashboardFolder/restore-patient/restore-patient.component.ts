@@ -34,7 +34,7 @@ export class RestorePatientComponent {
         }
       },
       error => {
-        this.responseMessage = 'Failed to load patients!';
+        this.responseMessage = 'No Patient To restore now';
         console.error(error);
         this.deletedPatients = [];
       }
