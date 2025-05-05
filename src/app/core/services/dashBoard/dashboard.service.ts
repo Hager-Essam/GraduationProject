@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Patient, Specialist} from '../../interface/UserData';
+import * as http from 'node:http';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class DashboardService {
 
   getAllDeletedPatients(): Observable<Patient[]> {
     return this.http.get<Patient[]>(`${this.baseUrl}/Admin/GetAllDeletedSpecialists`);
+  }
+
+  getSpecialistRating(specialistId: number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/Rating/GetSpecialistRate?specialistId=${specialistId}`, {specialistId});
   }
 
 }

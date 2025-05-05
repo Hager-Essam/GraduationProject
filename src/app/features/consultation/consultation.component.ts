@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { NgForOf, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DashboardService } from '../../core/services/dashBoard/dashboard.service';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-consultation',
+  templateUrl: './consultation.component.html',
   standalone: true,
   imports: [
-    RouterLink,
-    NgForOf,
     NgIf,
-    FormsModule // Keep this
+    FormsModule,
+    NgForOf,
+    NgClass
   ],
-  templateUrl: './consultation.component.html',
-  styleUrl: './consultation.component.scss'
+  styleUrls: ['./consultation.component.scss']
 })
 export class ConsultationComponent implements OnInit {
   specialists: any[] = [];
@@ -33,14 +33,34 @@ export class ConsultationComponent implements OnInit {
   loadSpecialistsCount() {
     this.dashboardService.getAllSpecialists().subscribe({
       next: specialists => {
-        this.specialists = specialists;
-        this.filteredSpecialists = [...specialists];
+        this.specialists = specialists.map(specialist => ({ ...specialist, rating: null }));
+        this.filteredSpecialists = [...this.specialists];
+        this.updateSpecialistsWithRatings();
       },
       error: err => {
         console.error('Error loading specialists:', err);
         this.specialists = [];
         this.filteredSpecialists = [];
       }
+    });
+  }
+
+  updateSpecialistsWithRatings() {
+    this.specialists.forEach(specialist => {
+      this.dashboardService.getSpecialistRating(specialist.id).subscribe({
+        next: response => {
+          if (response.success) {
+            specialist.rating = response.data;
+            console.log(specialist.id + '   '+specialist.rating);
+
+          } else {
+            console.error(`Failed to retrieve rating for specialist ${specialist.id}: ${response.message}`);
+          }
+        },
+        error: err => {
+          console.error(`Error loading rating for specialist ${specialist.id}:`, err);
+        }
+      });
     });
   }
 
@@ -58,6 +78,6 @@ export class ConsultationComponent implements OnInit {
   }
 
   openChat(doctor: any) {
-    this.router.navigate(['/chat'], {state: {doctor}});
+    this.router.navigate(['/chat'], { state: { doctor } });
   }
 }

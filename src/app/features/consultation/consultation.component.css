@@ -60,4 +60,68 @@ svg {
   margin-right: 1rem;
 }
 
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  width: 24px;
+  height: 24px;
+  margin-right: 2px; /* Adjust spacing */
+  fill: #ccc; /* Default color for empty stars */
+}
+
+.star.filled {
+  fill: #ccc; /* Default filled color for shared appearances */
+}
+
+.star.star-1.filled {
+  fill: red; /* Rating 1 */
+}
+
+.star.star-2.filled {
+  fill: orange; /* Rating 2 */
+}
+
+.star.star-3.filled {
+  fill: yellow; /* Rating 3 */
+}
+
+.star.star-4.filled {
+  fill: lime; /* Rating 4 */
+}
+
+.star.star-5.filled {
+  fill: green; /* Rating 5 */
+}
+
+.rating-number {
+  margin-left: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  width: 24px;
+  height: 24px;
+  margin-right: 2px;
+  fill: #ccc;
+}
+
+.star.filled {
+  fill: yellow;
+}
+
+.rating-number {
+  margin-left: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
 /*# sourceMappingURL=consultation.component.css.map */

@@ -1,7 +1,4 @@
-
-
 <div class="container">
-  <!--  <form class="form-inline">-->
   <input class="form-control mr-sm-2"
          type="text"
          [(ngModel)]="searchTerm"
@@ -11,10 +8,29 @@
 
   <div *ngIf="filteredSpecialists && filteredSpecialists.length > 0">
     <div *ngFor="let specialist of filteredSpecialists" class="info-container">
-      <!--      <div class="info">-->
-      <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>{{ specialist.name }}</div>
-      <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H18C18 18.6863 15.3137 16 12 16C8.68629 16 6 18.6863 6 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8 9.21 9.79 11 12 11Z"></path></svg>{{ specialist.email }}</div>
-      <!--      </div>-->
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path>
+        </svg>
+        {{ specialist.name }}
+      </div>
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H18C18 18.6863 15.3137 16 12 16C8.68629 16 6 18.6863 6 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8 9.21 9.79 11 12 11Z"></path>
+        </svg>
+        {{ specialist.email }}
+      </div>
+      <div>
+        <div class="rating">
+          <ng-container *ngIf="specialist.rating !== null">
+            <svg *ngFor="let star of [1, 2, 3, 4, 5]" class="star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 [ngClass]="{'filled': star <= specialist.rating, 'empty': star > specialist.rating}">
+              <path d="M12 .587l3.668 7.431L24 8.873l-5.669 5.524 1.337 7.792L12 18.268 4.332 22.189 5.669 14.397.001 8.873l8.332-1.855z"></path>
+            </svg>
+          </ng-container>
+          <span class="rating-number">({{ specialist.rating }}/5)</span>
+        </div>
+      </div>
       <button type="submit" class="btn-submit" (click)="openChat(specialist)">Message</button>
     </div>
   </div>
