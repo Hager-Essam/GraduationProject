@@ -28,7 +28,7 @@ export class PatientRegisterComponent implements OnInit {
   form!: FormGroup;
   Role: string = 'Patient';
   apiError: string | null = null;
-   errorMessage: string | null = null;
+  errorMessage: string | null = null;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -72,7 +72,10 @@ export class PatientRegisterComponent implements OnInit {
 
     const formData = new FormData();
     const values = this.form.value;
-
+    if (values.Password !== values.ConfirmPassword) {
+      this.errorMessage = "Password and confirm do not match.";
+      return;
+    }
     formData.append('FullName', values.FullName);
     formData.append('Email', values.Email);
     formData.append('Password', values.Password);

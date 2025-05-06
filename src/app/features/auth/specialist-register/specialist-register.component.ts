@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/Auth/auth.service';
 import {NgIf} from '@angular/common';
+
 export function passwordMatchValidator(): ValidatorFn {
   return (group: AbstractControl): { [key: string]: any } | null => {
     const password = group.get('Password')?.value;
@@ -10,6 +11,7 @@ export function passwordMatchValidator(): ValidatorFn {
     return password === confirmPassword ? null : {passwordMismatch: true};
   };
 }
+
 @Component({
   selector: 'app-specialist-register',
   standalone: true,
@@ -78,11 +80,11 @@ export class SpecialistRegisterComponent implements OnInit {
 
     const formData = new FormData();
     const values = this.form.value;
-    //
-    // if (values.Password !== values.ConfirmPassword) {
-    //   console.error("Passwords do not match.");
-    //   return;
-    // }
+
+    if (values.Password !== values.ConfirmPassword) {
+      this.errorMessage = "Password and confirm do not match.";
+      return;
+    }
 
     formData.append('FullName', values.FullName);
     formData.append('Email', values.Email);
