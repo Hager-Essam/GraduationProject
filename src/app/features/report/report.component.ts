@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { LoaderComponent } from '../../shared/loader/loader.component';
-import { DatePipe, DecimalPipe, JsonPipe, NgClass, NgIf } from '@angular/common';
-import { ImageServiceService } from '../../core/services/ImageUploading/image-service.service';
-import { ReportService } from '../../core/services/ReportServices/report.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {LoaderComponent} from '../../shared/loader/loader.component';
+import {DatePipe, DecimalPipe, JsonPipe, NgClass, NgIf} from '@angular/common';
+import {ImageServiceService} from '../../core/services/ImageUploading/image-service.service';
+import {ReportService} from '../../core/services/ReportServices/report.service';
 
 @Component({
   selector: 'app-report',
@@ -29,7 +29,8 @@ export class ReportComponent implements OnInit, OnDestroy {
   constructor(
     private imageService: ImageServiceService,
     private reportService: ReportService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     const id = this.reportService.getImageId();
@@ -58,9 +59,10 @@ export class ReportComponent implements OnInit, OnDestroy {
   pollForReport(id: string) {
     this.imageService.getReport(id).subscribe(
       response => {
-        if (response.is_success) {
+        if (response.success) {
           this.report = response.data;
           if (response.data.status === 'Completed') {
+            console.log(`The response is : ${this.report.bodyPart}`);
             this.polling = false;
             this.loading = false;
             if (this.timer) {
@@ -70,7 +72,7 @@ export class ReportComponent implements OnInit, OnDestroy {
             setTimeout(() => this.pollForReport(id), 2000);
           }
         } else {
-          console.error('Failed to fetch report:', response.error_message);
+          console.error('Failed to fetch report:', response?.error_message ?? 'Unknown error');
           this.loading = false;
           this.polling = false;
           if (this.timer) {

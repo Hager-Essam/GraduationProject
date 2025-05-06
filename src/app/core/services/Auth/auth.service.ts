@@ -12,9 +12,19 @@ export class AuthService {
 
   private baseUrl = 'https://bones.runasp.net/Account/Register';
 
+  private userId!: string ;
+
   constructor(private http: HttpClient, private router: Router) {
   }
 
+
+  setUserId(id: string): void {
+    this.userId = id;
+  }
+
+  getUserId(): string {
+    return this.userId;
+  }
 
   registerUser(formData: FormData): Observable<any> {
     return this.http.post(this.baseUrl, formData, {

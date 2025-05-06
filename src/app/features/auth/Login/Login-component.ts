@@ -48,14 +48,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('Form submitted:', this.formLogin.value);
     if (this.formLogin.invalid) {
-      console.log("Form invalid!");
       this.formLogin.markAllAsTouched();
       return;
     }
-
-    console.log("Form is valid, proceeding with login...");
 
     const loginData = {
       Email: this.formLogin.value.Email,
@@ -63,31 +59,27 @@ export class LoginComponent implements OnInit {
       Role: this.Role
     };
 
-    console.log('Login Data:', loginData);
-
     this.AuthService.loginUser(loginData).subscribe({
       next: res => {
-        console.log('Login successful:', res);
-        // this.AuthService.setUser(loginData);
+        if (res && res.userId) {
+          this.AuthService.setUserId(res.userId);
+          console.log('This is the logged User ID '+this.AuthService.getUserId());
+        }
         if (this.Role.toLowerCase() === 'patient') {
           this.router.navigate(['/patient']);
         } else if (this.Role.toLowerCase() === 'specialist') {
           this.router.navigate(['/specialist']);
         } else if (this.Role.toLowerCase() === 'admin') {
-          console.log(`${this.Role}`);
           this.router.navigate(['/dashboard']);
         }
       },
       error: err => {
-        console.error('Login Failed', err);
         if (err.error) {
-          console.error('Error details:', err.error);
           this.errorMessage = 'Invalid email or password. Please try again.';
         }
       }
     });
   }
-
 
   navigateToForgotPassword() {
     this.router.navigate(['/forgot-password', this.Role]);
@@ -101,12 +93,5 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // navigateToUserPage() {
-  //   if (this.Role === 'patient') {
-  //     this.router.navigate(['/patient']);
-  //   } else {
-  //     this.router.navigate(['/specialist']);
-  //   }
-  // }
 
 }

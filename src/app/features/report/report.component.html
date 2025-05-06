@@ -25,7 +25,7 @@
         </li>
         <li>
           <b>Body Part:</b>
-          <span class="result"  *ngIf="report.body_part; else bodyPartProcessing">{{ report.body_part }}</span>
+          <span class="result"  *ngIf="report.bodyPart; else bodyPartProcessing">{{ report.bodyPart }}</span>
           <ng-template #bodyPartProcessing>
             <span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
       Processing...
@@ -53,24 +53,39 @@
         </li>
         <li>
           <b>Fracture Confidence:</b>
-          <span *ngIf="report.fracture_confidence != null; else fracConfProcessing">
-      {{ (report.fracture_confidence * 100 | number:'1.1-2') + '%' }}
+          <span *ngIf="report.fractureConfidence != null; else fracConfProcessing">
+      {{ (report.fractureConfidence * 100 | number:'1.1-2') + '%' }}
     </span>
           <ng-template #fracConfProcessing>
           <span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
       Processing...
     </span></ng-template>
         </li>
+
         <li>
           <b>Received Time:</b>
-          <span class="result" *ngIf="report.received_time; else timeProcessing">
-      {{ report.received_time | date:'short' }}
+          <span class="result" *ngIf="report.receivedTime; else timeProcessing">
+      {{ report.receivedTime | date:'short' }}
         </span>
           <ng-template #timeProcessing>
          <span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
       Processing...
     </span></ng-template>
         </li>
+
+
+        <li>
+          <b>model Time Seconds:</b>
+          <span class="result" *ngIf="report.modelTimeSeconds; else timeProcessing">
+      {{ report.modelTimeSeconds  }}
+        </span>
+          <ng-template #timeProcessing>
+         <span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
+      Processing...
+    </span></ng-template>
+        </li>
+
+
         <li><b>Error:</b> {{ report.error || 'None' }}</li>
       </ul>
     </div>
