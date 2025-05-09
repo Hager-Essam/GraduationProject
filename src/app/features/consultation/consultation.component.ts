@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { DashboardService } from '../../core/services/dashBoard/dashboard.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {DashboardService} from '../../core/services/dashBoard/dashboard.service';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {SharedService} from '../../core/services/shared.service';
 
 @Component({
   selector: 'app-consultation',
@@ -23,8 +24,10 @@ export class ConsultationComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private dashboardService: DashboardService
-  ) {}
+    private dashboardService: DashboardService,
+    private sharedService:SharedService
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadSpecialistsCount();
@@ -33,7 +36,7 @@ export class ConsultationComponent implements OnInit {
   loadSpecialistsCount() {
     this.dashboardService.getAllSpecialists().subscribe({
       next: specialists => {
-        this.specialists = specialists.map(specialist => ({ ...specialist, rating: null }));
+        this.specialists = specialists.map(specialist => ({...specialist, rating: null}));
         this.filteredSpecialists = [...this.specialists];
         this.updateSpecialistsWithRatings();
       },
@@ -51,7 +54,7 @@ export class ConsultationComponent implements OnInit {
         next: response => {
           if (response.success) {
             specialist.rating = response.data;
-            console.log(specialist.id + '   '+specialist.rating);
+            console.log(specialist.id + '   ' + specialist.rating);
 
           } else {
             console.error(`Failed to retrieve rating for specialist ${specialist.id}: ${response.message}`);
@@ -77,7 +80,13 @@ export class ConsultationComponent implements OnInit {
     );
   }
 
+  specId: number | null = null
+
   openChat(doctor: any) {
-    this.router.navigate(['/chat'], { state: { doctor } });
+    this.router.navigate(['/chat', doctor.userId]);
+    console.log(doctor.userId)
+    this.specId = doctor.id;
+    this.sharedService.changeSpecId(this.specId);
+    console.log('Doctor  Id is :' + this.specId);
   }
 }

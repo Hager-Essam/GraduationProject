@@ -1,21 +1,19 @@
-<div class="container">
-  <h4> {{doctor.name}}</h4>
-  <div class="container chat-container">
-    <div *ngFor="let message of messages" [ngClass]="{'user': message.from === 'user', 'doctor': message.from === 'doctor'}" class="chat-message">
-      <div class="message-text">{{ message.text }}</div>
-      <div class="message-time">{{ message.time }}</div>
+<div class="chat-box">
+  <div class="messages">
+    <div *ngFor="let msg of messages" [ngClass]="{'sent': msg.senderId === loggedInUserId, 'received': msg.senderId !== loggedInUserId}">
+      <div class="message-content">{{ msg.content }}</div>
+      <div class="message-time">
+        <small>{{ msg.sentAt | date:'shortTime' }}</small>
+      </div>
     </div>
   </div>
 
-  <div class="chat-input-container">
-    <input
-      type="text"
-      [(ngModel)]="newMessage"
-      (keyup.enter)="sendMessage()"
-      placeholder="Type your message..."
-      class="chat-input"
-    />
-    <button (click)="sendMessage()" class="send-btn">Send</button>
+  <div class="input-box">
+    <input [(ngModel)]="messageContent" placeholder="Type a message..." (keydown.enter)="sendMessage()" />
+    <button (click)="sendMessage()">Send</button>
   </div>
 
+  <div class="rate-button-container">
+    <button (click)="rateSpecialist()" class="rate-button">Rate Specialist</button>
+  </div>
 </div>

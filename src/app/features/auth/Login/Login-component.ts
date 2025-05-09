@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {NgIf, TitleCasePipe} from '@angular/common';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {AuthService} from '../../../core/services/Auth/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { NgIf, TitleCasePipe } from '@angular/common';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../../core/services/Auth/auth.service';
 
 @Component({
   selector: 'app-Login',
@@ -19,14 +19,15 @@ import {AuthService} from '../../../core/services/Auth/auth.service';
 })
 export class LoginComponent implements OnInit {
   Role: string = '';
-  formLogin!: FormGroup
+  formLogin!: FormGroup;
   errorMessage: string | null = null;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private AuthService: AuthService,
-              private fb: FormBuilder) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private AuthService: AuthService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.Role = this.route.snapshot.paramMap.get('role') || 'specialist';
@@ -37,15 +38,13 @@ export class LoginComponent implements OnInit {
       }
     });
 
-    console.log(`Your Role is : ${this.Role}`);
-
     this.formLogin = this.fb.group({
       Email: ['', [Validators.required, Validators.email]],
       Password: ['', Validators.required],
       Role: [this.Role]
     });
-    console.log('Form initialized:', this.formLogin);
   }
+
 
   onSubmit(): void {
     if (this.formLogin.invalid) {
@@ -61,10 +60,13 @@ export class LoginComponent implements OnInit {
 
     this.AuthService.loginUser(loginData).subscribe({
       next: res => {
-        if (res && res.userId) {
-          this.AuthService.setUserId(res.userId);
-          console.log('This is the logged User ID '+this.AuthService.getUserId());
+        const userProfile = this.AuthService.getUserProfile();
+        console.log("User Profile:", userProfile);
+        this.AuthService.setUserRole(this.Role);
+        if (!userProfile?.phoneNumber) {
+          console.warn("Phone number is missing in userData.");
         }
+
         if (this.Role.toLowerCase() === 'patient') {
           this.router.navigate(['/patient']);
         } else if (this.Role.toLowerCase() === 'specialist') {
@@ -74,12 +76,14 @@ export class LoginComponent implements OnInit {
         }
       },
       error: err => {
+        this.errorMessage = err.message;
         if (err.error) {
           this.errorMessage = 'Invalid email or password. Please try again.';
         }
       }
     });
   }
+
 
   navigateToForgotPassword() {
     this.router.navigate(['/forgot-password', this.Role]);
@@ -92,6 +96,4 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/register-specialist']);
     }
   }
-
-
 }

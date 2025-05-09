@@ -21,10 +21,11 @@
         {{ specialist.email }}
       </div>
       <div>
+        <!-- Dynamic Star Rating Display with Number -->
         <div class="rating">
           <ng-container *ngIf="specialist.rating !== null">
             <svg *ngFor="let star of [1, 2, 3, 4, 5]" class="star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                 [ngClass]="{'filled': star <= specialist.rating, 'empty': star > specialist.rating}">
+                 [ngClass]="{'filled': star <= specialist.rating, 'empty': star > specialist.rating, 'star-1': star === 1 && star <= specialist.rating, 'star-2': star === 2 && star <= specialist.rating, 'star-3': star === 3 && star <= specialist.rating, 'star-4': star === 4 && star <= specialist.rating, 'star-5': star === 5 && star <= specialist.rating}">
               <path d="M12 .587l3.668 7.431L24 8.873l-5.669 5.524 1.337 7.792L12 18.268 4.332 22.189 5.669 14.397.001 8.873l8.332-1.855z"></path>
             </svg>
           </ng-container>

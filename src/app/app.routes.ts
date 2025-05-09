@@ -30,7 +30,7 @@ export const routes: Routes = [
   {path: 'consultation', component: ConsultationComponent, data: {animation: 'consultation'}},
   {path: 'report', component: ReportComponent, data: {animation: 'report'}},
   {path: 'profile', component: ProfileComponent, data: {animation: 'profile'}},
-  {path: 'chat', component: ChatComponent, data: {animation: 'chat'}},
+  { path: 'chat/:receiverId', component: ChatComponent },
   {path: 'patient', component: PatientComponent},
   {path: 'specialist', component: SpecialistComponent},
   {path: 'patient', component: PatientComponent},
@@ -46,7 +46,11 @@ export const routes: Routes = [
   {path: 'deleteSpecialist', component: DeleteSpecialistComponent},
   {path: 'restorePatient', component: RestorePatientComponent},
   {path: 'restoreSpecialist', component: RestoreSpecialistComponent},
-  {path:'emails',component: EmailsComponent},
-  {path:'paymentTransaction',component:PaymentTransactionsComponent},
-  {path:'modelsStstistics',component:ModelsStatisticsComponent}
+  {path: 'emails', component: EmailsComponent},
+  {path: 'paymentTransaction', component: PaymentTransactionsComponent},
+  {path: 'modelsStstistics', component: ModelsStatisticsComponent},
+  {
+    path: 'profile/:id',
+    component: ProfileComponent
+  }
 ];

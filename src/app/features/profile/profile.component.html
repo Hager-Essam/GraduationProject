@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="details">
+    <div *ngIf="userProfile">
+      <h2>User Profile</h2>
+      <span>Name:</span>  <p>{{ userProfile.userName }}</p>
+      <p><span>Email:</span> {{ userProfile.email }}</p>
+      <p *ngIf="userProfile.phoneNumber"><span>Phone:</span> {{ userProfile.phoneNumber }}</p>
+
+      <div *ngIf="role === 'specialist' && rating !== null">
+        <p>⭐ Rating: {{ rating }} / 5</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="history">
+  </div>
+
+</div>

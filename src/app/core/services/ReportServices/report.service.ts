@@ -26,4 +26,5 @@ export class ReportService {
   getImageUrl() {
     return this.currentImageUrl;
   }
+
 }
