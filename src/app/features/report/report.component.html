@@ -13,23 +13,22 @@
 
     <div *ngIf="report">
       <ul>
-<!--        <li><b>Patient ID:</b> {{ report.id || 'Processing...' }}</li>-->
-<!--        <li><b>File Name:</b> {{ report.filename || 'Processing...' }}</li>-->
+
         <li>
           <b>Status:</b>
           <span class="result"  *ngIf="report.status === 'Completed'; else progressStatus">{{ report.status }}</span>
           <ng-template #progressStatus>
-<span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
-      Processing...
-    </span></ng-template>
+          <span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
+                Processing...
+              </span></ng-template>
         </li>
         <li>
           <b>Body Part:</b>
           <span class="result"  *ngIf="report.body_part; else bodyPartProcessing">{{ report.body_part }}</span>
           <ng-template #bodyPartProcessing>
             <span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
-      Processing...
-    </span></ng-template>
+              Processing...
+          </span></ng-template>
         </li>
         <li>
           <b>Prediction:</b>
@@ -43,11 +42,11 @@
         <li>
           <b>Confidence:</b>
           <span class="result"  *ngIf="report.confidence != null; else confProcessing">
-      {{ (report.confidence * 100 | number:'1.1-2') + '%' }}
-             </span>
+            {{   (report.confidence * 100 | number:'1.1-2') + '%' }}
+               </span>
           <ng-template #confProcessing>
             <span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
-      Processing...
+           Processing...
            </span>
           </ng-template>
         </li>
@@ -62,16 +61,16 @@
     </span></ng-template>
         </li>
 
-        <li>
-          <b>Received Time:</b>
-          <span class="result" *ngIf="report.received_time; else timeProcessing">
-      {{ report.received_time | date:'short' }}
-        </span>
-          <ng-template #timeProcessing>
-         <span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
-      Processing...
-    </span></ng-template>
-        </li>
+            <li>
+              <b>Received Time:</b>
+              <span class="result" *ngIf="report.received_time; else timeProcessing">
+           {{ report.received_time | date:'short' }}
+            </span>
+              <ng-template #timeProcessing>
+             <span [ngClass]="processingDelayed ? 'processing-green' : 'processing-yellow'">
+          Processing...
+              </span></ng-template>
+            </li>
 
 
         <li>

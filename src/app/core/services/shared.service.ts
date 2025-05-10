@@ -20,6 +20,11 @@ export class SharedService {
     this.selectedValueSource.next(value);
   }
 
+  private fractureConfidenceSubject = new BehaviorSubject<number | null>(null);
+  fractureConfidence$ = this.fractureConfidenceSubject.asObservable();
 
+  setFractureConfidence(confidence: number | null) {
+    this.fractureConfidenceSubject.next(confidence);
+  }
 
 }

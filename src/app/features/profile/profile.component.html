@@ -16,6 +16,30 @@
   </div>
 
   <div class="history">
+    <div *ngIf="userImages.length > 0; else noImages" class="gallery-container">
+      <h3>Uploaded Images</h3>
+      <div class="image-grid">
+        <div *ngFor="let img of userImages" class="image-card" (click)="selectedImage = img">
+          <img [src]="img.imageUrl" alt="User Image" class="thumbnail">
+          <div class="upload-time">
+            Uploaded: {{ img.uploadedAt | date:'short' }}
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noImages>
+      <p>No images uploaded yet.</p>
+    </ng-template>
+
+    <div class="modal" *ngIf="selectedImage" (click)="selectedImage = null">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <img [src]="selectedImage.imageUrl" class="enlarged-image" alt="Enlarged Image">
+        <p>Uploaded At: {{ selectedImage.uploadedAt | date:'full' }}</p>
+        <button class="close-button" (click)="selectedImage = null">×</button>
+      </div>
+    </div>
 
   </div>
 
