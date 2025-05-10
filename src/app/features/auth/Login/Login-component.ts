@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
-import { NgIf, TitleCasePipe } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../core/services/Auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {NgIf, TitleCasePipe} from '@angular/common';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {AuthService} from '../../../core/services/Auth/auth.service';
 
 @Component({
   selector: 'app-Login',
@@ -21,15 +21,19 @@ export class LoginComponent implements OnInit {
   Role: string = '';
   formLogin!: FormGroup;
   errorMessage: string | null = null;
+  loggedInUserId: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private AuthService: AuthService,
     private fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
+    this.loggedInUserId = localStorage.getItem('userId') || '';
+    console.log(`This is the user Id : ${this.loggedInUserId}`);
     this.Role = this.route.snapshot.paramMap.get('role') || 'specialist';
 
     this.route.queryParams.subscribe(params => {
@@ -61,8 +65,8 @@ export class LoginComponent implements OnInit {
     this.AuthService.loginUser(loginData).subscribe({
       next: res => {
         const userProfile = this.AuthService.getUserProfile();
-        console.log("User Profile:", userProfile);
-        console.log(this.AuthService.getUserId());
+        console.log("The User Profile:", userProfile);
+        console.log('This is the loggedInUser: '+this.loggedInUserId);
         this.AuthService.setUserRole(this.Role);
         if (!userProfile?.phoneNumber) {
           console.warn("Phone number is missing in userData.");

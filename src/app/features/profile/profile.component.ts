@@ -59,6 +59,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.getPatientUploadedImages(this.loggedInUserId).subscribe({
       next: res => {
         if (res.success && res.data) {
+          console.log(`This is the Logged In User ${this.loggedInUserId}`);
           this.userImages = res.data.map((img: any) => ({
             imageUrl: 'https://bones.runasp.net' + img.imageUrl.replace(/\\/g, '/'),
             uploadedAt: new Date(img.uploadedAt)
