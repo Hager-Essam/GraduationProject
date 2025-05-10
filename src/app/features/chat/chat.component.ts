@@ -59,7 +59,6 @@ export class ChatComponent implements OnInit {
 
     this.chatService.sendMessage(this.receiverId, this.messageContent).subscribe({
       next: () => {
-        // Add message to local array for real-time update
         this.messages.push({
           content: this.messageContent,
           sentAt: new Date().toISOString(),

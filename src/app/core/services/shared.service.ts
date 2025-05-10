@@ -12,4 +12,14 @@ export class SharedService {
   changeSpecId(specId: number | null) {
     this.specIdSource.next(specId);
   }
+
+  private selectedValueSource = new BehaviorSubject<string>('');
+  currentSelectedValue = this.selectedValueSource.asObservable();
+
+  changeSelectedValue(value: string) {
+    this.selectedValueSource.next(value);
+  }
+
+
+
 }

@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
       next: res => {
         const userProfile = this.AuthService.getUserProfile();
         console.log("User Profile:", userProfile);
+        console.log(this.AuthService.getUserId());
         this.AuthService.setUserRole(this.Role);
         if (!userProfile?.phoneNumber) {
           console.warn("Phone number is missing in userData.");
@@ -83,7 +84,6 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-
 
   navigateToForgotPassword() {
     this.router.navigate(['/forgot-password', this.Role]);

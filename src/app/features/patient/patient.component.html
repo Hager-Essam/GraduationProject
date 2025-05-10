@@ -1,32 +1,76 @@
-<div class="container-fluid">
+<div class="container-fluid patient-container">
+  <!-- Main action buttons -->
+  <div class="action-buttons">
+    <div class="action-btn" (click)="fileInput.click()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M5 11.1005L7 9.1005L12.5 14.6005L16 11.1005L19 14.1005V5H5V11.1005ZM5 13.9289V19H8.1005L11.0858 16.0147L7 11.9289L5 13.9289ZM10.9289 19H19V16.9289L16 13.9289L10.9289 19ZM4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM15.5 10C14.6716 10 14 9.32843 14 8.5C14 7.67157 14.6716 7 15.5 7C16.3284 7 17 7.67157 17 8.5C17 9.32843 16.3284 10 15.5 10Z"/>
+      </svg>
+      <button type="button" class="btn-submit">Upload Image</button>
+    </div>
 
-  <div class="btns">
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11.1005L7 9.1005L12.5 14.6005L16 11.1005L19 14.1005V5H5V11.1005ZM5 13.9289V19H8.1005L11.0858 16.0147L7 11.9289L5 13.9289ZM10.9289 19H19V16.9289L16 13.9289L10.9289 19ZM4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM15.5 10C14.6716 10 14 9.32843 14 8.5C14 7.67157 14.6716 7 15.5 7C16.3284 7 17 7.67157 17 8.5C17 9.32843 16.3284 10 15.5 10Z"></path></svg>
-      <button type="button" class="btn-submit" (click)="fileInput.click()">Upload Image</button>
+    <div class="action-btn" routerLink="/profile">
+      <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+        <path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z"/>
+      </svg>
+      <button type="button" class="btn-submit" routerLink="/profile">Retrieve Image</button>
     </div>
-    <div>
-      <svg  width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M7 9h-7v-7h1v5.2c1.853-4.237 6.083-7.2 11-7.2 6.623 0 12 5.377 12 12s-5.377 12-12 12c-6.286 0-11.45-4.844-11.959-11h1.004c.506 5.603 5.221 10 10.955 10 6.071 0 11-4.929 11-11s-4.929-11-11-11c-4.66 0-8.647 2.904-10.249 7h5.249v1z"/></svg>
-      <button type="submit" class="btn-submit" routerLink="/profile">Retrieve Image</button>
-    </div>
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14.9571 15.564C17.6154 16.6219 19.5726 19.0639 19.9387 22H4.0625C4.42862 19.0639 6.38587 16.6219 9.04417 15.564L12.0006 20L14.9571 15.564ZM18.0006 2V8C18.0006 11.3137 15.3143 14 12.0006 14C8.6869 14 6.00061 11.3137 6.00061 8V2H18.0006ZM16.0006 8H8.00061C8.00061 10.2091 9.79147 12 12.0006 12C14.2098 12 16.0006 10.2091 16.0006 8Z"></path></svg>      <button type="submit" class="btn-submit" routerLink="/consultation">Consult a specialist</button>
+
+    <div class="action-btn" routerLink="/consultation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14.9571 15.564C17.6154 16.6219 19.5726 19.0639 19.9387 22H4.0625C4.42862 19.0639 6.38587 16.6219 9.04417 15.564L12.0006 20L14.9571 15.564ZM18.0006 2V8C18.0006 11.3137 15.3143 14 12.0006 14C8.6869 14 6.00061 11.3137 6.00061 8V2H18.0006ZM16.0006 8H8.00061C8.00061 10.2091 9.79147 12 12.0006 12C14.2098 12 16.0006 10.2091 16.0006 8Z"/>
+      </svg>
+      <button type="button" class="btn-submit" routerLink="/consultaion">Consult a specialist</button>
     </div>
   </div>
 
+  <div class="container mt-5" style="background-color: #6bb9f0; border-radius: 1rem; width: 26rem">
+    <div class="mb-3">
+      <label for="bodyPartSelect" class="form-label">Select a Body Part:</label>
+      <select
+        class="form-select"
+        id="bodyPartSelect"
+        [formControl]="dropdownControl"
+      >
+        <option *ngFor="let part of bodyParts" [value]="part.value">
+          {{ part.label }}
+        </option>
+      </select>
+    </div>
 
-  <div>
+    <div *ngIf="dropdownControl.value" class="mt-3 alert alert-info">
+      You selected: <strong>{{ getSelectedLabel() }}</strong>
+    </div>
+  </div>
+
+  <div class="upload-section">
     <label for="fileInput" class="upload-box">
       <div class="upload-content" (click)="fileInput.click()">
-        <div class="upload-icon" *ngIf="!imageUrl">☁️</div>
-        <p *ngIf="!imageUrl">Click to upload your image here</p>
-        <img [src]="imageUrl" *ngIf="imageUrl" alt="Uploaded Image">
+        <div class="upload-icon" *ngIf="!imageUrl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"></path>
+            <line x1="16" y1="5" x2="22" y2="5"></line>
+            <line x1="19" y1="2" x2="19" y2="8"></line>
+            <circle cx="9" cy="9" r="2"></circle>
+            <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+          </svg>
+          <p>Click to upload X-ray image</p>
+          <small>Supports: JPG, PNG</small>
+        </div>
+        <img [src]="imageUrl" *ngIf="imageUrl" alt="Uploaded X-ray" class="uploaded-image">
       </div>
     </label>
-      <div>
-        <button type="button" class="btn-submit" id="repo" [disabled]="!isImageUploaded" (click)="onShowReport()">Show report</button>
-<!--        <button type="submit" class="btn-submit" id = "repo" routerLink="/report" [disabled]="!isImageUploaded" >Show report</button>-->
-      </div>
+    <input type="file" id="fileInput" accept=".jpg,.jpeg,.png" (change)="onFileSelected($event)" #fileInput hidden>
   </div>
-  <input type="file" id="fileInput" accept=".jpg,.png" (change)="onFileSelected($event)" #fileInput hidden>
+
+  <!-- Report button -->
+  <div class="report-button-container">
+    <button type="button" class="btn-submit report-btn"
+            [disabled]="!isImageUploaded"
+            (click)="onShowReport()">
+      Show Report
+      <svg *ngIf="isImageUploaded" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+      </svg>
+    </button>
+  </div>
 </div>

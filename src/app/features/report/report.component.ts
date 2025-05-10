@@ -3,6 +3,9 @@ import {LoaderComponent} from '../../shared/loader/loader.component';
 import {DatePipe, DecimalPipe, JsonPipe, NgClass, NgIf} from '@angular/common';
 import {ImageServiceService} from '../../core/services/ImageUploading/image-service.service';
 import {ReportService} from '../../core/services/ReportServices/report.service';
+import {AuthService} from '../../core/services/Auth/auth.service';
+import {Subscription} from 'rxjs';
+import {SharedService} from '../../core/services/shared.service';
 
 @Component({
   selector: 'app-report',
@@ -19,23 +22,28 @@ import {ReportService} from '../../core/services/ReportServices/report.service';
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit, OnDestroy {
-  report: any = null;
-  loading = true;
-  imageUrl: string | ArrayBuffer | null = null;
-  polling = false;
-  processingDelayed = false;
   private timer: any;
+  imageUrl: string | ArrayBuffer | null = null;
+  processingDelayed = false;
+  polling = false;
+  loading = true;
+  report: any = null;
+  userId: string = '';
 
   constructor(
     private imageService: ImageServiceService,
-    private reportService: ReportService
+    private reportService: ReportService,
   ) {
   }
 
   ngOnInit() {
-    const id = this.reportService.getImageId();
-    this.imageUrl = this.reportService.getImageUrl();
 
+
+
+    const id = this.imageService.getCurrentImageId();
+    this.imageUrl = this.reportService.getImageUrl();
+    console.log('Received image ID:', id);
+    // console.log('Current image URL:', this.reportService.getImageUrl());
     if (!id) {
       this.loading = false;
       return;
@@ -57,37 +65,44 @@ export class ReportComponent implements OnInit, OnDestroy {
   }
 
   pollForReport(id: string) {
-    this.imageService.getReport(id).subscribe(
-      response => {
-        if (response.success) {
+    console.log(`Starting polling for report ID: ${id}`);
+
+    this.imageService.getImageReport(id).subscribe({
+      next: (response) => {
+        console.log('Polling response:', response);
+
+        if (response?.success && response.data) {
           this.report = response.data;
+
           if (response.data.status === 'Completed') {
-            console.log(`The response is : ${this.report.bodyPart}`);
-            this.polling = false;
-            this.loading = false;
-            if (this.timer) {
-              clearTimeout(this.timer);
-            }
+            console.log('Report completed:', response.data);
+            this.handleReportCompletion();
           } else {
+            console.log(`Report status: ${response.data.status}, continuing polling...`);
             setTimeout(() => this.pollForReport(id), 2000);
           }
         } else {
-          console.error('Failed to fetch report:', response?.error_message ?? 'Unknown error');
-          this.loading = false;
-          this.polling = false;
-          if (this.timer) {
-            clearTimeout(this.timer);
-          }
+          console.error('Invalid response structure:', response);
+          this.handleErrorState();
         }
       },
-      error => {
-        console.error('Error fetching report:', error);
-        this.loading = false;
-        this.polling = false;
-        if (this.timer) {
-          clearTimeout(this.timer);
-        }
+      error: (err) => {
+        console.error('Polling error:', err);
+        this.handleErrorState();
       }
-    );
+    });
   }
-}
+
+  private handleReportCompletion() {
+    this.polling = false;
+    this.loading = false;
+    this.processingDelayed = false;
+    if (this.timer) clearTimeout(this.timer);
+    console.log('Report processing complete!');
+  }
+
+  private handleErrorState() {
+    this.loading = false;
+    this.polling = false;
+    if (this.timer) clearTimeout(this.timer);
+  }}

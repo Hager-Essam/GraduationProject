@@ -18,21 +18,19 @@ export class ProfileComponent implements OnInit {
   userProfile: any;
   role: string = '';
   rating: number | null = null;
-  userImages: string[] = []; // Array to store image URLs
-  isLoadingImages: boolean = false;
+  userImages: string[] = [];
   errorMessage: string = '';
 
-  constructor(private dashboardService: DashboardService) {
+  constructor(private dashboardService: DashboardService,) {
   }
 
   ngOnInit(): void {
     const storedUserData = localStorage.getItem('userData');
     const storedRole = localStorage.getItem('role');
-
     if (storedUserData) {
       this.userProfile = JSON.parse(storedUserData);
       console.log('User Profile:', this.userProfile);
-      this.loadUserImages(); // Load images after getting user profile
+
     }
 
     if (storedRole) {
@@ -59,26 +57,4 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  loadUserImages(): void {
-    if (!this.userProfile?.id) return;
-
-    this.isLoadingImages = true;
-    this.errorMessage = '';
-
-    this.dashboardService.getUserImages(this.userProfile.id).subscribe({
-      next: (response) => {
-        this.isLoadingImages = false;
-        if (response.success && response.data) {
-          this.userImages = response.data; // Assuming the API returns an array of image URLs
-        } else {
-          this.errorMessage = response.details || 'No images found';
-        }
-      },
-      error: (err) => {
-        this.isLoadingImages = false;
-        this.errorMessage = 'Failed to load images. Please try again later.';
-        console.error('Error fetching images:', err);
-      }
-    });
-  }
 }
