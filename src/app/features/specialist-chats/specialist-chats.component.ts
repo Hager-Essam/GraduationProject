@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {ChatService} from '../../core/services/chat/chat.service';
-import {DatePipe, NgForOf, NgIf, SlicePipe} from '@angular/common';
-import {AuthService} from '../../core/services/Auth/auth.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ChatService } from '../../core/services/chat/chat.service';
+import { DatePipe, NgForOf, NgIf, SlicePipe } from '@angular/common';
+import { AuthService } from '../../core/services/Auth/auth.service';
+import { Router } from '@angular/router';
+import {UsernameExtractPipe} from '../../shared/UserNameExtraction';
 
 interface Message {
-  id: number;
   content: string;
   senderId: string;
   receiverId: string;
   sentAt: string;
-  sender: any;
-  receiver: any;
+  senderName: string;
+  sender?: any;
+  receiver?: any;
 }
 
 @Component({
@@ -22,11 +23,11 @@ interface Message {
     DatePipe,
     NgIf,
     NgForOf,
-    SlicePipe
+    SlicePipe,
+    UsernameExtractPipe
   ],
   styleUrls: ['./specialist-chats.component.css']
 })
-
 export class SpecialistChatsComponent implements OnInit {
   messages: Message[] = [];
   loading = false;
@@ -34,10 +35,11 @@ export class SpecialistChatsComponent implements OnInit {
   loggedInSpecialist = '';
   selectedMessage: Message | null = null;
 
-  constructor(private chatService: ChatService,
-              private authService: AuthService,
-              private router: Router) {
-  }
+  constructor(
+    private chatService: ChatService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadMessages();
@@ -50,7 +52,9 @@ export class SpecialistChatsComponent implements OnInit {
     this.chatService.getAllMessages().subscribe(
       (response: any) => {
         if (response.success && response.data) {
-          const relevantMessages = response.data.filter((m: any) => m.receiverId === this.loggedInSpecialist);
+          const relevantMessages = response.data.filter(
+            (m: any) => m.receiverId === this.loggedInSpecialist
+          );
 
           const uniqueChatsMap = new Map();
           for (const msg of relevantMessages) {
@@ -73,8 +77,11 @@ export class SpecialistChatsComponent implements OnInit {
     );
   }
 
-
   openChat(senderId: string): void {
     this.router.navigate(['/chat', senderId]);
   }
+  transform(email: string): string {
+    return email ? email.split('@')[0] : '';
+  }
+
 }

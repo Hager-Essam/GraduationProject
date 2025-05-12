@@ -1,6 +1,7 @@
 <div class="chat-box">
-  <div class="messages">
-    <div *ngFor="let msg of messages" [ngClass]="{'sent': msg.senderId === loggedInUserId, 'received': msg.senderId !== loggedInUserId}">
+  <div class="messages" #messagesContainer>
+    <div *ngFor="let msg of messages ;trackBy:trackByFn"
+         [ngClass]="{'sent': msg.senderId === loggedInUserId, 'received': msg.senderId !== loggedInUserId}">
       <div class="message-content">{{ msg.content }}</div>
       <div class="message-time">
         <small>{{ msg.sentAt | date:'shortTime' }}</small>
@@ -13,7 +14,6 @@
     <button (click)="sendMessage()">Send</button>
   </div>
 
-  <!-- Rate button - triggers modal -->
   <button
     *ngIf="role === 'patient'"
     class="btn btn-outline-primary mt-3"
@@ -21,10 +21,8 @@
     data-bs-target="#ratingModal">
     Rate Specialist
   </button>
-
 </div>
 
-<!-- Modal for rating -->
 <div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -33,7 +31,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Rating Form -->
         <div class="rating-form p-3">
           <div class="mb-3">
             <label class="form-label fw-bold">Rating</label>
