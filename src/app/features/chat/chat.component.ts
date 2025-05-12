@@ -2,9 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ChatService} from '../../core/services/chat/chat.service';
 import {FormsModule} from '@angular/forms';
-import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
+import {DatePipe, formatDate, NgClass, NgForOf, NgIf} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../core/services/Auth/auth.service';
+import {Subscription} from 'rxjs';
+import {SharedService} from '../../core/services/shared.service';
 
 @Component({
   selector: 'app-chat',
@@ -27,16 +29,29 @@ export class ChatComponent implements OnInit {
   ratingValue: number = 0;
   comment: string = '';
   role: null | string = '';
+  specId: number | null = null;
+  // loggedInIntId: number = 0;
+  senderId: number = 0;
+  specialistId: number | null = null;
+
+
 
   constructor(
     private route: ActivatedRoute,
     private chatService: ChatService,
     private http: HttpClient,
     private authService: AuthService,
+    private sharedService: SharedService
   ) {
   }
 
   ngOnInit(): void {
+
+    this.sharedService.currentSpecId$.subscribe(id => {
+      this.specialistId = id;
+      console.log('Received specialist ID from shared service:', this.specialistId);
+    });
+
     this.receiverId = this.route.snapshot.paramMap.get('receiverId') || '';
     this.loggedInUserId = localStorage.getItem('userId') || '';
     console.log(`This is the receiver Id ${this.receiverId}`);
@@ -78,23 +93,30 @@ export class ChatComponent implements OnInit {
     });
   }
 
+
   rateSpecialist() {
     if (this.ratingValue === 0) {
       alert('Please select a rating.');
       return;
     }
 
+
     const ratingData = {
-      patientId: this.loggedInUserId,
-      specialistId: this.receiverId,
-      ratingValue: this.ratingValue,
-      comment: this.comment
+      patientId: this.authService.getUserIntId(),
+      specialistId: this.specialistId,
+      ratingValue: Number(this.ratingValue),
+      comment: this.comment,
+      ratedAt: new Date().toISOString()
     };
+    console.log(`On rating section Patient Id is ${ratingData.patientId}  and Spec Id id ${ratingData.specialistId}`);
+    console.log('Submitting ratingData:', ratingData);
 
     this.http.post('https://bones.runasp.net/api/Rating/RateSpecialist', ratingData).subscribe({
       next: (res: any) => {
         if (res.success) {
           alert('Rating submitted successfully!');
+          this.comment = '';
+          this.ratingValue = 0;
         } else {
           alert('Failed to submit rating.');
         }

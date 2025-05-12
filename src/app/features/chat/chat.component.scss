@@ -93,3 +93,19 @@ button:hover {
 .rate-button:hover {
   background-color: #218838;
 }
+
+.rating-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+  .rating-form {
+    padding: 1rem;
+  }
+}
+
+.btn {
+  padding: .7rem;
+  margin-bottom: 2rem;
+}

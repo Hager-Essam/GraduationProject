@@ -13,7 +13,51 @@
     <button (click)="sendMessage()">Send</button>
   </div>
 
-  <div class="rate-button-container" *ngIf="role === 'patient'">
-    <button (click)="rateSpecialist()" class="rate-button">Rate Specialist</button>
+  <!-- Rate button - triggers modal -->
+  <button
+    *ngIf="role === 'patient'"
+    class="btn btn-outline-primary mt-3"
+    data-bs-toggle="modal"
+    data-bs-target="#ratingModal">
+    Rate Specialist
+  </button>
+
+</div>
+
+<!-- Modal for rating -->
+<div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ratingModalLabel">Rate Specialist</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Rating Form -->
+        <div class="rating-form p-3">
+          <div class="mb-3">
+            <label class="form-label fw-bold">Rating</label>
+            <select class="form-select" [(ngModel)]="ratingValue">
+              <option [value]="0">-- Select --</option>
+              <option *ngFor="let r of [1, 2, 3, 4, 5]" [value]="r">{{ r }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Comment</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="comment"
+              placeholder="Write a comment..."
+            />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="rateSpecialist()">Submit Rating</button>
+      </div>
+    </div>
   </div>
 </div>

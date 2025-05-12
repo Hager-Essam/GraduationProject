@@ -30,18 +30,23 @@ export class AuthService {
 
   private tokenKey = 'token';
   private userDataKey = 'userData';
-
   loginUser(loginData: any): Observable<any> {
     return this.http.post<any>('https://bones.runasp.net/Account/Login', loginData).pipe(
       tap((res: any) => {
         if (res?.data?.token && res?.data?.userData && res?.data?.userId) {
           localStorage.setItem(this.tokenKey, res.data.token);
           localStorage.setItem(this.userDataKey, JSON.stringify(res.data.userData));
-          localStorage.setItem('userId', res.data.userId);  // ✅ Save the userId
+          localStorage.setItem('userId', res.data.userId);
+          localStorage.setItem('userIntId', res.data.userData.id.toString()); //
         }
       }),
       catchError(this.handleError)
     );
+  }
+
+  getUserIntId(): number {
+    const intId = localStorage.getItem('userIntId');
+    return intId ? parseInt(intId, 10) : 0;
   }
 
 
