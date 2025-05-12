@@ -34,10 +34,10 @@ export class AuthService {
     return this.http.post<any>('https://bones.runasp.net/Account/Login', loginData).pipe(
       tap((res: any) => {
         if (res?.data?.token && res?.data?.userData && res?.data?.userId) {
-          localStorage.setItem(this.tokenKey, res.data.token);
-          localStorage.setItem(this.userDataKey, JSON.stringify(res.data.userData));
-          localStorage.setItem('userId', res.data.userId);
-          localStorage.setItem('userIntId', res.data.userData.id.toString()); //
+          sessionStorage.setItem(this.tokenKey, res.data.token);
+          sessionStorage.setItem(this.userDataKey, JSON.stringify(res.data.userData));
+          sessionStorage.setItem('userId', res.data.userId);
+          sessionStorage.setItem('userIntId', res.data.userData.id.toString()); //
         }
       }),
       catchError(this.handleError)
@@ -61,24 +61,25 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    return sessionStorage.getItem(this.tokenKey);
   }
 
   setUserRole(role: string): void {
-    localStorage.setItem('role', role);
+    sessionStorage.setItem('role', role);
   }
 
   getUserRole(): string | null {
-    return localStorage.getItem('role');
+    return sessionStorage.getItem('role');
   }
 
   logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.userDataKey);
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
 
+
   getStoredUserId(): string {
-    return localStorage.getItem('userId') || '';
+    return sessionStorage.getItem('userId') || '';
   }
 
 

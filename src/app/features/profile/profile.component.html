@@ -3,8 +3,7 @@
   <div class="details">
     <div *ngIf="userProfile">
       <h2>User Profile</h2>
-      <span><STRONG>Name:</STRONG></span>
-      <p>{{ userProfile.userName }}</p>
+      <p><span><STRONG>Name:</STRONG></span> {{ userProfile.userName }}</p>
       <p><span><STRONG>Email:</STRONG></span> {{ userProfile.email }}</p>
       <p *ngIf="userProfile.phoneNumber">
         <span><strong>Phone:</strong></span> {{ userProfile.phoneNumber }}</p>
