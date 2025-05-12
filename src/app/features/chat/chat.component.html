@@ -13,7 +13,7 @@
     <button (click)="sendMessage()">Send</button>
   </div>
 
-  <div class="rate-button-container">
+  <div class="rate-button-container" *ngIf="role === 'patient'">
     <button (click)="rateSpecialist()" class="rate-button">Rate Specialist</button>
   </div>
 </div>

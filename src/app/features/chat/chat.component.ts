@@ -4,6 +4,7 @@ import {ChatService} from '../../core/services/chat/chat.service';
 import {FormsModule} from '@angular/forms';
 import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
+import {AuthService} from '../../core/services/Auth/auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -25,11 +26,13 @@ export class ChatComponent implements OnInit {
   loggedInUserId: string = '';
   ratingValue: number = 0;
   comment: string = '';
+  role: null | string = '';
 
   constructor(
     private route: ActivatedRoute,
     private chatService: ChatService,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService,
   ) {
   }
 
@@ -38,7 +41,7 @@ export class ChatComponent implements OnInit {
     this.loggedInUserId = localStorage.getItem('userId') || '';
     console.log(`This is the receiver Id ${this.receiverId}`);
     console.log(`This is the sender Id ${this.loggedInUserId}`);
-
+    this.role = this.authService.getUserRole();
     if (this.receiverId) {
       this.getChat();
     } else {
