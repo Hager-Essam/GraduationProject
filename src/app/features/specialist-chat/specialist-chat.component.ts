@@ -1,24 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+import {DatePipe, NgClass, NgForOf} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ActivatedRoute} from '@angular/router';
 import {ChatService} from '../../core/services/chat/chat.service';
-import {FormsModule} from '@angular/forms';
-import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
+  selector: 'app-specialist-chat',
   standalone: true,
   imports: [
-    FormsModule,
-    NgClass,
-    NgForOf,
     DatePipe,
-    NgIf
+    NgForOf,
+    ReactiveFormsModule,
+    FormsModule,
+    NgClass
   ],
-  styleUrls: ['./chat.component.scss']
+  templateUrl: './specialist-chat.component.html',
+  styleUrl: './specialist-chat.component.scss'
 })
-export class ChatComponent implements OnInit {
+export class SpecialistChatComponent {
   receiverId: string = '';
   messages: any[] = [];
   messageContent: string = '';
@@ -71,34 +71,6 @@ export class ChatComponent implements OnInit {
       },
       error: err => {
         console.error('Failed to send message', err);
-      }
-    });
-  }
-
-  rateSpecialist() {
-    if (this.ratingValue === 0) {
-      alert('Please select a rating.');
-      return;
-    }
-
-    const ratingData = {
-      patientId: this.loggedInUserId,
-      specialistId: this.receiverId,
-      ratingValue: this.ratingValue,
-      comment: this.comment
-    };
-
-    this.http.post('https://bones.runasp.net/api/Rating/RateSpecialist', ratingData).subscribe({
-      next: (res: any) => {
-        if (res.success) {
-          alert('Rating submitted successfully!');
-        } else {
-          alert('Failed to submit rating.');
-        }
-      },
-      error: err => {
-        console.error('Error submitting rating:', err);
-        alert('An error occurred while submitting the rating.');
       }
     });
   }

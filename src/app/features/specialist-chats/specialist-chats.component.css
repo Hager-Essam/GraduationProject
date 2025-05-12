@@ -1,0 +1,31 @@
+.container {
+  max-width: 70rem;
+  border-radius: 1rem;
+  background-color: #eae3e3;
+  padding: 2rem;
+}
+
+.chat-preview {
+  margin: 1rem 0 2rem 0;
+}
+
+svg {
+  width: 3rem;
+  margin-right: 1rem;
+  color: #c7a7a7;
+}
+
+.info {
+  display: flex;
+}
+
+p {
+  margin-left: 4rem;
+}
+
+.info2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=specialist-chats.component.css.map */

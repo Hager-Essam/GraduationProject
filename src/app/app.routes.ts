@@ -23,6 +23,7 @@ import {
 } from './features/DashboardFolder/payment-transactions/payment-transactions.component';
 import {RestorePatientComponent} from './features/DashboardFolder/restore-patient/restore-patient.component';
 import {ModelsStatisticsComponent} from './features/DashboardFolder/models-statistics/models-statistics.component';
+import {SpecialistChatsComponent} from './features/specialist-chats/specialist-chats.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent, data: {animation: 'home'}},
@@ -49,8 +50,6 @@ export const routes: Routes = [
   {path: 'emails', component: EmailsComponent},
   {path: 'paymentTransaction', component: PaymentTransactionsComponent},
   {path: 'modelsStstistics', component: ModelsStatisticsComponent},
-  {
-    path: 'profile/:id',
-    component: ProfileComponent
-  }
+  {path: 'profile/:id', component: ProfileComponent},
+  {path:'show-chats',component:SpecialistChatsComponent}
 ];

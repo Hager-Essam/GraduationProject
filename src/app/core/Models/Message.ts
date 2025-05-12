@@ -3,4 +3,6 @@ export interface Message {
   receiverId: string;
   content: string;
   sentAt: string;
+  sender: any;
+  receiver: any;
 }

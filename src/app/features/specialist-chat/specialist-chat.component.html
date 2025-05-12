@@ -1,0 +1,17 @@
+<div class="chat-box">
+  <div class="messages">
+    <div *ngFor="let msg of messages" [ngClass]="{'sent': msg.senderId === loggedInUserId, 'received': msg.senderId !== loggedInUserId}">
+      <div class="message-content">{{ msg.content }}</div>
+      <div class="message-time">
+        <small>{{ msg.sentAt | date:'shortTime' }}</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-box">
+    <input [(ngModel)]="messageContent" placeholder="Type a message..." (keydown.enter)="sendMessage()" />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+
+
+</div>

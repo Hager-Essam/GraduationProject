@@ -34,14 +34,16 @@ export class AuthService {
   loginUser(loginData: any): Observable<any> {
     return this.http.post<any>('https://bones.runasp.net/Account/Login', loginData).pipe(
       tap((res: any) => {
-        if (res?.data?.token && res?.data?.userData) {
+        if (res?.data?.token && res?.data?.userData && res?.data?.userId) {
           localStorage.setItem(this.tokenKey, res.data.token);
           localStorage.setItem(this.userDataKey, JSON.stringify(res.data.userData));
+          localStorage.setItem('userId', res.data.userId);  // ✅ Save the userId
         }
       }),
       catchError(this.handleError)
     );
   }
+
 
   getUserProfile(): any {
     const data = localStorage.getItem(this.userDataKey);
@@ -69,6 +71,11 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userDataKey);
   }
+
+  getStoredUserId(): string {
+    return localStorage.getItem('userId') || '';
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     let message = 'An unknown error occurred!';
@@ -105,6 +112,10 @@ export class AuthService {
     }
 
     return throwError(() => new Error(message));
+  }
+  getUserName(): string {
+    const user = this.getUserProfile();
+    return user?.userName || '';
   }
 
 }

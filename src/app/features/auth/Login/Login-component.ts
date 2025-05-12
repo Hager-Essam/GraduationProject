@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loggedInUserId = localStorage.getItem('userId') || '';
-    console.log(`This is the user Id : ${this.loggedInUserId}`);
     this.Role = this.route.snapshot.paramMap.get('role') || 'specialist';
 
+    console.log(`This is the Logged Id ${this.Role} Id  : ${this.loggedInUserId}`);
     this.route.queryParams.subscribe(params => {
       if (params['Role']) {
         this.Role = params['Role'];
@@ -65,8 +65,8 @@ export class LoginComponent implements OnInit {
     this.AuthService.loginUser(loginData).subscribe({
       next: res => {
         const userProfile = this.AuthService.getUserProfile();
-        console.log("The User Profile:", userProfile);
-        console.log('This is the loggedInUser: '+this.loggedInUserId);
+        // console.log("The User Profile:", userProfile);
+        // console.log('This is the loggedInUser: '+this.loggedInUserId);
         this.AuthService.setUserRole(this.Role);
         if (!userProfile?.phoneNumber) {
           console.warn("Phone number is missing in userData.");
