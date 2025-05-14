@@ -11,22 +11,23 @@
     <ul class="navbar-nav ms-auto">
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/home"  routerLinkActive="active" >Home</a>
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/payment" routerLinkActive="active">Pay</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/profile"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Profile</a>
-      </li>
-      <li class="nav-item" >
         <div class="admin-icon" (click)="navigateToLogin('Admin')" title="Admin Access">
           <img src="settings.png">
         </div>
       </li>
 
     </ul>
-
-    <div class="ms-auto">
-      <!-- <button type="submit" class="btn btn-danger">Logout</button> -->
-    </div>
 
   </div>
 </nav>

@@ -24,6 +24,7 @@ import {
 import {RestorePatientComponent} from './features/DashboardFolder/restore-patient/restore-patient.component';
 import {ModelsStatisticsComponent} from './features/DashboardFolder/models-statistics/models-statistics.component';
 import {SpecialistChatsComponent} from './features/specialist-chats/specialist-chats.component';
+import {PaymentComponent} from './features/payment/payment.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent, data: {animation: 'home'}},
@@ -31,7 +32,7 @@ export const routes: Routes = [
   {path: 'consultation', component: ConsultationComponent, data: {animation: 'consultation'}},
   {path: 'report', component: ReportComponent, data: {animation: 'report'}},
   {path: 'profile', component: ProfileComponent, data: {animation: 'profile'}},
-  { path: 'chat/:receiverId', component: ChatComponent },
+  {path: 'chat/:receiverId', component: ChatComponent},
   {path: 'patient', component: PatientComponent},
   {path: 'specialist', component: SpecialistComponent},
   {path: 'patient', component: PatientComponent},
@@ -51,5 +52,6 @@ export const routes: Routes = [
   {path: 'paymentTransaction', component: PaymentTransactionsComponent},
   {path: 'modelsStstistics', component: ModelsStatisticsComponent},
   {path: 'profile/:id', component: ProfileComponent},
-  {path:'show-chats',component:SpecialistChatsComponent}
+  {path: 'show-chats', component: SpecialistChatsComponent},
+  {path: 'payment', component: PaymentComponent}
 ];

@@ -1,0 +1,22 @@
+<div class="payment-container">
+  <h2 class="title">Complete Your Payment</h2>
+
+  <form (ngSubmit)="submitPayment()" #paymentForm="ngForm" class="payment-form">
+
+    <label for="userType">Select User Type</label>
+    <select id="userType" name="userType" required [(ngModel)]="selectedUserType" (change)="updateAmount()" class="form-select">
+      <option *ngFor="let user of userTypes" [value]="user.label">{{ user.label }}</option>
+    </select>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" required [(ngModel)]="paymentData.phone" placeholder="e.g., 0712345678" />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required [(ngModel)]="paymentData.email" placeholder="example@mail.com" />
+
+    <label>Amount</label>
+    <input type="number" [value]="paymentData.amount" readonly />
+
+    <button type="submit" [disabled]="!paymentForm.valid">Pay Now</button>
+  </form>
+</div>
