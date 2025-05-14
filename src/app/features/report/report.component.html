@@ -1,8 +1,11 @@
 <div class="container-fluid">
   <!--  <h2>X-ray Report</h2>-->
   <label class="upload-box">
+
     <img class="img result" [src]="imageUrl" alt="Uploaded X-ray"
-         style="max-width:300px; max-height:300px; border-radius:12px; box-shadow:0 4px 32px #ddd;">
+         style="max-width:100%; height:auto; border-radius:12px;">
+
+
     <div *ngIf="imageUrl" style="text-align:center; margin-bottom:1.5rem;"></div>
 
     <div class="before" *ngIf="!report">

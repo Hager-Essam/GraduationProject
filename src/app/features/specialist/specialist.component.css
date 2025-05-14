@@ -152,6 +152,14 @@
   .selection-card {
     width: 100%;
   }
+  .list-container {
+    max-width: 12rem;
+  }
+}
+.list-container {
+  background-color: #6bb9f0;
+  border-radius: 1rem;
+  width: 26rem;
 }
 
 /*# sourceMappingURL=specialist.component.css.map */
