@@ -2,9 +2,9 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {NgForOf, NgIf} from "@angular/common";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {BodyPartService} from '../../core/services/body-part.service';
 import {ImageServiceService} from '../../core/services/ImageUploading/image-service.service';
 import {ReportService} from '../../core/services/ReportServices/report.service';
+import {BodyPartService} from '../../core/services/body-part.service';
 
 @Component({
   selector: 'app-specialist',

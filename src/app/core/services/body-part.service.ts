@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class BodyPartService {
-
   private bodyParts = [
     { value: '', label: 'No Value' },
     { value: 'HAND', label: 'Hand' },
