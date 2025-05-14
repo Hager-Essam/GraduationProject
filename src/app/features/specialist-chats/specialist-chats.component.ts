@@ -47,6 +47,7 @@ export class SpecialistChatsComponent implements OnInit {
 
   loadMessages(): void {
     this.loggedInSpecialist = localStorage.getItem('userId') || '';
+    console.log(`The logged in usererrrrrrrrrrrr as a spec is ${this.loggedInSpecialist}`);
     this.loading = true;
 
     this.chatService.getAllMessages().subscribe(
