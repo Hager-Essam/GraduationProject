@@ -23,7 +23,7 @@ export class PaymentComponent {
   userTypes = [
     { label: 'Patient (100)', amount: 100 },
     { label: 'Specialist (200)', amount: 200 },
-    { label: 'Guest (500)', amount: 500 }
+    { label: 'Premium (500)', amount: 500 }
   ];
 
   paymentData = {
