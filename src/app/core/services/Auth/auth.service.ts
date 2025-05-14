@@ -30,6 +30,7 @@ export class AuthService {
 
   private tokenKey = 'token';
   private userDataKey = 'userData';
+
   loginUser(loginData: any): Observable<any> {
     return this.http.post<any>('https://bones.runasp.net/Account/Login', loginData).pipe(
       tap((res: any) => {
@@ -119,9 +120,23 @@ export class AuthService {
 
     return throwError(() => new Error(message));
   }
+
   getUserName(): string {
     const user = this.getUserProfile();
     return user?.userName || '';
+  }
+
+  private forgetPassUrl = 'https://bones.runasp.net/api/Account/ForgetPassword';
+
+
+  forgetPassword(email: string): Observable<any> {
+    return this.http.post(`${this.forgetPassUrl}`, {email});
+  }
+
+
+  private verifyUrl ='https://bones.runasp.net/api/Account/VerifyResetCode';
+  verifyResetCode(email: string, code: string): Observable<any> {
+    return this.http.post(`${this.verifyUrl}`, {email, code});
   }
 
 }

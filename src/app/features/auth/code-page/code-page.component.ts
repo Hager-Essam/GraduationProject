@@ -1,7 +1,8 @@
-import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {isPlatformBrowser, NgForOf, TitleCasePipe} from '@angular/common';
+import {isPlatformBrowser, NgForOf, NgIf, TitleCasePipe} from '@angular/common';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {AuthService} from '../../../core/services/Auth/auth.service';
 
 
 @Component({
@@ -12,59 +13,69 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
     NgForOf,
     RouterLink,
     TitleCasePipe,
+    NgIf,
   ],
   templateUrl: './code-page.component.html',
   styleUrl: './code-page.component.scss'
 })
-export class CodePageComponent {
-  otp: string[] = new Array(4).fill('');
-  timer: number = 50;
-  interval: any;
-  isBrowser: boolean;
-  code: string = '';
+export class CodePageComponent implements OnInit{
+  email: string = '';
+  otp: string[] = ['', '', '', ''];
   role: string = '';
+  timer: number = 30;
+  message: string = '';
+  error: string = '';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object, private router: Router, private route: ActivatedRoute) {
-    // Check if running in the browser
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    if (this.isBrowser) {
-      this.startTimer();
-    }
 
+    this.email = this.route.snapshot.paramMap.get('email') || '';
     this.role = this.route.snapshot.paramMap.get('role') || 'patient';
-
+    this.startTimer();
   }
-
-  // Auto-focus next OTP input (Only works in browser)
-  handleInput(event: Event, index: number) {
-    if (this.isBrowser) {
-      const input = event.target as HTMLInputElement;
-      if (input.value.length === 1 && index < this.otp.length - 1) {
-        const nextInput = document.getElementById(`otp-${index}`) as HTMLInputElement;
-        nextInput?.focus();
-      }
-    }
-  }
-
 
   startTimer() {
-    this.interval = setInterval(() => {
+    setInterval(() => {
       if (this.timer > 0) {
         this.timer--;
-      } else {
-        clearInterval(this.interval);
       }
     }, 1000);
   }
 
-
-  verifyCode() {
-    console.log(`Verifying code: ${this.code}`);
-    // Call API to verify the code (backend logic)
-    this.router.navigate([`/reset-page/${this.role}`]);
+  handleInput(event: any, index: number) {
+    const value = event.target.value;
+    if (value && index < this.otp.length - 1) {
+      const nextInput = document.getElementById(`otp-${index + 1}`) as HTMLInputElement;
+      if (nextInput) nextInput.focus();
+    }
   }
 
+  verifyCode() {
+    const code = this.otp.join('');
+    if (!code || code.length !== 4) {
+      this.error = 'Please enter the full 4-digit code';
+      return;
+    }
+
+    this.authService.verifyResetCode(this.email, code).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.message = 'Code verified successfully';
+          this.router.navigate([`/reset-password/${this.role}`]);
+        } else {
+          this.error = res.message || 'Failed to verify code';
+        }
+      },
+      error: (err) => {
+        this.error = 'An error occurred while verifying the code';
+        console.error(err);
+      }
+    });
+  }
 }
+
