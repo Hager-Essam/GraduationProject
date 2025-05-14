@@ -2,7 +2,7 @@
   <h2 class="title">💳 Complete Your Payment</h2>
 
   <form (ngSubmit)="submitPayment()" #paymentForm="ngForm" class="payment-form">
-    <label >👤 Select User Type</label>
+    <label >👤 Select your Type</label>
     <div class="custom-dropdown" (click)="toggleDropdown()">
       <div class="selected-option">
         {{ selectedUserType?.label || 'Select your type' }}
