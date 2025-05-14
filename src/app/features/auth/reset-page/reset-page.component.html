@@ -1,15 +1,23 @@
-<div class="container">
-  <form (ngSubmit)="resetPassword()">
+<div class="reset-password-container">
+  <h2>Reset Password</h2>
 
+  <form [formGroup]="resetForm" (ngSubmit)="resetPassword()">
+    <div>
+      <label for="newPassword">New Password</label>
+      <input
+        type="password"
+        id="newPassword"
+        formControlName="newPassword"
+        placeholder="Enter your new password"
+      />
+      <div class="error" *ngIf="resetForm.get('newPassword')?.touched && resetForm.get('newPassword')?.invalid">
+        Password is required (min 6 characters).
+      </div>
+    </div>
 
-    <div class="input-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" class="form-control" placeholder="********">
-    </div>
-    <div class="input-group">
-      <label for="password">Confirm Password</label>
-      <input type="password"  class="form-control" placeholder="********">
-    </div>
-    <button type="submit" class="btn-submit">Reset Password</button>
+    <button type="submit" [disabled]="loading">Reset Password</button>
+
+    <div class="success" *ngIf="successMessage">{{ successMessage }}</div>
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
   </form>
 </div>

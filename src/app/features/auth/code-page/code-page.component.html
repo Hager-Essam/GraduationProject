@@ -1,29 +1,29 @@
-<div class="container d-flex justify-content-center align-items-center vh-100">
-  <div class="card p-4 shadow-sm" style="width: 350px;">
-    <h4 class="text-center">Check your mail or phone</h4>
-    <p class="text-center text-muted">Enter the OTP code</p>
+<div class="container">
+  <h2>Verify Reset Code</h2>
 
-    <div class="d-flex justify-content-between my-3">
+  <form [formGroup]="codeForm" (ngSubmit)="verifyCode()">
+    <div class="form-group">
+      <label>Verification Code</label>
       <input
-        *ngFor="let digit of otp; let i = index"
-        id="otp-{{i}}"
         type="text"
-        class="otp-box form-control text-center mx-1"
-        maxlength="1"
-        [value]="otp[i]"
-        (input)="handleInput($event, i)"
+        formControlName="code"
+        placeholder="Enter the code sent to your email"
+        [class.invalid]="codeForm.get('code')?.invalid && codeForm.get('code')?.touched"
       />
-
+      <div class="validation" *ngIf="codeForm.get('code')?.invalid && codeForm.get('code')?.touched">
+        Code is required and must be at least 4 characters.
+      </div>
     </div>
 
-    <!-- Resend Code Timer -->
-    <p class="text-center text-muted">
-      Resend code in <span class="fw-bold text-dark">{{ timer }} seconds</span>
-    </p>
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Verifying...' : 'Verify Code' }}
+    </button>
+  </form>
 
-    <button type="submit" class="btn-submit" (click)="verifyCode()">Verify</button>
-
-    <div *ngIf="message" class="success-message">{{ message }}</div>
-    <div *ngIf="error" class="error-message">{{ error }}</div>
+  <div *ngIf="successMessage" class="success-msg">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-msg">
+    {{ errorMessage }}
   </div>
 </div>

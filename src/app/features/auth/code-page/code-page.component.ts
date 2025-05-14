@@ -1,81 +1,84 @@
-import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {isPlatformBrowser, NgForOf, NgIf, TitleCasePipe} from '@angular/common';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {AuthService} from '../../../core/services/Auth/auth.service';
 
+  import {Component, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-code-page',
   standalone: true,
-  imports: [
-    FormsModule,
-    NgForOf,
-    RouterLink,
-    TitleCasePipe,
-    NgIf,
-  ],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './code-page.component.html',
-  styleUrl: './code-page.component.scss'
+  styleUrls: ['./code-page.component.css']
 })
 export class CodePageComponent implements OnInit{
-  email: string = '';
-  otp: string[] = ['', '', '', ''];
-  role: string = '';
-  timer: number = 30;
-  message: string = '';
-  error: string = '';
+  codeForm: FormGroup;
+  emailFromQuery: string | null = null;
+  errorMessage = '';
+  successMessage = '';
+  loading = false;
+    role: string = '';
+    ngOnInit(): void {
+      this.role = this.route.snapshot.paramMap.get('role') || 'patient';
+    }
 
   constructor(
-    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
     private router: Router,
-    private authService: AuthService
-  ) {}
+    private route: ActivatedRoute
+  ) {
+    this.codeForm = this.formBuilder.group({
+      code: ['', [Validators.required, Validators.minLength(4)]],
+    });
 
-  ngOnInit() {
-
-    this.email = this.route.snapshot.paramMap.get('email') || '';
-    this.role = this.route.snapshot.paramMap.get('role') || 'patient';
-    this.startTimer();
-  }
-
-  startTimer() {
-    setInterval(() => {
-      if (this.timer > 0) {
-        this.timer--;
-      }
-    }, 1000);
-  }
-
-  handleInput(event: any, index: number) {
-    const value = event.target.value;
-    if (value && index < this.otp.length - 1) {
-      const nextInput = document.getElementById(`otp-${index + 1}`) as HTMLInputElement;
-      if (nextInput) nextInput.focus();
-    }
+    this.emailFromQuery = this.route.snapshot.queryParamMap.get('email');
   }
 
   verifyCode() {
-    const code = this.otp.join('');
-    if (!code || code.length !== 4) {
-      this.error = 'Please enter the full 4-digit code';
+    if (this.codeForm.invalid) {
+      this.codeForm.markAllAsTouched();
       return;
     }
 
-    this.authService.verifyResetCode(this.email, code).subscribe({
+    if (!this.emailFromQuery) {
+      this.errorMessage = 'Missing email from URL. Please try again.';
+      return;
+    }
+
+    this.loading = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    const { code } = this.codeForm.value;
+
+    this.http.post<any>('https://bones.runasp.net/api/Account/VerifyResetCode', {
+      code,
+      email: this.emailFromQuery,
+    }).subscribe({
       next: (res) => {
+        console.log('Response:', res);
+        this.loading = false;
         if (res.success) {
-          this.message = 'Code verified successfully';
-          this.router.navigate([`/reset-password/${this.role}`]);
+          this.successMessage = 'Code verified successfully!';
+          setTimeout(() => {
+            // this.router.navigate([`/reset-page/${this.role}`],
+            //   { queryParams: { email: this.emailFromQuery } });
+            this.router.navigate(['/reset-page/${this.role}'], {
+              queryParams: { email: this.emailFromQuery, code: this.codeForm.value.code }
+            });
+
+          }, 1500);
         } else {
-          this.error = res.message || 'Failed to verify code';
+          this.errorMessage = res.message || 'Verification failed.';
         }
       },
       error: (err) => {
-        this.error = 'An error occurred while verifying the code';
-        console.error(err);
+        this.loading = false;
+        // console.error('API Error:', err);
+        this.errorMessage = 'Something went wrong. Please try again.';
       }
     });
   }
 }
-

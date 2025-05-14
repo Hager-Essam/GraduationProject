@@ -38,7 +38,9 @@ export class ForgetPasswordComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.message = res.message;
-          this.router.navigate([`/code-page/${this.role}`]);
+          this.router.navigate(['/code-page/${this.role}'], { queryParams: { email: this.email } });
+
+          // this.router.navigate([`/code-page/${this.role}`]);
         } else {
           this.error = res.message || 'Failed to send code';
         }
