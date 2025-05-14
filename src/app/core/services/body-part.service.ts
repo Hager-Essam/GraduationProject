@@ -5,17 +5,16 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class BodyPartService {
-  private bodyParts = [
 
+  private bodyParts = [
     { value: '', label: 'No Value' },
-    { value: 'Hand', label: 'Hand' },
-    { value: 'Arm', label: 'Arm' },
-    { value: 'Shoulder', label: 'Shoulder' },
-    { value: 'Finger', label: 'Finger' },
-    { value: 'Elbow', label: 'Elbow' },
-    { value: 'Humerus', label: 'Humerus' },
-    { value: 'Forearm', label: 'Forearm' },
-    { value: 'Wrist', label: 'Wrist' }
+    { value: 'HAND', label: 'Hand' },
+    { value: 'SHOULDER', label: 'Shoulder' },
+    { value: 'FINGER', label: 'Finger' },
+    { value: 'ELBOW', label: 'Elbow' },
+    { value: 'HUMERUS', label: 'Humerus' },
+    { value: 'FOREARM', label: 'Forearm' },
+    { value: 'WRIST', label: 'Wrist' }
   ];
 
   private selectedBodyPartSubject = new BehaviorSubject<string>(this.bodyParts[0].value);
@@ -34,4 +33,6 @@ export class BodyPartService {
   getSelectedBodyPart() {
     return this.selectedBodyPartSubject.value;
   }
+
+
 }
