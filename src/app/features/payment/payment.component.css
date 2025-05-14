@@ -1,44 +1,105 @@
 .payment-container {
-  max-width: 420px;
-  margin: 3rem auto;
+  max-width: 500px;
+  margin: auto;
   padding: 2rem;
-  background: #f4f4f4;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  background-color: #f0faff;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-family: "Segoe UI", sans-serif;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 1.5rem;
-  color: #333;
+  margin-bottom: 2rem;
+  color: #0d47a1;
 }
 
-.payment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.payment-form label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 600;
 }
 
-.payment-form input,
-.payment-form select {
-  padding: 0.75rem;
-  border-radius: 8px;
+.payment-form input {
+  width: 100%;
+  padding: 0.6rem;
   border: 1px solid #ccc;
+  border-radius: 8px;
   font-size: 1rem;
 }
 
 .payment-form button {
-  padding: 0.75rem;
-  background-color: #1a73e8;
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  background-color: #1976d2;
   color: white;
   border: none;
-  border-radius: 8px;
+  width: 100%;
+  font-size: 1.1rem;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .payment-form button:hover {
-  background-color: #155ac5;
+  background-color: #125ea8;
+}
+
+/* Custom Dropdown */
+.custom-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.selected-option {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.dropdown-list {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 5px;
+  z-index: 999;
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-list li {
+  padding: 0.6rem;
+  transition: background-color 0.2s;
+}
+
+.dropdown-list li:first-child:hover {
+  background-color: #8484b6;
+  font-weight: 600;
+  color: #0d47a1;
+}
+
+.dropdown-list li:nth-child(2):hover {
+  background-color: rgba(132, 132, 182, 0.4);
+  font-weight: 600;
+  color: #0d47a1;
+}
+
+.dropdown-list li:nth-child(3):hover {
+  background-color: rgba(132, 132, 182, 0.11);
+  font-weight: 600;
+  color: #0d47a1;
+}
+
+.dropdown-list li.active {
+  background-color: #90caf9;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=payment.component.css.map */
