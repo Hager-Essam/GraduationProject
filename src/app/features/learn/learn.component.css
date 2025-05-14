@@ -1,3 +1,18 @@
+h2, h4 {
+  color: #003366;
+}
 
+.card-title {
+  color: #00509e;
+}
+
+.list-group-item a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.list-group-item a:hover {
+  text-decoration: underline;
+}
 
 /*# sourceMappingURL=learn.component.css.map */

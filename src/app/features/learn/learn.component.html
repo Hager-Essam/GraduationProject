@@ -1,1 +1,38 @@
-<p>learn works!</p>
+<div class="container mt-4">
+  <h2 class="text-center mb-5">📚 Learn About Bones</h2>
+
+  <div class="mb-5">
+    <h4>📄 PDF Resources</h4>
+    <div class="row">
+
+      <div class="col-md-6" *ngFor="let pdf of pdfResources">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ pdf.title }}</h5>
+            <a [href]="pdf.url" class="btn btn-primary" target="_blank">View PDF</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <h4>🔗 Useful Links</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let link of externalLinks">
+        <a [href]="link.url" target="_blank">{{ link.title }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mb-5">
+    <h4>🦴 3D Skeleton Viewer</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let link of skeletonResources">
+        <a [href]="link.url" target="_blank">{{ link.title }}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+

@@ -22,6 +22,11 @@
   animation: float 3s infinite ease-out;
 }
 
+.img3 {
+  animation: float 3s infinite ease-out;
+  width: 10rem;
+}
+
 @keyframes float {
   0% {
     transform: translateY(0);
