@@ -247,4 +247,18 @@
   cursor: pointer;
 }
 
+.info {
+  background: #f1eeee;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #dad0d0;
+}
+
+svg {
+  width: 1.3rem;
+  color: #3498db;
+  margin-right: 0.7rem;
+}
+
 /*# sourceMappingURL=profile.component.css.map */
