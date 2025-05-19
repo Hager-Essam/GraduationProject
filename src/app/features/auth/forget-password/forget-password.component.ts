@@ -51,7 +51,4 @@ export class ForgetPasswordComponent implements OnInit {
       }
     });
   }
-
-
-
 }
