@@ -39,7 +39,13 @@
       <a (click)="navigateToForgotPassword()" class="text-primary" style="cursor:pointer;">Forgot Password?</a>
     </p>
 
-    <button type="submit" class="btn-submit">Login</button>
+    <button type="submit" class="btn-submit" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Login</span>
+      <span *ngIf="isLoading">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  </span>
+    </button>
 
     <p *ngIf="Role !== 'admin'">
       Don't have an account?

@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {catchError, Observable, tap, throwError} from 'rxjs';
-import {Router} from '@angular/router';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,26 @@ import {Router} from '@angular/router';
 export class AuthService {
 
   private baseUrl = 'https://bones.runasp.net/Account/Register';
-
   private userId!: string;
 
-  constructor(private http: HttpClient,
-              private router: Router) {
+  private tokenKey = 'token';
+  private userDataKey = 'userData';
+
+  private loggedIn = new BehaviorSubject<boolean>(false); // default false
+  public isLoggedIn$ = this.loggedIn.asObservable();
+
+  private isBrowser: boolean;
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser && this.getToken()) {
+      // If token exists on init, user is logged in
+      this.loggedIn.next(true);
+    }
   }
 
   setUserId(id: string): void {
@@ -28,17 +44,15 @@ export class AuthService {
     );
   }
 
-  private tokenKey = 'token';
-  private userDataKey = 'userData';
-
   loginUser(loginData: any): Observable<any> {
     return this.http.post<any>('https://bones.runasp.net/Account/Login', loginData).pipe(
       tap((res: any) => {
-        if (res?.data?.token && res?.data?.userData && res?.data?.userId) {
+        if (this.isBrowser && res?.data?.token && res?.data?.userData && res?.data?.userId) {
           localStorage.setItem(this.tokenKey, res.data.token);
           localStorage.setItem(this.userDataKey, JSON.stringify(res.data.userData));
           localStorage.setItem('userId', res.data.userId);
-          localStorage.setItem('userIntId', res.data.userData.id.toString()); //
+          localStorage.setItem('userIntId', res.data.userData.id.toString());
+          this.loggedIn.next(true);
         }
       }),
       catchError(this.handleError)
@@ -46,12 +60,13 @@ export class AuthService {
   }
 
   getUserIntId(): number {
+    if (!this.isBrowser) return 0;
     const intId = localStorage.getItem('userIntId');
     return intId ? parseInt(intId, 10) : 0;
   }
 
-
   getUserProfile(): any {
+    if (!this.isBrowser) return null;
     const data = localStorage.getItem(this.userDataKey);
     return data ? JSON.parse(data) : null;
   }
@@ -62,27 +77,32 @@ export class AuthService {
   }
 
   getToken(): string | null {
+    if (!this.isBrowser) return null;
     return localStorage.getItem(this.tokenKey);
   }
 
   setUserRole(role: string): void {
+    if (!this.isBrowser) return;
     localStorage.setItem('role', role);
   }
 
   getUserRole(): string | null {
+    if (!this.isBrowser) return null;
     return localStorage.getItem('role');
   }
 
   logout(): void {
-    localStorage.clear();
+    if (this.isBrowser) {
+      localStorage.clear();
+    }
+    this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
 
-
   getStoredUserId(): string {
+    if (!this.isBrowser) return '';
     return localStorage.getItem('userId') || '';
   }
-
 
   private handleError(error: HttpErrorResponse) {
     let message = 'An unknown error occurred!';
@@ -128,16 +148,12 @@ export class AuthService {
 
   private forgetPassUrl = 'https://bones.runasp.net/api/Account/ForgetPassword';
 
-
   forgetPassword(email: string): Observable<any> {
-    return this.http.post(`${this.forgetPassUrl}`, {email});
+    return this.http.post(`${this.forgetPassUrl}`, { email });
   }
 
-
-  private verifyUrl ='https://bones.runasp.net/api/Account/VerifyResetCode';
+  private verifyUrl = 'https://bones.runasp.net/api/Account/VerifyResetCode';
   verifyResetCode(email: string, code: string): Observable<any> {
-    return this.http.post(`${this.verifyUrl}`, {email, code});
+    return this.http.post(`${this.verifyUrl}`, { email, code });
   }
-
 }
-
