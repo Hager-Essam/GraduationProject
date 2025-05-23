@@ -1,36 +1,12 @@
-.container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+.email-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
+.email-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
-
-li {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-hr {
-  border: none;
-  border-bottom: 1px solid #ccc;
-  margin: 10px 0;
-}
-
-div h4 {
-  margin: 0;
-  color: #007BFF;
-}
-
-div p {
-  margin: 5px 0;
+.email-card .card-text {
+  min-height: 60px;
 }
 
 /*# sourceMappingURL=emails.component.css.map */

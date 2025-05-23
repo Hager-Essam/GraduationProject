@@ -1,17 +1,22 @@
-<div class="container">
-  <h2>All Emails</h2>
-  <ul>
-    <li *ngFor="let email of emails">
-      <div>
-        <h4>From: {{ email.from }}</h4>
-        <p>Subject: {{ email.subject }}</p>
-        <p>{{ email.body }}</p>
-        <small>Date Sent: {{ email.dateSent }}</small>
+<div class="container py-4">
+  <h2 class="mb-4 text-center">📧 All Emails</h2>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let email of emails">
+      <div class="card h-100 shadow-sm email-card border-start border-4 border-primary">
+        <div class="card-body">
+          <h5 class="card-title text-primary">From: {{ email.from }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Subject: {{ email.subject }}</h6>
+          <p class="card-text">{{ email.body }}</p>
+        </div>
+        <div class="card-footer bg-white border-top-0">
+          <small class="text-muted">Sent: {{ email.dateSent | date:'medium' }}</small>
+        </div>
       </div>
-      <hr>
-    </li>
-  </ul>
-  <div *ngIf="responseMessage">
-    <p>{{ responseMessage }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="responseMessage" class="alert alert-info mt-4 text-center">
+    {{ responseMessage }}
   </div>
 </div>

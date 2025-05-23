@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../../core/services/admin/admin.service';
-import {NgForOf, NgIf} from '@angular/common';
+import {DatePipe, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-emails',
   standalone: true,
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    DatePipe
   ],
   templateUrl: './emails.component.html',
   styleUrl: './emails.component.scss'

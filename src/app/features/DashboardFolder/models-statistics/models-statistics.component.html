@@ -1,32 +1,23 @@
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-    <tr >
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Used Count</th>
-      <th scope="col">Fracture Count</th>
-      <th scope="col">Non Fracture</th>
-      <th scope="col">Mean Part Confidence</th>
-      <th scope="col">Mean Fracture Confd</th>
-      <th scope="col">Mean time</th>
-      <th scope="col">error count</th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="container my-5">
+  <h2 class="text-center mb-4 fw-bold">📊 Model Statistics</h2>
+  <div class="row g-4">
+    <div class="col-md-6 col-xl-4" *ngFor="let model of models; let i = index">
+      <div class="card h-100 shadow-sm border-0 custom-model-card">
+        <div class="card-body">
+          <h5 class="card-title text-primary fw-semibold">{{ i + 1 }}. {{ model.model_name }}</h5>
+          <hr>
+          <ul class="list-unstyled small">
+            <li><strong>Used Count:</strong> <span class="badge bg-info ms-2">{{ model.used_count }}</span></li>
+            <li><strong>Fractures:</strong> <span class="badge bg-danger ms-2">{{ model.fracture_count }}</span></li>
+            <li><strong>Non-Fractures:</strong> <span class="badge bg-success ms-2">{{ model.non_fracture_count }}</span></li>
+            <li><strong>Mean Part Confidence:</strong> <span class="badge bg-secondary ms-2">{{ model.mean_part_confidence | number: '1.2-2' }}</span></li>
+            <li><strong>Mean Fracture Confidence:</strong> <span class="badge bg-secondary ms-2">{{ model.mean_fracture_confidence | number: '1.2-2' }}</span></li>
+            <li><strong>Mean Time:</strong> <span class="badge bg-warning text-dark ms-2">{{ model.mean_time | number: '1.2-2' }}s</span></li>
+            <li><strong>Error Count:</strong> <span class="badge bg-dark ms-2">{{ model.error_count }}</span></li>
+          </ul>
 
-    <tr *ngFor="let model of models;let i=index">
-      <th scope="row">{{i+1}}</th>
-      <td>{{ model.model_name }}</td>
-      <td>{{ model.used_count }}</td>
-      <td>{{ model.fracture_count }}</td>
-      <td>{{ model.non_fracture_count }}</td>
-      <td>{{ model.mean_part_confidence|number:'1.2-2' }}</td>
-      <td>{{ model.mean_fracture_confidence|number:'1.2-2' }}</td>
-      <td>{{ model.mean_time|number:'1.2-2' }}</td>
-      <td>{{ model.error_count }}</td>
-    </tr>
-
-    </tbody>
-  </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

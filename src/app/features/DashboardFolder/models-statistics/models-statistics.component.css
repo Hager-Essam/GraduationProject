@@ -1,20 +1,29 @@
-.table thead tr th {
-  background-color: #201430;
-  color: white;
+.custom-model-card {
+  background: linear-gradient(to top left, #f8f9fa, #ffffff);
+  border-radius: 18px;
+  transition: all 0.3s ease-in-out;
 }
 
-.table-responsive {
-  border-radius: 1rem;
-  border: 1px #201430 solid;
-  max-width: 60rem;
-  margin: auto;
-  min-height: 30rem;
-  box-shadow: 10px 10px 10px 10px rgba(0.5, 0.5, 0.3, 0.2);
+.custom-model-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
-.table tbody tr td:first-child, td:nth-child(2) {
-  font-weight: bold;
-  color: #201430;
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 0.4em 0.75em;
+  border-radius: 12px;
+}
+
+.custom-model-card ul li {
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
 }
 
 /*# sourceMappingURL=models-statistics.component.css.map */

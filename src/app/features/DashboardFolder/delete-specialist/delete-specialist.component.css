@@ -1,51 +1,86 @@
 .container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-li:last-child {
-  border-bottom: none;
-}
-
-li span {
-  font-size: 16px;
-  color: #333;
-}
-
-button {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #d43f3f;
+  max-width: 700px;
+  margin: 40px auto;
+  background: #f8f9fa;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h2 {
   text-align: center;
+  color: #343a40;
+  margin-bottom: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 28px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: white;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+li:hover {
+  transform: scale(1.02);
+  background-color: #e9f7ef;
+}
+
+span {
+  font-size: 18px;
+  color: #495057;
+  font-weight: 500;
+}
+
+button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+div[ng-reflect-ng-if=true] p {
+  text-align: center;
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /*# sourceMappingURL=delete-specialist.component.css.map */
