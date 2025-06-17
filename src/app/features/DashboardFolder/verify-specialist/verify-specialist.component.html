@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Unverified Specialists</h2>
+  <ul>
+    <li *ngFor="let s of specialists">
+      <span>Specialist ID: {{ s.id }}</span>
+      <button (click)="onVerifyClick(s)">Verify</button>
+    </li>
+  </ul>
+
+  <div class="modal" *ngIf="selectedSpecialist">
+    <div class="modal-content">
+      <h3 style="text-align:center;">Certificate Preview</h3>
+      <img
+        [src]="imageBaseUrl + selectedSpecialist.certificateUrl.replace('\\', '/')"
+        alt="Certificate"
+        width="100%"
+        style="border-radius: 10px; margin-top: 10px;"
+      />
+      <div class="actions">
+        <button style="background-color:#28a745;" (click)="acceptSpecialist()">Accept</button>
+        <button (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

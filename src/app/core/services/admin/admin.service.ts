@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Specialist} from '../../Models/Specialist';
 
 @Injectable({
   providedIn: 'root'
@@ -50,4 +51,12 @@ export class AdminService {
     return this.http.post<{ message: string }>(`https://bones.runasp.net/api/Admin/ResotrePatient?id=${id}`, {});
   }
 
+  baseUrl3 = 'https://bones.runasp.net/api/Admin';
+  getUnverifiedSpecialists(): Observable<{ data: Specialist[] }> {
+    return this.http.get<{ data: Specialist[] }>(`${this.baseUrl3}/GetSpecialistsNotVerified`);
+  }
+
+  acceptSpecialist(id: number): Observable<any> {
+    return this.http.post(`${this.baseUrl3}/AcceptSpecialist?Id=${id}`, {});
+  }
 }

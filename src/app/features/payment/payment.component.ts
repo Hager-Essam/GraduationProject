@@ -46,7 +46,6 @@ export class PaymentComponent {
   }
   submitPayment() {
     const url = 'https://bones.runasp.net/api/Payment/pay';
-
     this.http.post<any>(url, this.paymentData).subscribe({
       next: (response) => {
         if (response.iframeUrl) {

@@ -44,10 +44,9 @@ export class PatientRegisterComponent implements OnInit {
       }
     });
 
-    // console.log("Component loaded");
 
     this.form = this.fb.group({
-      FullName: ['', Validators.required],
+      FullName: ['', Validators.required,Validators.maxLength(20)],
       Email: ['', [Validators.required, Validators.email]],
       Password: ['', Validators.required],
       ConfirmPassword: ['', Validators.required],
@@ -109,5 +108,12 @@ export class PatientRegisterComponent implements OnInit {
     this.router.navigate(['/login', role]);
     return role;
   }
+  onFullNameInput(): void {
+    const control = this.form.get('FullName');
+    if (control && control.value.length > 20) {
+      control.setValue(control.value.slice(0, 20));
+    }
+  }
+
 
 }

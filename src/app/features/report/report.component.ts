@@ -38,8 +38,6 @@ export class ReportComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-
-
     const id = this.imageService.getCurrentImageId();
     this.imageUrl = this.reportService.getImageUrl();
     console.log('Received image ID:', id);

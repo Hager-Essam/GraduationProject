@@ -29,12 +29,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private AuthService: AuthService,
     private fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.loggedInUserId = localStorage.getItem('userId') || '';
     this.Role = this.route.snapshot.paramMap.get('role') || 'specialist';
-
+    console.log(`This is the user Id ${this.loggedInUserId}`)
     this.route.queryParams.subscribe(params => {
       if (params['Role']) {
         this.Role = params['Role'];
@@ -55,7 +56,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.isLoading = true; // 👈 show loading
+    this.isLoading = true;
     const loginData = {
       Email: this.formLogin.value.Email,
       Password: this.formLogin.value.Password,
@@ -64,7 +65,7 @@ export class LoginComponent implements OnInit {
 
     this.AuthService.loginUser(loginData).subscribe({
       next: res => {
-        this.isLoading = false; // 👈 hide loading
+        this.isLoading = false;
         this.AuthService.setUserRole(this.Role);
         const userProfile = this.AuthService.getUserProfile();
         if (!userProfile?.phoneNumber) {
@@ -80,7 +81,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error: err => {
-        this.isLoading = false; // 👈 hide loading
+        this.isLoading = false;
         this.errorMessage = err.message || 'Invalid email or password. Please try again.';
       }
     });

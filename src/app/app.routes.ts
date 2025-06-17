@@ -25,6 +25,7 @@ import {RestorePatientComponent} from './features/DashboardFolder/restore-patien
 import {ModelsStatisticsComponent} from './features/DashboardFolder/models-statistics/models-statistics.component';
 import {SpecialistChatsComponent} from './features/specialist-chats/specialist-chats.component';
 import {PaymentComponent} from './features/payment/payment.component';
+import {VerifySpecialistComponent} from './features/DashboardFolder/verify-specialist/verify-specialist.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent, data: {animation: 'home'}},
@@ -53,5 +54,8 @@ export const routes: Routes = [
   {path: 'modelsStstistics', component: ModelsStatisticsComponent},
   {path: 'profile/:id', component: ProfileComponent},
   {path: 'show-chats', component: SpecialistChatsComponent},
-  {path: 'payment', component: PaymentComponent}
+  {path: 'payment', component: PaymentComponent},
+  {path:'acceptSpecialist',component:VerifySpecialistComponent},
+
+
 ];
